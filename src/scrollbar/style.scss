@@ -1,30 +1,70 @@
+//rail variables
+$railDisplay: var(--csb-scrollbar-rail-display-property, block);
+$railBgColor: var(--csb-scrollbar-rail-background-color, #0000);
 
-$scrollbarDisplay:var(--csb-scrollbar-display-property,block);
-$scrollbarHeight :var(--csb-scrollbar-height,100%);
-$scrollbarThumbPosition: var(--csb-scrollbar-position,0);
-// html.csb-scrollbar-active::-webkit-scrollbar {
-//     width: 0;
-//     scrollbar-width: none; /* Firefox */
-//     -ms-overflow-style: none; /* IE/Edge */
-    
-//     &::-webkit-scrollbar {
-//         display: none; /* Chrome/Safari */
-//     }
-// }
-.csb-scrollbar-rail{
-    position:fixed;
-    display: $scrollbarDisplay;
-    left: 0;
-    top:0;
-    width: 10px;
-    height: 100%;
-    background:red;
-    .csb-scrollbar-rail-thumb{
-        position:absolute;
-        top:$scrollbarThumbPosition;
-        width: 100%;
-        height:$scrollbarHeight;
-        background-color: aqua;
-        border-radius: 10px;
-    }
+//thumb variables
+$thumbHeight: var(--csb-scrollbar-thumb-height, 100%);
+$thumbPosition: var(--csb-scrollbar-thumb-position, 0);
+$thumbColor: var(--csb-scrollbar-thumb-color, #46b3e6);
+
+html.csb-scrollbar-active::-webkit-scrollbar {
+	width: 0;
+	scrollbar-width: none;
+	/* Firefox */
+	-ms-overflow-style: none;
+	/* IE/Edge */
+
+	&::-webkit-scrollbar {
+		display: none;
+		/* Chrome/Safari */
+	}
+}
+
+.csb-scrollbar-rail {
+	position: fixed;
+	display: $railDisplay;
+	width: 80px;
+	height: 100%;
+	background: $railBgColor;
+
+	&.railAlignleft {
+		left: 0;
+		top: 0;
+	}
+
+	&.railAlignright {
+		right: 0;
+		top: 0;
+	}
+
+	&.csb-scrollbar-auto-hide {
+		transition: all 1s ease-in-out;
+		opacity: 0;
+		pointer-events: none;
+	}
+
+	&.csb-scrollbar-rail-cursor-hover {
+		.csb-scrollbar-rail-thumb {
+			transition: all 0.5s ease-in-out;
+			opacity: 0;
+		}
+
+		&:hover {
+			.csb-scrollbar-rail-thumb {
+				transition: all 0s ease-in-out;
+				opacity: 1;
+			}
+		}
+	}
+
+	.csb-scrollbar-rail-thumb {
+		// transition: all 0.2s ease-in-out;
+		position: absolute;
+		// top:$thumbPosition;
+		transform: translateY($thumbPosition);
+		width: 100%;
+		height: $thumbHeight;
+		background-color: $thumbColor;
+		border-radius: 10px;
+	}
 }

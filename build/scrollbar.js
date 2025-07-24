@@ -14,99 +14,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-// import { useEffect, useRef, useState } from "react";
 
-// export const useScrollbar = (railRef = null, thumbRef = null, isShowScrollbar = false) => {
-//     const [isActive, setIsActive] = useState(false);
-//     const startY = useRef(0);
-//     const startScrollTop = useRef(0);
-//     const [isDragging, setIsDragging] = useState(false);
-//     const [thumbHeight, setThumbHeight] = useState("");
-//     const [thumbPosition, setThumbPosition] = useState(0);
-//     const [isLoading, setIsLoading] = useState(true);
-
-//     const html = document.documentElement;
-//     useEffect(() => {
-//         setIsActive(isShowScrollbar);
-
-//         if (!isShowScrollbar) return;
-//         // const html = document.documentElement;
-//         html.classList.add('csb-scrollbar-active');
-//         const updateScrollbar = () => {
-//             if (!thumbRef.current) return;
-
-//             const scrollableHeight = html.scrollHeight - html.clientHeight;
-//             if (scrollableHeight <= 0) return;
-
-//             // Calculate thumb height (minimum 20px)
-//             const thumbHeight = Math.max(
-//                 (html.clientHeight / html.scrollHeight) * html.clientHeight,
-//                 20
-//             );
-//             // thumbRef.current.style.height = `${thumbHeight}px`;
-//             setThumbHeight(thumbHeight);
-
-//             // Update thumb position
-//             const scrollPercentage = html.scrollTop / scrollableHeight;
-//             const maxThumbPosition = html.clientHeight - thumbHeight;
-//             setThumbPosition(scrollPercentage * maxThumbPosition);
-//             // thumbRef.current.style.transform = `translateY(${scrollPercentage * maxThumbPosition}px)`;
-//         };
-
-//         const handleMouseMove = (e) => {
-//             if (!isDragging) return;
-
-//             const deltaY = e.clientY - startY.current;
-//             const scrollableHeight = html.scrollHeight - html.clientHeight;
-//             const thumbTrackHeight = html.clientHeight - parseFloat(thumbRef.current.style.height);
-
-//             html.scrollTop = startScrollTop.current + (deltaY / thumbTrackHeight) * scrollableHeight;
-//         };
-
-//         const handleMouseUp = () => {
-//             setIsDragging(false)
-//             // document.body.style.cursor = '';
-//             // document.body.style.userSelect = '';
-//         };
-
-//         // Initial setup
-//         updateScrollbar();
-//         window.addEventListener('resize', updateScrollbar);
-//         window.addEventListener('scroll', updateScrollbar);
-
-//         // Drag events
-//         thumbRef.current?.addEventListener('mousedown', (e) => {
-//             setIsDragging(true)
-//             startY.current = e.clientY;
-//             startScrollTop.current = html.scrollTop;
-//             document.body.style.cursor = 'grabbing';
-//             document.body.style.userSelect = 'none';
-//         });
-
-//         document.addEventListener('mousemove', handleMouseMove);
-//         document.addEventListener('mouseup', handleMouseUp);
-//         window.addEventListener('load', () => {
-//             updateScrollbar();
-//             setIsLoading(false);
-//         })
-
-//         return () => {
-//             html.classList.remove('csb-scrollbar-active');
-//             window.removeEventListener('resize', updateScrollbar);
-//             window.removeEventListener('scroll', updateScrollbar);
-//             document.removeEventListener('mousemove', handleMouseMove);
-//             document.removeEventListener('mouseup', handleMouseUp);
-//             window.removeEventListener('load', updateScrollbar)
-//         };
-//     }, [isLoading, isShowScrollbar, railRef.current, thumbRef.current]);
-//     useEffect(() => {
-//         console.log(isDragging)
-//     }, [isDragging])
-//     return { isLoading, isActive, thumbHeight, thumbPosition };
-// }
-
-
-const useScrollbar = (railRef = null, thumbRef = null, isShowScrollbar = false) => {
+const useScrollbar = (railRef = null, thumbRef = null, isShowScrollbar = false, wheelStep = 40) => {
+  const isClick = true,
+    isDrag = true;
   const [isActive, setIsActive] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
   const startY = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(0);
   const startScrollTop = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(0);
@@ -114,29 +25,34 @@ const useScrollbar = (railRef = null, thumbRef = null, isShowScrollbar = false) 
   const [thumbHeight, setThumbHeight] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("");
   const [thumbPosition, setThumbPosition] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0);
   const [isLoading, setIsLoading] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true);
+  const [isWheel, setIsWheel] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true);
   const html = document.documentElement;
 
   // Function to handle thumb dragging and update position
   const handleThumbDrag = clientY => {
-    // 1. Calculate drag distance and scroll metrics
-    const dragDistanceY = clientY - startY.current;
+    // 1. Get current metrics
     const totalScrollableHeight = html.scrollHeight - html.clientHeight;
+    if (totalScrollableHeight <= 0) return; // No scrolling needed
+
+    // 2. Calculate drag distance and scroll ratio
+    const dragDistanceY = clientY - startY.current;
     const availableTrackHeight = html.clientHeight - thumbHeight;
 
-    // 2. Calculate new scroll position
+    // 3. Calculate new scroll position with boundaries
     const scrollRatio = dragDistanceY / availableTrackHeight;
     const unboundedScrollTop = startScrollTop.current + scrollRatio * totalScrollableHeight;
-
-    // 3. Apply boundaries to scroll position
     const boundedScrollTop = Math.max(0, Math.min(unboundedScrollTop, totalScrollableHeight));
 
-    // 4. Update DOM scroll position
+    // 4. Update scroll position immediately
     html.scrollTop = boundedScrollTop;
 
-    // 5. Calculate and update thumb position
+    // 5. Calculate and set thumb position
     const scrollProgress = boundedScrollTop / totalScrollableHeight;
-    const maxThumbOffset = html.clientHeight - thumbHeight;
-    const newThumbPosition = scrollProgress * maxThumbOffset;
+    const newThumbPosition = scrollProgress * availableTrackHeight;
+
+    // Use direct assignment if possible, or ensure setThumbPosition is synchronous
+    // thumbRef.current.style.top= `${newThumbPosition}px`;
+    // Alternatively:  
     setThumbPosition(newThumbPosition);
   };
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
@@ -159,14 +75,92 @@ const useScrollbar = (railRef = null, thumbRef = null, isShowScrollbar = false) 
     };
     const handleMouseMove = e => {
       // e.preventDefault();
-      console.log(e);
-      if (!isDragging || !thumbRef?.current) return;
-      handleThumbDrag(e.clientY, isDragging);
+      if (!isDragging || !thumbRef?.current || !isDrag) return;
+      handleThumbDrag(e.clientY);
     };
     const handleMouseUp = () => {
       setIsDragging(false);
       document.body.style.cursor = '';
       document.body.style.userSelect = '';
+    };
+    const handleMouseClick = e => {
+      // e.preventDefault();
+      // if (!railRef.current || !thumbRef.current || typeof thumbHeight !== 'number' || !isClick) return;
+
+      // const scrollableHeight = html.scrollHeight - html.clientHeight;
+      // if (scrollableHeight <= 0) return;
+
+      // const railHeight = html.clientHeight;
+      // const clickY = e.clientY;
+
+      // // Center the thumb on the click position
+      // const newThumbTop = clickY - (thumbHeight / 2);
+      // const thumbTrackHeight = railHeight - thumbHeight;
+
+      // // Clamp the thumb position to stay within the track
+      // const clampedThumbTop = Math.max(0, Math.min(newThumbTop, thumbTrackHeight));
+
+      // const scrollRatio = thumbTrackHeight > 0 ? (clampedThumbTop / thumbTrackHeight) : 0;
+
+      // // Set the new scroll position of the page
+      // // html.scrollTop = scrollRatio * scrollableHeight;
+      // window.scrollTo({
+      //     top: scrollRatio * scrollableHeight,
+      //     behavior: 'smooth'
+      // });
+
+      e.preventDefault();
+      if (!railRef.current || !thumbRef.current || !isClick) return;
+      const scrollableHeight = html.scrollHeight - html.clientHeight;
+      if (scrollableHeight <= 0) return;
+      const viewportHeight = html.clientHeight;
+      const currentScrollTop = html.scrollTop;
+      const thumbRect = thumbRef.current.getBoundingClientRect();
+      let newScrollTop;
+      if (e.clientY < thumbRect.top) {
+        // Clicked above the thumb, scroll up by one page (100dvh)
+        newScrollTop = currentScrollTop - viewportHeight;
+      } else if (e.clientY > thumbRect.bottom) {
+        // Clicked below the thumb, scroll down by one page (100dvh)
+        newScrollTop = currentScrollTop + viewportHeight;
+      } else {
+        // Clicked on the thumb itself, do nothing.
+        return;
+      }
+
+      // Clamp the new scroll position to stay within the valid range.
+      const boundedScrollTop = Math.max(0, Math.min(newScrollTop, scrollableHeight));
+      window.scrollTo({
+        top: boundedScrollTop,
+        behavior: 'smooth'
+      });
+    };
+    let wheelId;
+    const handleWheel = e => {
+      // This handler is only attached if wheelStep is a truthy number.
+      e.preventDefault();
+      setIsWheel(false);
+      const totalScrollableHeight = html.scrollHeight - html.clientHeight;
+      if (totalScrollableHeight <= 0) return; // No scrolling needed
+
+      const currentScrollTop = html.scrollTop;
+      // Use Math.sign to determine direction and apply the step.
+      const scrollAmount = Math.sign(e.deltaY) * wheelStep;
+      const newScrollTop = currentScrollTop + scrollAmount;
+
+      // Clamp the new scroll position to stay within the valid range.
+      const boundedScrollTop = Math.max(0, Math.min(newScrollTop, totalScrollableHeight));
+
+      // Programmatically scroll the page.
+      html.scrollTop = boundedScrollTop;
+      window.scroll({
+        top: e.deltaY * 600,
+        left: 0,
+        behavior: 'smooth'
+      });
+      wheelId = setTimeout(() => {
+        setIsWheel(true);
+      }, 500);
     };
 
     // Initial setup
@@ -176,18 +170,38 @@ const useScrollbar = (railRef = null, thumbRef = null, isShowScrollbar = false) 
 
     // Drag events
     thumbRef.current?.addEventListener('mousedown', e => {
+      e.stopPropagation();
       setIsDragging(true);
       startY.current = e.clientY;
       startScrollTop.current = html.scrollTop;
       // document.body.style.cursor = 'grabbing';
       // document.body.style.userSelect = 'none';
     });
+    const handleThumbClick = e => {
+      e.stopPropagation();
+    };
+    // click event on the rail
+    railRef?.current?.addEventListener('click', handleMouseClick);
+    thumbRef.current?.addEventListener('click', handleThumbClick);
     document.addEventListener('mousemove', handleMouseMove);
     document.addEventListener('mouseup', handleMouseUp);
     window.addEventListener('load', () => {
       updateScrollbar();
       setIsLoading(false);
     });
+
+    // Add wheel event listener if wheelStep is provided
+    // if (wheelStep) {
+    //     document.addEventListener('wheel', handleWheel, { passive: false });
+    // }
+    document.addEventListener('wheel', handleWheel, {
+      passive: false
+    });
+
+    // document.addEventListener('scrollend', () => { 
+    //     setIsWheel(true);
+    // })
+
     return () => {
       html.classList.remove('csb-scrollbar-active');
       window.removeEventListener('resize', updateScrollbar);
@@ -195,17 +209,21 @@ const useScrollbar = (railRef = null, thumbRef = null, isShowScrollbar = false) 
       document.removeEventListener('mousemove', handleMouseMove);
       document.removeEventListener('mouseup', handleMouseUp);
       window.removeEventListener('load', updateScrollbar);
+      railRef?.current?.removeEventListener('click', handleMouseClick);
+      thumbRef.current?.removeEventListener('click', handleThumbClick);
+      if (wheelStep) {
+        document.removeEventListener('wheel', handleWheel);
+      }
+      clearTimeout(wheelId);
     };
   }, [isLoading, isShowScrollbar, railRef.current, thumbRef.current, thumbHeight, isDragging]);
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    console.log(isDragging);
-  }, [isDragging]);
   return {
     isLoading,
     isActive,
     thumbHeight,
     thumbPosition,
-    isDragging
+    isDragging,
+    isWheel
   };
 };
 
@@ -221,7 +239,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   isSet: () => (/* binding */ isSet)
 /* harmony export */ });
-const isSet = v => v !== undefined && v !== null && v !== '' && !isNaN(v) && v != false;
+const isSet = v => v !== undefined && v !== null && v !== '';
 
 /***/ }),
 
@@ -370,9 +388,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_dom_client__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom/client */ "../plugin-slug/node_modules/react-dom/client.js");
-/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./style.scss */ "./src/scrollbar/style.scss");
+/* harmony import */ var _hooks_useScrollbar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../hooks/useScrollbar */ "./src/hooks/useScrollbar.js");
 /* harmony import */ var _utils_function__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../utils/function */ "./src/utils/function.js");
-/* harmony import */ var _hooks_useScrollbar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../hooks/useScrollbar */ "./src/hooks/useScrollbar.js");
+/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./style.scss */ "./src/scrollbar/style.scss");
 
 
 
@@ -382,15 +400,25 @@ __webpack_require__.r(__webpack_exports__);
 const Scrollbar = ({
   scrollbarData
 }) => {
+  const {
+    asb_showscrollbar,
+    asb_color = '',
+    asb_background = '',
+    asb_mousescrollstep = 40,
+    asb_autohidemode = false,
+    asb_railalign = "right"
+  } = scrollbarData;
+  // console.log(scrollbarData)
   const thumbRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
   const railRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
-  const showScrollbar = JSON.parse(scrollbarData?.asb_showscrollbar);
+  const showScrollbar = JSON.parse(asb_showscrollbar);
+  const autoHideMode = asb_autohidemode === "coursor" ? "coursor" : JSON.parse(asb_autohidemode);
   const {
+    isWheel,
     isLoading,
-    isActive,
     thumbHeight,
     thumbPosition
-  } = (0,_hooks_useScrollbar__WEBPACK_IMPORTED_MODULE_4__.useScrollbar)(railRef, thumbRef, showScrollbar);
+  } = (0,_hooks_useScrollbar__WEBPACK_IMPORTED_MODULE_2__.useScrollbar)(railRef, thumbRef, showScrollbar, Number(asb_mousescrollstep));
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     if (window.self === window.top && showScrollbar) {
       document.documentElement.classList.add('csb-scrollbar-active');
@@ -405,26 +433,47 @@ const Scrollbar = ({
   }, [showScrollbar]);
   const styles = {
     ...(showScrollbar && {
-      "--csb-scrollbar-display-property": 'block'
+      "--csb-scrollbar-rail-display-property": 'block'
     }),
-    ...((0,_utils_function__WEBPACK_IMPORTED_MODULE_3__.isSet)(thumbPosition) && {
-      "--csb-scrollbar-position": thumbPosition + "px"
-    }),
-    ...((0,_utils_function__WEBPACK_IMPORTED_MODULE_3__.isSet)(thumbHeight) && {
-      "--csb-scrollbar-height": thumbHeight + "px"
+    ...((0,_utils_function__WEBPACK_IMPORTED_MODULE_3__.isSet)(asb_background) && {
+      "--csb-scrollbar-rail-background-color": asb_background
     })
   };
+  const thumbStyles = {
+    ...((0,_utils_function__WEBPACK_IMPORTED_MODULE_3__.isSet)(thumbHeight) && {
+      "--csb-scrollbar-thumb-height": thumbHeight + "px"
+    }),
+    ...((0,_utils_function__WEBPACK_IMPORTED_MODULE_3__.isSet)(thumbPosition) && {
+      "--csb-scrollbar-thumb-position": thumbPosition + "px"
+    }),
+    ...((0,_utils_function__WEBPACK_IMPORTED_MODULE_3__.isSet)(asb_color) && {
+      "--csb-scrollbar-thumb-color": asb_color
+    })
+  };
+
+  // const dynamicClassRail = autoHideMode === "cursor" ? "csb-scrollbar-rail-cursor" : autoHideMode ? isWheel ?"csb-scrollbar-auto-hide":"":""
+
+  let dynamicClassRail = '';
+  if (autoHideMode == 'coursor') {
+    // This class shows the scrollbar on hover
+    dynamicClassRail = 'csb-scrollbar-rail-cursor-hover';
+  } else if (autoHideMode) {
+    // This class hides the scrollbar when not actively wheel-scrolling
+    dynamicClassRail = 'csb-scrollbar-auto-hide';
+  }
   if (isLoading) return;
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ref: railRef,
-    className: "csb-scrollbar-rail",
+    className: `csb-scrollbar-rail railAlign${asb_railalign} ${isWheel ? dynamicClassRail : ""}`,
     style: {
       ...styles
     }
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "csb-scrollbar-rail-thumb",
     ref: thumbRef,
-    key: isActive
+    style: {
+      ...thumbStyles
+    }
   }));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Scrollbar);

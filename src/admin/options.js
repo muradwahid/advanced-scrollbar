@@ -24,7 +24,7 @@ export const options = {
                     title: "Scrollbar Color",
                     after: "Change Scrollbar Color.",
                     field: "color",
-                    default: "#c61bbb"
+                    default: "#46b3e6"
                 },
                 {
                     id: "asb_background",

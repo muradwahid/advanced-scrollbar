@@ -1,98 +1,7 @@
-// import { useEffect, useRef, useState } from "react";
-
-// export const useScrollbar = (railRef = null, thumbRef = null, isShowScrollbar = false) => {
-//     const [isActive, setIsActive] = useState(false);
-//     const startY = useRef(0);
-//     const startScrollTop = useRef(0);
-//     const [isDragging, setIsDragging] = useState(false);
-//     const [thumbHeight, setThumbHeight] = useState("");
-//     const [thumbPosition, setThumbPosition] = useState(0);
-//     const [isLoading, setIsLoading] = useState(true);
-
-//     const html = document.documentElement;
-//     useEffect(() => {
-//         setIsActive(isShowScrollbar);
-
-//         if (!isShowScrollbar) return;
-//         // const html = document.documentElement;
-//         html.classList.add('csb-scrollbar-active');
-//         const updateScrollbar = () => {
-//             if (!thumbRef.current) return;
-
-//             const scrollableHeight = html.scrollHeight - html.clientHeight;
-//             if (scrollableHeight <= 0) return;
-
-//             // Calculate thumb height (minimum 20px)
-//             const thumbHeight = Math.max(
-//                 (html.clientHeight / html.scrollHeight) * html.clientHeight,
-//                 20
-//             );
-//             // thumbRef.current.style.height = `${thumbHeight}px`;
-//             setThumbHeight(thumbHeight);
-
-//             // Update thumb position
-//             const scrollPercentage = html.scrollTop / scrollableHeight;
-//             const maxThumbPosition = html.clientHeight - thumbHeight;
-//             setThumbPosition(scrollPercentage * maxThumbPosition);
-//             // thumbRef.current.style.transform = `translateY(${scrollPercentage * maxThumbPosition}px)`;
-//         };
-
-//         const handleMouseMove = (e) => {
-//             if (!isDragging) return;
-
-//             const deltaY = e.clientY - startY.current;
-//             const scrollableHeight = html.scrollHeight - html.clientHeight;
-//             const thumbTrackHeight = html.clientHeight - parseFloat(thumbRef.current.style.height);
-
-//             html.scrollTop = startScrollTop.current + (deltaY / thumbTrackHeight) * scrollableHeight;
-//         };
-
-//         const handleMouseUp = () => {
-//             setIsDragging(false)
-//             // document.body.style.cursor = '';
-//             // document.body.style.userSelect = '';
-//         };
-
-//         // Initial setup
-//         updateScrollbar();
-//         window.addEventListener('resize', updateScrollbar);
-//         window.addEventListener('scroll', updateScrollbar);
-
-//         // Drag events
-//         thumbRef.current?.addEventListener('mousedown', (e) => {
-//             setIsDragging(true)
-//             startY.current = e.clientY;
-//             startScrollTop.current = html.scrollTop;
-//             document.body.style.cursor = 'grabbing';
-//             document.body.style.userSelect = 'none';
-//         });
-
-//         document.addEventListener('mousemove', handleMouseMove);
-//         document.addEventListener('mouseup', handleMouseUp);
-//         window.addEventListener('load', () => {
-//             updateScrollbar();
-//             setIsLoading(false);
-//         })
-
-//         return () => {
-//             html.classList.remove('csb-scrollbar-active');
-//             window.removeEventListener('resize', updateScrollbar);
-//             window.removeEventListener('scroll', updateScrollbar);
-//             document.removeEventListener('mousemove', handleMouseMove);
-//             document.removeEventListener('mouseup', handleMouseUp);
-//             window.removeEventListener('load', updateScrollbar)
-//         };
-//     }, [isLoading, isShowScrollbar, railRef.current, thumbRef.current]);
-//     useEffect(() => {
-//         console.log(isDragging)
-//     }, [isDragging])
-//     return { isLoading, isActive, thumbHeight, thumbPosition };
-// }
-
-
 import { useEffect, useRef, useState } from "react";
 
-export const useScrollbar = (railRef = null, thumbRef = null, isShowScrollbar = false) => {
+export const useScrollbar = (railRef = null, thumbRef = null, isShowScrollbar = false, wheelStep = 40) => {
+    const isClick = true, isDrag = true;
     const [isActive, setIsActive] = useState(false);
     const startY = useRef(0);
     const startScrollTop = useRef(0);
@@ -100,34 +9,38 @@ export const useScrollbar = (railRef = null, thumbRef = null, isShowScrollbar = 
     const [thumbHeight, setThumbHeight] = useState("");
     const [thumbPosition, setThumbPosition] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
+    const [isWheel, setIsWheel] = useState(true);
 
     const html = document.documentElement;
 
+
+
+
     // Function to handle thumb dragging and update position
     const handleThumbDrag = (clientY) => {
-        // 1. Calculate drag distance and scroll metrics
-        const dragDistanceY = clientY - startY.current;
+        // 1. Get current metrics
         const totalScrollableHeight = html.scrollHeight - html.clientHeight;
+        if (totalScrollableHeight <= 0) return; // No scrolling needed
+
+        // 2. Calculate drag distance and scroll ratio
+        const dragDistanceY = clientY - startY.current;
         const availableTrackHeight = html.clientHeight - thumbHeight;
 
-        // 2. Calculate new scroll position
+        // 3. Calculate new scroll position with boundaries
         const scrollRatio = dragDistanceY / availableTrackHeight;
         const unboundedScrollTop = startScrollTop.current + (scrollRatio * totalScrollableHeight);
+        const boundedScrollTop = Math.max(0, Math.min(unboundedScrollTop, totalScrollableHeight));
 
-        // 3. Apply boundaries to scroll position
-        const boundedScrollTop = Math.max(
-            0,
-            Math.min(unboundedScrollTop, totalScrollableHeight)
-        );
-
-        // 4. Update DOM scroll position
+        // 4. Update scroll position immediately
         html.scrollTop = boundedScrollTop;
 
-        // 5. Calculate and update thumb position
+        // 5. Calculate and set thumb position
         const scrollProgress = boundedScrollTop / totalScrollableHeight;
-        const maxThumbOffset = html.clientHeight - thumbHeight;
-        const newThumbPosition = scrollProgress * maxThumbOffset;
+        const newThumbPosition = scrollProgress * availableTrackHeight;
 
+        // Use direct assignment if possible, or ensure setThumbPosition is synchronous
+        // thumbRef.current.style.top= `${newThumbPosition}px`;
+        // Alternatively:  
         setThumbPosition(newThumbPosition);
     };
 
@@ -159,15 +72,104 @@ export const useScrollbar = (railRef = null, thumbRef = null, isShowScrollbar = 
 
         const handleMouseMove = (e) => {
             // e.preventDefault();
-            console.log(e)
-            if (!isDragging || !thumbRef?.current) return;
-            handleThumbDrag(e.clientY, isDragging);
+            if (!isDragging || !thumbRef?.current || !isDrag) return;
+            handleThumbDrag(e.clientY);
         };
 
         const handleMouseUp = () => {
             setIsDragging(false);
             document.body.style.cursor = '';
             document.body.style.userSelect = '';
+
+        };
+
+        const handleMouseClick = (e) => {
+            // e.preventDefault();
+            // if (!railRef.current || !thumbRef.current || typeof thumbHeight !== 'number' || !isClick) return;
+
+            // const scrollableHeight = html.scrollHeight - html.clientHeight;
+            // if (scrollableHeight <= 0) return;
+
+            // const railHeight = html.clientHeight;
+            // const clickY = e.clientY;
+
+            // // Center the thumb on the click position
+            // const newThumbTop = clickY - (thumbHeight / 2);
+            // const thumbTrackHeight = railHeight - thumbHeight;
+
+            // // Clamp the thumb position to stay within the track
+            // const clampedThumbTop = Math.max(0, Math.min(newThumbTop, thumbTrackHeight));
+
+            // const scrollRatio = thumbTrackHeight > 0 ? (clampedThumbTop / thumbTrackHeight) : 0;
+
+            // // Set the new scroll position of the page
+            // // html.scrollTop = scrollRatio * scrollableHeight;
+            // window.scrollTo({
+            //     top: scrollRatio * scrollableHeight,
+            //     behavior: 'smooth'
+            // });
+
+            e.preventDefault();
+            if (!railRef.current || !thumbRef.current || !isClick) return;
+
+            const scrollableHeight = html.scrollHeight - html.clientHeight;
+            if (scrollableHeight <= 0) return;
+
+            const viewportHeight = html.clientHeight;
+            const currentScrollTop = html.scrollTop;
+            const thumbRect = thumbRef.current.getBoundingClientRect();
+
+            let newScrollTop;
+
+            if (e.clientY < thumbRect.top) {
+                // Clicked above the thumb, scroll up by one page (100dvh)
+                newScrollTop = currentScrollTop - viewportHeight;
+            } else if (e.clientY > thumbRect.bottom) {
+                // Clicked below the thumb, scroll down by one page (100dvh)
+                newScrollTop = currentScrollTop + viewportHeight;
+            } else {
+                // Clicked on the thumb itself, do nothing.
+                return;
+            }
+
+            // Clamp the new scroll position to stay within the valid range.
+            const boundedScrollTop = Math.max(0, Math.min(newScrollTop, scrollableHeight));
+            window.scrollTo({
+                top: boundedScrollTop,
+                behavior: 'smooth',
+            });
+        };
+
+        let wheelId;
+
+        const handleWheel = (e) => {
+            // This handler is only attached if wheelStep is a truthy number.
+            e.preventDefault();
+            setIsWheel(false)
+            const totalScrollableHeight = html.scrollHeight - html.clientHeight;
+            if (totalScrollableHeight <= 0) return; // No scrolling needed
+
+            const currentScrollTop = html.scrollTop;
+            // Use Math.sign to determine direction and apply the step.
+            const scrollAmount = Math.sign(e.deltaY) * wheelStep;
+
+            const newScrollTop = currentScrollTop + scrollAmount;
+
+            // Clamp the new scroll position to stay within the valid range.
+            const boundedScrollTop = Math.max(0, Math.min(newScrollTop, totalScrollableHeight));
+
+            // Programmatically scroll the page.
+            html.scrollTop = boundedScrollTop;
+            window.scroll({
+                top: e.deltaY * 600,
+                left: 0,
+                behavior: 'smooth'
+            });
+
+            wheelId = setTimeout(() => {
+                setIsWheel(true);
+            }, 500);
+
         };
 
         // Initial setup
@@ -177,12 +179,22 @@ export const useScrollbar = (railRef = null, thumbRef = null, isShowScrollbar = 
 
         // Drag events
         thumbRef.current?.addEventListener('mousedown', (e) => {
+            e.stopPropagation();
             setIsDragging(true);
             startY.current = e.clientY;
             startScrollTop.current = html.scrollTop;
             // document.body.style.cursor = 'grabbing';
             // document.body.style.userSelect = 'none';
         });
+
+
+        const handleThumbClick = (e) => {
+            e.stopPropagation();
+        }
+        // click event on the rail
+        railRef?.current?.addEventListener('click', handleMouseClick);
+        thumbRef.current?.addEventListener('click', handleThumbClick);
+
 
         document.addEventListener('mousemove', handleMouseMove);
         document.addEventListener('mouseup', handleMouseUp);
@@ -191,6 +203,17 @@ export const useScrollbar = (railRef = null, thumbRef = null, isShowScrollbar = 
             setIsLoading(false);
         });
 
+        // Add wheel event listener if wheelStep is provided
+        // if (wheelStep) {
+        //     document.addEventListener('wheel', handleWheel, { passive: false });
+        // }
+        document.addEventListener('wheel', handleWheel, { passive: false });
+
+
+        // document.addEventListener('scrollend', () => { 
+        //     setIsWheel(true);
+        // })
+
         return () => {
             html.classList.remove('csb-scrollbar-active');
             window.removeEventListener('resize', updateScrollbar);
@@ -198,11 +221,13 @@ export const useScrollbar = (railRef = null, thumbRef = null, isShowScrollbar = 
             document.removeEventListener('mousemove', handleMouseMove);
             document.removeEventListener('mouseup', handleMouseUp);
             window.removeEventListener('load', updateScrollbar);
+            railRef?.current?.removeEventListener('click', handleMouseClick)
+            thumbRef.current?.removeEventListener('click', handleThumbClick);
+            if (wheelStep) {
+                document.removeEventListener('wheel', handleWheel);
+            }
+            clearTimeout(wheelId);
         };
     }, [isLoading, isShowScrollbar, railRef.current, thumbRef.current, thumbHeight, isDragging]);
-
-    useEffect(() => {
-        console.log(isDragging)
-    }, [isDragging])
-    return { isLoading, isActive, thumbHeight, thumbPosition, isDragging };
+    return { isLoading, isActive, thumbHeight, thumbPosition, isDragging, isWheel };
 };
