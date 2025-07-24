@@ -1,0 +1,30 @@
+
+$scrollbarDisplay:var(--csb-scrollbar-display-property,block);
+$scrollbarHeight :var(--csb-scrollbar-height,100%);
+$scrollbarThumbPosition: var(--csb-scrollbar-position,0);
+// html.csb-scrollbar-active::-webkit-scrollbar {
+//     width: 0;
+//     scrollbar-width: none; /* Firefox */
+//     -ms-overflow-style: none; /* IE/Edge */
+    
+//     &::-webkit-scrollbar {
+//         display: none; /* Chrome/Safari */
+//     }
+// }
+.csb-scrollbar-rail{
+    position:fixed;
+    display: $scrollbarDisplay;
+    left: 0;
+    top:0;
+    width: 10px;
+    height: 100%;
+    background:red;
+    .csb-scrollbar-rail-thumb{
+        position:absolute;
+        top:$scrollbarThumbPosition;
+        width: 100%;
+        height:$scrollbarHeight;
+        background-color: aqua;
+        border-radius: 10px;
+    }
+}

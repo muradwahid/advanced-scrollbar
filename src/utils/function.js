@@ -1,0 +1,1 @@
+export const isSet = v => v !== undefined && v !== null && v !== '' && !isNaN(v) && v != false;

@@ -1,0 +1,22 @@
+/*!****************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/scrollbar/style.scss ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************/
+.csb-scrollbar-rail {
+  position: fixed;
+  display: var(--csb-scrollbar-display-property, block);
+  left: 0;
+  top: 0;
+  width: 10px;
+  height: 100%;
+  background: red;
+}
+.csb-scrollbar-rail .csb-scrollbar-rail-thumb {
+  position: absolute;
+  top: var(--csb-scrollbar-position, 0);
+  width: 100%;
+  height: var(--csb-scrollbar-height, 100%);
+  background-color: aqua;
+  border-radius: 10px;
+}
+
+/*# sourceMappingURL=scrollbar.css.map*/
