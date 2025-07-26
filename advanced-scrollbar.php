@@ -206,27 +206,27 @@ if (!function_exists('ppm_customscrollbar_active_js')):
 
         ?>
 <script>
-(function($) {
-    "use strict";
-    jQuery(document).ready(function($) {
-        <?php if ($asb_showscrollbar == "true" && $asb_floating_scrollbar == "off") : ?>
-        $("html").niceScroll({
-            hwacceleration: true,
-            cursorcolor: "<?php echo $scrollbar_color; ?>",
-            cursorwidth: "<?php echo $scrollbar_width; ?>",
-            cursorborder: "<?php echo $scrollbar_border; ?>",
-            cursorborderradius: "<?php echo $scrollbar_border_radius; ?>",
-            scrollspeed: <?php echo $scrollbar_speed; ?>,
-            railalign: "<?php echo $scrollbar_railalign; ?>",
-            background: "<?php echo $scrollbar_background; ?>",
-            touchbehavior: <?php echo $scrollbar_touchbehavior; ?>,
-            mousescrollstep: <?php echo $scrollbar_mousescrollstep; ?>,
-            autohidemode: <?php echo $scrollbar_autohidemode; ?>, // working 
-        });
+// (function($) {
+//     "use strict";
+//     jQuery(document).ready(function($) {
+//         <?php if ($asb_showscrollbar == "true" && $asb_floating_scrollbar == "off") : ?>
+//         $("html").niceScroll({
+//             hwacceleration: true,
+//             cursorcolor: "<?php echo $scrollbar_color; ?>",
+//             cursorwidth: "<?php echo $scrollbar_width; ?>",
+//             cursorborder: "<?php echo $scrollbar_border; ?>",
+//             cursorborderradius: "<?php echo $scrollbar_border_radius; ?>",
+//             scrollspeed: <?php echo $scrollbar_speed; ?>,
+//             railalign: "<?php echo $scrollbar_railalign; ?>",
+//             background: "<?php echo $scrollbar_background; ?>",
+//             touchbehavior: <?php echo $scrollbar_touchbehavior; ?>,
+//             mousescrollstep: <?php echo $scrollbar_mousescrollstep; ?>,
+//             autohidemode: <?php echo $scrollbar_autohidemode; ?>, // working 
+//         });
 
-        <?php endif; ?>
-    });
-}(jQuery));
+//         <?php endif; ?>
+//     });
+// }(jQuery));
 </script>
 
 <style>

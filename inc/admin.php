@@ -22,7 +22,7 @@ if( !class_exists('CSBAdmin') ){
 	
 			add_menu_page(
 				__( 'Plugin Menu', 'text-domain' ),
-				__( 'Plugin', 'text-domain' ),
+				__( 'Advanced Scrollbar', 'text-domain' ),
 				'manage_options',
 				'plugin-slug',
 				'',

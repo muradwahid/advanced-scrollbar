@@ -1,0 +1,65 @@
+    function animateScroll() {
+        isAnimating = true;
+        const startY = currentY;
+        const distance = targetY - startY;
+        const startTime = performance.now();
+
+        function step(now) {
+            const elapsed = now - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+
+            currentY = startY + distance * progress; // 👈 Linear, no easing
+            window.scrollTo(0, currentY);
+
+            if (progress < 1) {
+                requestAnimationFrame(step);
+            } else {
+                isAnimating = false;
+                if (currentY !== targetY) animateScroll(); // Continue if new scroll input came in
+            }
+        }
+
+        requestAnimationFrame(step);
+    }
+
+
+
+    window.addEventListener('wheel', (e) => {
+      e.preventDefault();
+      targetY += e.deltaY;
+
+      targetY = Math.max(0, Math.min(
+        targetY,
+        document.body.scrollHeight - window.innerHeight
+      ));
+
+      if (!isAnimating) animateScroll();
+    }, { passive: false });
+
+
+
+click to scroll position
+// e.preventDefault();
+            // if (!railRef.current || !thumbRef.current || typeof thumbHeight !== 'number' || !isClick) return;
+
+            // const scrollableHeight = html.scrollHeight - html.clientHeight;
+            // if (scrollableHeight <= 0) return;
+
+            // const railHeight = html.clientHeight;
+            // const clickY = e.clientY;
+
+            // // Center the thumb on the click position
+            // const newThumbTop = clickY - (thumbHeight / 2);
+            // const thumbTrackHeight = railHeight - thumbHeight;
+
+            // // Clamp the thumb position to stay within the track
+            // const clampedThumbTop = Math.max(0, Math.min(newThumbTop, thumbTrackHeight));
+
+            // const scrollRatio = thumbTrackHeight > 0 ? (clampedThumbTop / thumbTrackHeight) : 0;
+
+            // // Set the new scroll position of the page
+            // // html.scrollTop = scrollRatio * scrollableHeight;
+            // window.scrollTo({
+            //     top: scrollRatio * scrollableHeight,
+            //     behavior: 'smooth'
+            // });

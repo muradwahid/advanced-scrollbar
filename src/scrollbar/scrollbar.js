@@ -1,10 +1,11 @@
 import { useEffect, useRef } from 'react';
 import { createRoot } from 'react-dom/client';
 import { useScrollbar } from '../hooks/useScrollbar';
+// import { useSmoothScroll } from '../hooks/useSmoothScroll';
 import { isSet } from '../utils/function';
 import "./style.scss";
 const Scrollbar = ({ scrollbarData }) => {
-    const { asb_showscrollbar, asb_color = '', asb_background = '', asb_mousescrollstep = 40, asb_autohidemode= false, asb_railalign="right"    } = scrollbarData;
+    const { asb_showscrollbar, asb_color = '', asb_background = '', asb_mousescrollstep = 40, asb_autohidemode = false, asb_railalign = "right", asb_scrollspeed=60 } = scrollbarData;
     // console.log(scrollbarData)
     const thumbRef = useRef(null);
     const railRef = useRef(null);
@@ -12,7 +13,11 @@ const Scrollbar = ({ scrollbarData }) => {
 
     const autoHideMode = asb_autohidemode === "coursor" ? "coursor" : JSON.parse(asb_autohidemode);
 
-    const { isWheel, isLoading, thumbHeight, thumbPosition } = useScrollbar(railRef, thumbRef, showScrollbar, Number(asb_mousescrollstep));
+    const { isWheel, isLoading, thumbHeight, thumbPosition } = useScrollbar(railRef, thumbRef, showScrollbar, Number(asb_mousescrollstep), Number(asb_scrollspeed));
+    // const { isWheel } = useSmoothScroll({
+    //     scrollSpeed: Number(asb_scrollspeed),    // Normal scrolling speed
+    //     mouseScrollStep: Number(asb_mousescrollstep) // Pixels per mouse wheel step
+    // });
     useEffect(() => {
         if (window.self === window.top && showScrollbar) {
             document.documentElement.classList.add('csb-scrollbar-active');
@@ -41,14 +46,14 @@ const Scrollbar = ({ scrollbarData }) => {
     // const dynamicClassRail = autoHideMode === "cursor" ? "csb-scrollbar-rail-cursor" : autoHideMode ? isWheel ?"csb-scrollbar-auto-hide":"":""
 
     let dynamicClassRail = '';
-        if (autoHideMode == 'coursor') {
-            // This class shows the scrollbar on hover
-            dynamicClassRail = 'csb-scrollbar-rail-cursor-hover';
-        } else if (autoHideMode) {
+    if (autoHideMode == 'coursor') {
+        // This class shows the scrollbar on hover
+        dynamicClassRail = 'csb-scrollbar-rail-cursor-hover';
+    } else if (autoHideMode) {
 
-            // This class hides the scrollbar when not actively wheel-scrolling
-            dynamicClassRail = 'csb-scrollbar-auto-hide';
-        }
+        // This class hides the scrollbar when not actively wheel-scrolling
+        dynamicClassRail = 'csb-scrollbar-auto-hide';
+    }
 
 
     if (isLoading) return;
