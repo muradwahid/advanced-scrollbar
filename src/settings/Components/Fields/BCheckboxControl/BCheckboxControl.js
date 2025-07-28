@@ -1,16 +1,16 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import useDynamicData from '../../../hooks/useDynamicData';
 import { Spinner } from '@wordpress/components';
 import "./style.scss";
 
 const CheckboxItem = ({ label, value, isChecked, onToggle }) => (
-  <div className="bPl-checkboxWrapper">
+  <div key={JSON.stringify(value)} className="bPl-checkboxWrapper">
     <input type="checkbox" checked={isChecked} value={value} onChange={onToggle} />
     <span>{label}</span>
   </div>
 );
 const BCheckboxControl = ({
-  options,
+  options=[],
   value,
   categories = false,
   onChange,
@@ -50,11 +50,10 @@ const BCheckboxControl = ({
         gap: '10px'
       }}
     >
-      {options ? checkboxData?.map(({ label, value: val }) => {
+      {options.length>0 ? checkboxData?.map(({ label, value: val }) => {
         const isChecked = isMultiple
           ? currentValue?.includes(val)
           : currentValue === 1;
-
         return (
           <CheckboxItem
             key={val}

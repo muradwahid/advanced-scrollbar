@@ -1,11 +1,36 @@
 //rail variables
+html {
+	// scroll-behavior: auto !important;
+	/* Disables native smooth scrolling */
+}
+
+// body.grabbing {
+// 	cursor: grabbing;
+// 	user-select: none;
+// }
+
+//rail styles
 $railDisplay: var(--csb-scrollbar-rail-display-property, block);
 $railBgColor: var(--csb-scrollbar-rail-background-color, #0000);
+$railWidth  : var(--csb-scrollbar-rail-width,12px);
 
 //thumb variables
 $thumbHeight: var(--csb-scrollbar-thumb-height, 100%);
 $thumbPosition: var(--csb-scrollbar-thumb-position, 0);
 $thumbColor: var(--csb-scrollbar-thumb-color, #46b3e6);
+$thumbBRadius: var(--csb-scrollbar-thumb-border-radius, 12px);
+
+
+//dynamic height variables
+$railDynamicHeight : var(--csb-scrollbar-rail-dynamic-height, 0px);
+
+//floating variables
+
+$floatingBgColor : var(--csb-scrollbar-floating-bg-color, #46b3e6);
+$floatingTextColor : var(--csb-scrollbar-floating-text-color, #ffffff);
+
+
+
 
 html.csb-scrollbar-active::-webkit-scrollbar {
 	width: 0;
@@ -15,7 +40,7 @@ html.csb-scrollbar-active::-webkit-scrollbar {
 	/* IE/Edge */
 
 	&::-webkit-scrollbar {
-		display: none;
+		// display: none;
 		/* Chrome/Safari */
 	}
 }
@@ -23,7 +48,7 @@ html.csb-scrollbar-active::-webkit-scrollbar {
 .csb-scrollbar-rail {
 	position: fixed;
 	display: $railDisplay;
-	width: 80px;
+	width: $railWidth;
 	height: 100%;
 	background: $railBgColor;
 
@@ -65,6 +90,29 @@ html.csb-scrollbar-active::-webkit-scrollbar {
 		width: 100%;
 		height: $thumbHeight;
 		background-color: $thumbColor;
-		border-radius: 10px;
+		border-radius: $thumbBRadius;
+		box-sizing: border-box;
 	}
+}
+
+.csb-scrollbar-dynamic-height {
+	position: fixed;
+	top: 0;
+	right: 0;
+	width: 10px;
+	height: $railDynamicHeight;
+	background: linear-gradient(to top, #fcb054, #fd1d1d, #833ab4);
+	z-index: 99999;
+}
+
+.csb-scrollbar-floating {
+	padding: 8px;
+	background-color: $floatingBgColor;
+	color: $floatingTextColor;
+	font-weight: 600;
+	display: inline-block;
+	position: fixed;
+	top: 45px;
+	left: 0;
+	z-index: 9999;
 }

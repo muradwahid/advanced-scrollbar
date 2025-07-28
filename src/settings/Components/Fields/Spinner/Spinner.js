@@ -1,4 +1,3 @@
-import React from "react";
 import "./style.scss";
 const Spinner = ({
   value,
@@ -50,7 +49,7 @@ const Spinner = ({
               max={max}
               step={step}
               className="bPl-spinner-input"
-              onChange={(e) => onChange(e.target.value)}
+              onChange={(e) => onChange({ ...def, spinner: e.target.value })}
             />
           </div>
           {unit && <div className="bPl-spinner-unit">{unit}</div>}

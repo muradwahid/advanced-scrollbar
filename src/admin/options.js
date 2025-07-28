@@ -85,7 +85,7 @@ export const options = {
                     field: "checkbox",
                     title: "Enable Touch Behavior",
                     label: "enable cursor-drag scrolling like touch devices in desktop computer (default:Off)",
-                    default: "off"
+                    default: 0
                 },
                 {
                     id: "asb_dynamic_height_scrollbar",
@@ -97,7 +97,7 @@ export const options = {
                         "on": "On",
                         "off": "Off"
                     },
-                    default: "opt-2"
+                    default: "off"
 
                 },
                 {
@@ -114,7 +114,7 @@ export const options = {
                     default: {
                         "color-1": "#ffce4b",
                         "color-2": "#ff395e",
-                        "color-3": "#0052cc"
+                        "color-3": "#833ab4"
                     }
                 },
                 {
@@ -135,7 +135,7 @@ export const options = {
                     title: "Floating Scrollbar BG Color",
                     after: "Change Scrollbar BG Color",
                     field: "color",
-                    default: "#c61bbb"
+                    default: "#9837bf"
                 },
                 {
                     id: "asb_floating_scrollbar_text_color",
@@ -170,12 +170,12 @@ export const options = {
                     field: "border",
                     after: "Css definition for cursor border",
                     default: {
-                        top: "4",
-                        right: "8",
-                        bottom: "4",
-                        left: "8",
-                        style: "dashed",
-                        color: "#1e73be"
+                        top: "1",
+                        right: "1",
+                        bottom: "1",
+                        left: "1",
+                        style: "solid",
+                        color: "#fff"
                     }
                 },
                 {

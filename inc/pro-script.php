@@ -1,4 +1,4 @@
-<?php
+<!-- <?php
     function csb_pro_script_retrive_option($option, $section, $default = '')
     {
 
@@ -69,4 +69,4 @@ window.onscroll = function(e) {
         'Page Scrolled ' + Math.round(progress) + ' %';
 };
 <?php endif; ?>
-</script>
+</script> -->

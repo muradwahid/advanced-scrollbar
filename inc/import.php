@@ -7,25 +7,28 @@ if(!class_exists('ASB_Import')){
     
     
         private $key = 'admin-dashboard-secondssm';
+        private $version = '1.0.0';
     
         public function __construct() {
-    
-            if(CSB_VERSION <= '1.1.5'){
-                add_action('init', array($this, 'import_settings'));
-            }
-
-    
+            add_action('init', array($this, 'import_settings'));
         }
     
         public function import_settings() {
+
+            $imported_ver = get_option('asb_import_ver', '0.0.0');
+            if($imported_ver >= $this->version){
+                return;
+            }
 
             $tab_1 = get_option('wedevs_basics');
             $tab_2 = get_option('wedevs_advanced');
             $tab_3 = get_option('wedevs_cursor_options');
             $new_data = wp_parse_args($tab_1, wp_parse_args($tab_2, $tab_3));
 
+            
             $border = explode(' ', $new_data['asb_border']);
-    
+            $touch = $new_data['asb_touchbehavior'] == "on" ? 1 : 0 ;
+
             $new_data = wp_parse_args([
                 'asb_gradient_color' => [
                     'color-1' => $this->isset($new_data, 'asb_gradient_color'),
@@ -44,16 +47,20 @@ if(!class_exists('ASB_Import')){
                     'spinner' => (int) $this->isset($new_data, 'asb_width'),
                     'unit' => 'px'
                 ],
+                // 'asb_width' =>(int) $this->isset($new_data, 'asb_width'),
+                'asb_touchbehavior' => $touch,
                 'asb_border_radius' => [
                     'spinner' => (int) $this->isset($new_data, 'asb_border_radius'),
                     'unit' => 'px'
                 ], //(string)(int) $new_data['asb_border_radius'],
+                // 'asb_border_radius' => (int) $this->isset($new_data, 'asb_border_radius') //(string)(int) $new_data['asb_border_radius'],
             ], $new_data);
     
             $data = get_option($this->key, null);
     
             if(!$data){
                 update_option($this->key, $new_data);
+                update_option('asb_import_ver', $this->version);
             }
     
         }
