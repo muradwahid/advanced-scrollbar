@@ -13,7 +13,9 @@ module.exports = {
 	entry: {
 		...defaultConfig.entry(),
 		'admin': "./src/admin/admin.js",
-		"scrollbar":"./src/scrollbar/scrollbar.js"
+		"scrollbar":"./src/scrollbar/scrollbar.js",
+		"cursor":"./src/customCursor/customCursor.js",
+		"settings":"./src/customCursor/Settings.js",
 	},
 	plugins: [
 		...plugins,

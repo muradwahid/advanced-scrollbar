@@ -1,0 +1,18 @@
+.bBlocks-cursor-elastic-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+}
+
+.bBlocks-cursor-elastic-cursor-follower {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 50;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+}

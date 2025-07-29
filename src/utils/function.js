@@ -15,12 +15,12 @@ export const generateGradient = (colorObject) => {
 export const getBorderCSS = (border = {}) => {
   // Default values
   const defaults = {
-    top: '0',
-    right: '0',
-    bottom: '0',
-    left: '0',
+    top: '1',
+    right: '1',
+    bottom: '1',
+    left: '1',
     style: 'solid',
-    color: '#000'
+    color: '#fff'
   };
 
   // Merge with defaults
@@ -29,12 +29,9 @@ export const getBorderCSS = (border = {}) => {
   // Extract values
   const { top, right, bottom, left, style, color } = finalBorder;
 
-  // Generate CSS string
-  return {
-    borderTop: `${top}px ${style} ${color}`,
-    borderRight: `${right}px ${style} ${color}`,
-    borderBottom: `${bottom}px ${style} ${color}`,
-    borderLeft: `${left}px ${style} ${color}`,
-    // Shorthand version (if all sides are equal)
-  };
+  // Check if all sides have the same width
+  if (top === right && right === bottom && bottom === left) {
+    // Use shorthand if all sides are equal
+    return `${top}px ${style} ${color}`;
+  }
 }

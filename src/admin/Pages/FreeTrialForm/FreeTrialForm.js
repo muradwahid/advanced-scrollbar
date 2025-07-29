@@ -2,6 +2,7 @@ import Layout from '../../Layout/Layout';
 import "./style.scss";
 const prefix = 'freeTrialForm';
 const FreeTrialForm = ({ freemius, }) => {
+  // eslint-disable-next-line no-unused-vars
   const { product_id, plan_id, public_key: _, ...rest } = freemius;
 
   const params = Object.keys(rest).map(key => `${key}=${rest[key]}`).join('&');

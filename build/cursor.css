@@ -1,0 +1,994 @@
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/customCursor/cursor/Effects/CursorEffect.scss ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************************************/
+.effect-wrapper {
+  position: fixed;
+  transform: translate(-50%, -50%);
+}
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/customCursor/cursor/Effects/rippleEffects/style.scss ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/* Ripple Effects */
+.effect-wrapper .ripple-circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  background: var(--bPl-cursor-effect-ripple-background, rgba(125, 125, 255, 0.2));
+  border: var(--bPl-cursor-effect-ripple-border-width, 2px) solid var(--bPl-cursor-effect-ripple-border-color, rgba(125, 125, 255, 0.5019607843));
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: rippleExpand var(--bPl-cursor-effect-ripple-duration, 1s) cubic-bezier(0, 0, 0.2, 1) forwards;
+}
+.effect-wrapper .ripple-fast {
+  animation: rippleExpand var(--bPl-cursor-effect-ripple-duration, 0.8s) cubic-bezier(0, 0, 0.2, 1) forwards;
+  border-color: var(--bPl-cursor-effect-ripple-border-color, rgba(255, 107, 107, 0.5019607843));
+  background: var(--bPl-cursor-effect-ripple-background, rgba(255, 107, 107, 0.1019607843));
+}
+.effect-wrapper .ripple-slow {
+  animation: rippleExpand var(--bPl-cursor-effect-ripple-slow-duration, 1.2s) cubic-bezier(0, 0, 0.2, 1) forwards;
+  border-color: var(--bPl-cursor-effect-ripple-border-color, rgba(107, 107, 255, 0.5019607843));
+  background: var(--bPl-cursor-effect-ripple-background, rgba(107, 107, 255, 0.1019607843));
+}
+.effect-wrapper .ripple-wave {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  border: 3px solid transparent;
+}
+.effect-wrapper .wave-1 {
+  width: 20px;
+  height: 20px;
+  border-color: var(--bPl-cursor-effect-ripple-border-color, rgba(97, 219, 251, 0.8));
+  animation: waveExpand var(--bPl-cursor-effect-ripple-duration, 1.5s) cubic-bezier(0, 0, 0.2, 1) forwards;
+}
+.effect-wrapper .wave-2 {
+  width: 10px;
+  height: 10px;
+  border-color: var(--bPl-cursor-effect-ripple-border-color, rgba(130, 230, 180, 0.8));
+  animation: waveExpand var(--bPl-cursor-effect-ripple-duration, 1.5s) cubic-bezier(0, 0, 0.2, 1) 0.2s forwards;
+}
+.effect-wrapper .wave-3 {
+  width: 5px;
+  height: 5px;
+  border-color: var(--bPl-cursor-effect-ripple-border-color, rgba(255, 202, 105, 0.8));
+  animation: waveExpand var(--bPl-cursor-effect-ripple-duration, 1.5s) cubic-bezier(0, 0, 0.2, 1) 0.4s forwards;
+}
+.effect-wrapper .ripple-pulse {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  background: var(--bPl-cursor-effect-ripple-background, rgba(59, 131, 246, 0.8));
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: pulseExpand var(--bPl-cursor-effect-ripple-duration, 1s) cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  border: var(--bPl-cursor-effect-ripple-border-width, 0px) solid var(--bPl-cursor-effect-ripple-border-color, rgba(59, 131, 246, 0.8));
+}
+.effect-wrapper .ripple {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  border: var(--bPl-cursor-effect-ripple-border-width, 5px) solid var(--bPl-cursor-effect-ripple-border-color, #84fab0);
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  animation: rippleWaveEnhanced var(--bPl-cursor-effect-ripple-duration, 2s) cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  filter: drop-shadow(0 0 25px currentColor);
+}
+
+@keyframes rippleExpand {
+  0% {
+    width: 10px;
+    height: 10px;
+    opacity: 1;
+  }
+  100% {
+    width: var(--bPl-cursor-effect-ripple-size, 100px);
+    height: var(--bPl-cursor-effect-ripple-size, 100px);
+    opacity: 0;
+  }
+}
+@keyframes waveExpand {
+  0% {
+    width: 10px;
+    height: 10px;
+    opacity: 1;
+    border-width: 3px;
+  }
+  100% {
+    width: var(--bPl-cursor-effect-ripple-wave-size, 150px);
+    height: var(--bPl-cursor-effect-ripple-wave-size, 150px);
+    opacity: 0;
+    border-width: var(--bPl-cursor-effect-ripple-border-width, 1px);
+  }
+}
+@keyframes pulseExpand {
+  0% {
+    width: 5px;
+    height: 5px;
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    width: var(--bPl-cursor-effect-ripple-size, 100px);
+    height: var(--bPl-cursor-effect-ripple-size, 100px);
+    opacity: 0;
+  }
+}
+@keyframes rippleWaveEnhanced {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 1;
+    border-width: 3px;
+  }
+  50% {
+    opacity: 0.8;
+    border-width: 1.5px;
+    filter: drop-shadow(0 0 35px currentColor);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(15);
+    opacity: 0;
+    border-width: 1px;
+    filter: drop-shadow(0 0 60px currentColor);
+  }
+}
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/customCursor/cursor/Effects/sparkEffect/Explosion/style.scss ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.effect-wrapper .explosion-particle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--bPl-spark-explosion-size, 100px);
+  height: 2px;
+  background: linear-gradient(90deg, var(--bPl-spark-explosion-color, #ffb347), transparent);
+  transform-origin: left;
+  animation: explosionGrow var(--bPl-spark-explosion-transition-duration, 1.5s) cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes explosionGrow {
+  0% {
+    width: 0;
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    width: var(--bPl-spark-explosion-size, 100px);
+    opacity: 0;
+  }
+}
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/customCursor/cursor/Effects/sparkEffect/Radial/style.scss ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.effect-wrapper .radial-spark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--bPl-spark-radial-size, 80px);
+  height: 2px;
+  background: linear-gradient(90deg, var(--bPl-spark-radial-color, #74ebd5), transparent);
+  transform-origin: left;
+  animation: radialGrow var(--bPl-spark-radial-transition-duration, 1.2s) cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes radialGrow {
+  0% {
+    width: 0;
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    width: var(--bPl-spark-radial-size, 80px);
+    opacity: 0;
+  }
+}
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/customCursor/cursor/Effects/sparkEffect/Starburst/style.scss ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.effect-wrapper .spark-starburst-container .starburst-line {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--bPl-spark-starburst-size, 60px);
+  height: 3px;
+  background: linear-gradient(90deg, var(--bPl-spark-starburst-color, #ff9a8b), transparent);
+  transform-origin: left;
+  animation: starburstGrow var(--bPl-spark-starburst-transition-duration, 1s) cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+}
+@keyframes starburstGrow {
+  0% {
+    width: 0;
+    opacity: 1;
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    width: var(--bPl-spark-starburst-size, 60px);
+    opacity: 0;
+  }
+}
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/customCursor/cursor/Effects/sparkEffect/SparkSimple/style.scss ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.effect-wrapper .spark-simple-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.effect-wrapper .spark-simple-container .spark-line {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--bPl-spark-simple-size, 40px);
+  height: 2px;
+  background: var(--bPl-spark-simple-color, #ff6b6b);
+  transform-origin: left;
+  animation: sparkGrow var(--bPl-spark-simple-transition-duration, 0.8s) var(--bPl-spark-simple-timing-function, ease-out) forwards;
+}
+
+@keyframes sparkGrow {
+  0% {
+    width: 0;
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    width: var(--bPl-spark-simple-size, 40px);
+    opacity: 0;
+  }
+}
+/*!*******************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/customCursor/cursor/Shape/BlobCursor/style.scss ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************************************************/
+/* width: 100%;
+    height: 100%; */
+.bBlocks-blob-cursor-main {
+  position: fixed;
+  z-index: 9999;
+  inset: 0;
+  pointer-events: none;
+  filter: url("#bBlocks-cursor-blob");
+  overflow: hidden;
+  background: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  cursor: default;
+}
+.bBlocks-blob-cursor-main > div {
+  position: fixed;
+  will-change: transform;
+  border-radius: 50%;
+  background: white;
+  box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  opacity: 0.6;
+  pointer-events: none;
+}
+.bBlocks-blob-cursor-main > div:nth-child(1) {
+  width: 60px;
+  height: 60px;
+}
+.bBlocks-blob-cursor-main > div:nth-child(2) {
+  width: 125px;
+  height: 125px;
+}
+.bBlocks-blob-cursor-main > div:nth-child(3) {
+  width: 75px;
+  height: 75px;
+}
+.bBlocks-blob-cursor-main > div::after {
+  content: "";
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.8);
+  pointer-events: none;
+}
+.bBlocks-blob-cursor-main > div:nth-child(2)::after {
+  top: 35px;
+  left: 35px;
+  width: 35px;
+  height: 35px;
+  pointer-events: none;
+}
+.bBlocks-blob-cursor-main > div:nth-child(3)::after {
+  top: 25px;
+  left: 25px;
+  width: 25px;
+  height: 25px;
+  pointer-events: none;
+}
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/customCursor/cursor/Shape/CursorDot/style.scss ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************/
+.b-blocks-cursor-dotCursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999999999;
+  height: var(--bBlocks-cursor-dot-cursor-size, 12px);
+  width: var(--bBlocks-cursor-dot-cursor-size, 12px);
+  background: var(--bBlocks-cursor-dot-cursor-bg, #3B82F6);
+  pointer-events: none;
+  cursor: default;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/customCursor/cursor/Shape/CursorElastic/style.scss ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************************************/
+.bBlocks-cursor-elastic-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+}
+
+.bBlocks-cursor-elastic-cursor-follower {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 50;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+}
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/customCursor/cursor/Shape/CursorFollow/style.scss ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************************************/
+.bBlocks-follow-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 9999;
+  background: var(--bBlocks-follow-cursor-bg, rgba(245, 159, 11, 0.5803921569));
+  width: var(--bBlocks-follow-cursor-size, 40px);
+  height: var(--bBlocks-follow-cursor-size, 40px);
+  border: var(--bBlocks-follow-cursor-border-width, 1px) solid var(--bBlocks-follow-cursor-border-color, rgba(245, 159, 11, 0.5803921569));
+}
+
+.bBlocks-follow-inner-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 10000;
+  background: var(--bBlocks-follow-inner-cursor-bg, rgba(249, 116, 22, 0.4862745098));
+  border: var(--bBlocks-follow-inner-cursor-border-width, 1px) solid var(--bBlocks-follow-inner-cursor-border, rgba(249, 116, 22, 0.4862745098));
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+  width: calc(var(--bBlocks-follow-cursor-size, 40px) / 2.5);
+  height: calc(var(--bBlocks-follow-cursor-size, 40px) / 2.5);
+}
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/customCursor/cursor/Shape/CursorGlitch/style.scss ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************************************/
+.glitch-cursor {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  width: var(--bBlocks-cursor-glitch-size);
+  height: var(--bBlocks-cursor-glitch-size);
+  transition: transform 0.1s ease-out;
+  mix-blend-mode: var(--bBlocks-cursor-glitch-blend-mode);
+}
+.glitch-cursor .cursor-core {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: var(--bBlocks-cursor-glitch-primary-color);
+  border-radius: 50%;
+  filter: blur(0.5px);
+}
+.glitch-cursor .cursor-glitch-layer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  opacity: 0.8;
+}
+.glitch-cursor .cursor-ring {
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  top: -50%;
+  left: -50%;
+  border: 1px solid var(--bBlocks-cursor-glitch-primary-color);
+  border-radius: 50%;
+  opacity: 0.3;
+  animation: ring-pulse 2s ease-in-out infinite;
+}
+
+.glitch-cursor-trail {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9998;
+  width: var(--bBlocks-cursor-glitch-size);
+  height: var(--bBlocks-cursor-glitch-size);
+  background: var(--bBlocks-cursor-glitch-primary-color);
+  border-radius: 50%;
+  opacity: var(--bBlocks-cursor-glitch-trail-opacity);
+  filter: blur(1px);
+}
+
+.glitch-digital .layer-1 {
+  background: var(--bBlocks-cursor-glitch-secondary-color);
+  animation: digital-glitch-1 0.2s ease-in-out infinite alternate;
+}
+.glitch-digital .layer-2 {
+  background: var(--bBlocks-cursor-glitch-tertiary-color, #4040ff);
+  animation: digital-glitch-2 0.15s ease-in-out infinite alternate-reverse;
+}
+.glitch-digital .layer-3 {
+  background: var(--bBlocks-cursor-glitch-primary-color);
+  animation: digital-glitch-3 0.25s ease-in-out infinite alternate;
+  opacity: 0.6;
+}
+
+.glitch-analog .layer-1 {
+  background: var(--bBlocks-cursor-glitch-secondary-color);
+  animation: analog-glitch-1 0.8s ease-in-out infinite;
+  filter: blur(0.8px);
+}
+.glitch-analog .layer-2 {
+  background: var(--bBlocks-cursor-glitch-tertiary-color, #4040ff);
+  animation: analog-glitch-2 1.2s ease-in-out infinite;
+  filter: blur(1.2px);
+}
+.glitch-analog .layer-3 {
+  background: var(--bBlocks-cursor-glitch-primary-color);
+  animation: analog-glitch-3 0.6s ease-in-out infinite;
+  opacity: 0.7;
+}
+
+.glitch-cyberpunk .cursor-core {
+  background: linear-gradient(45deg, var(--bBlocks-cursor-glitch-primary-color), var(--bBlocks-cursor-glitch-secondary-color));
+  filter: brightness(1.2) saturate(1.5);
+}
+.glitch-cyberpunk .layer-1 {
+  background: var(--bBlocks-cursor-glitch-secondary-color);
+  animation: cyberpunk-glitch-1 0.1s steps(4) infinite;
+  clip-path: polygon(0 0, 100% 0, 100% 40%, 0 40%);
+}
+.glitch-cyberpunk .layer-2 {
+  background: var(--bBlocks-cursor-glitch-tertiary-color, #4040ff);
+  animation: cyberpunk-glitch-2 0.12s steps(4) infinite reverse;
+  clip-path: polygon(0 60%, 100% 60%, 100% 100%, 0 100%);
+}
+.glitch-cyberpunk .layer-3 {
+  background: var(--bBlocks-cursor-glitch-primary-color);
+  animation: cyberpunk-glitch-3 0.08s steps(6) infinite;
+  opacity: 0.8;
+}
+
+.glitch-matrix .cursor-core {
+  background: var(--bBlocks-cursor-glitch-primary-color);
+  box-shadow: 0 0 10px var(--bBlocks-cursor-glitch-primary-color), 0 0 20px var(--bBlocks-cursor-glitch-primary-color), 0 0 30px var(--bBlocks-cursor-glitch-primary-color);
+}
+.glitch-matrix .layer-1 {
+  background: var(--bBlocks-cursor-glitch-primary-color);
+  animation: matrix-glitch-1 0.3s linear infinite;
+  opacity: 0.6;
+}
+.glitch-matrix .layer-2 {
+  background: var(--bBlocks-cursor-glitch-secondary-color);
+  animation: matrix-glitch-2 0.4s linear infinite reverse;
+  opacity: 0.4;
+}
+.glitch-matrix .layer-2 {
+  background: var(--bBlocks-cursor-glitch-tertiary-color, #4040ff);
+  animation: matrix-glitch-2 0.5s linear infinite reverse;
+  opacity: 0.2;
+}
+
+.matrix-particles {
+  position: absolute;
+  width: 300%;
+  height: 300%;
+  top: -100%;
+  left: -100%;
+}
+.matrix-particles .matrix-particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: var(--bBlocks-cursor-glitch-primary-color);
+  border-radius: 50%;
+  animation: matrix-particle-float 1s linear infinite;
+}
+.matrix-particles .matrix-particle:nth-child(1) {
+  top: 10%;
+  left: 20%;
+  animation-delay: 0s;
+}
+.matrix-particles .matrix-particle:nth-child(2) {
+  top: 30%;
+  left: 80%;
+  animation-delay: 0.2s;
+}
+.matrix-particles .matrix-particle:nth-child(3) {
+  top: 70%;
+  left: 15%;
+  animation-delay: 0.4s;
+}
+.matrix-particles .matrix-particle:nth-child(4) {
+  top: 90%;
+  left: 70%;
+  animation-delay: 0.6s;
+}
+.matrix-particles .matrix-particle:nth-child(5) {
+  top: 20%;
+  left: 50%;
+  animation-delay: 0.8s;
+}
+.matrix-particles .matrix-particle:nth-child(6) {
+  top: 60%;
+  left: 90%;
+  animation-delay: 1s;
+}
+
+.intensity-low .cursor-glitch-layer {
+  opacity: 0.4;
+}
+
+.intensity-medium .cursor-glitch-layer {
+  opacity: 0.7;
+}
+
+.intensity-high .cursor-glitch-layer {
+  opacity: 0.9;
+}
+
+.speed-slow .cursor-glitch-layer {
+  animation-duration: 0.8s !important;
+}
+
+.speed-medium .cursor-glitch-layer {
+  animation-duration: 0.4s !important;
+}
+
+.speed-fast .cursor-glitch-layer {
+  animation-duration: 0.1s !important;
+}
+
+.clicking .cursor-core {
+  background: var(--bBlocks-cursor-glitch-secondary-color);
+  box-shadow: 0 0 20px var(--bBlocks-cursor-glitch-secondary-color);
+}
+.clicking .cursor-ring {
+  animation: click-pulse 0.3s ease-out;
+}
+
+@keyframes ring-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.1;
+  }
+}
+@keyframes click-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+@keyframes digital-glitch-1 {
+  0% {
+    transform: translateX(0) translateY(0);
+  }
+  20% {
+    transform: translateX(-2px) translateY(0);
+  }
+  40% {
+    transform: translateX(2px) translateY(0);
+  }
+  60% {
+    transform: translateX(0) translateY(-2px);
+  }
+  80% {
+    transform: translateX(0) translateY(2px);
+  }
+  100% {
+    transform: translateX(0) translateY(0);
+  }
+}
+@keyframes digital-glitch-2 {
+  0% {
+    transform: translateX(0) translateY(0);
+  }
+  25% {
+    transform: translateX(1px) translateY(-1px);
+  }
+  50% {
+    transform: translateX(-1px) translateY(1px);
+  }
+  75% {
+    transform: translateX(1px) translateY(1px);
+  }
+  100% {
+    transform: translateX(0) translateY(0);
+  }
+}
+@keyframes digital-glitch-3 {
+  0% {
+    transform: translateX(0) scaleX(1);
+  }
+  30% {
+    transform: translateX(-1px) scaleX(1.1);
+  }
+  60% {
+    transform: translateX(1px) scaleX(0.9);
+  }
+  100% {
+    transform: translateX(0) scaleX(1);
+  }
+}
+@keyframes analog-glitch-1 {
+  0%, 100% {
+    transform: translateX(0) skewX(0deg);
+  }
+  25% {
+    transform: translateX(-3px) skewX(-2deg);
+  }
+  50% {
+    transform: translateX(2px) skewX(1deg);
+  }
+  75% {
+    transform: translateX(-1px) skewX(-1deg);
+  }
+}
+@keyframes analog-glitch-2 {
+  0%, 100% {
+    transform: translateY(0) scaleY(1);
+  }
+  33% {
+    transform: translateY(-2px) scaleY(1.1);
+  }
+  66% {
+    transform: translateY(2px) scaleY(0.9);
+  }
+}
+@keyframes analog-glitch-3 {
+  0%, 100% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(1deg) scale(1.05);
+  }
+}
+@keyframes cyberpunk-glitch-1 {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-4px);
+  }
+  50% {
+    transform: translateX(3px);
+  }
+  75% {
+    transform: translateX(-2px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes cyberpunk-glitch-2 {
+  0% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(3px);
+  }
+  40% {
+    transform: translateX(-3px);
+  }
+  60% {
+    transform: translateX(2px);
+  }
+  80% {
+    transform: translateX(-1px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes cyberpunk-glitch-3 {
+  0% {
+    opacity: 0.8;
+    transform: scaleX(1);
+  }
+  25% {
+    opacity: 0.6;
+    transform: scaleX(1.2);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scaleX(0.8);
+  }
+  75% {
+    opacity: 0.7;
+    transform: scaleX(1.1);
+  }
+  100% {
+    opacity: 0.8;
+    transform: scaleX(1);
+  }
+}
+@keyframes matrix-glitch-1 {
+  0%, 100% {
+    transform: translateY(0) scaleY(1);
+    opacity: 0.6;
+  }
+  33% {
+    transform: translateY(-3px) scaleY(1.2);
+    opacity: 0.8;
+  }
+  66% {
+    transform: translateY(2px) scaleY(0.8);
+    opacity: 0.4;
+  }
+}
+@keyframes matrix-glitch-2 {
+  0%, 100% {
+    transform: translateX(0) scaleX(1);
+  }
+  50% {
+    transform: translateX(2px) scaleX(1.1);
+  }
+}
+@keyframes matrix-particle-float {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-20px) rotate(180deg);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(0) rotate(360deg);
+    opacity: 1;
+  }
+}
+@media (max-width: 768px) {
+  .glitch-cursor {
+    display: none;
+  }
+}
+@media (prefers-contrast: high) {
+  .glitch-cursor {
+    filter: contrast(1.5);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .glitch-cursor * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+/*!*******************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/customCursor/cursor/Shape/CursorGlow/style.scss ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************************************************/
+.cursor-glow-outer {
+  pointer-events: none;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  z-index: 50;
+  transform: translate(-50%, -50%);
+  filter: blur(15px);
+}
+
+.cursor-glow-inner {
+  pointer-events: none;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/customCursor/cursor/Shape/CursorGradient/style.scss ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************************************************/
+.cursor-gradient {
+  pointer-events: none;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  z-index: 50;
+  filter: blur(4px);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/customCursor/cursor/Shape/CursorImage/style.scss ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************************/
+.cursor-image {
+  pointer-events: none;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  z-index: 50;
+  overflow: hidden;
+  box-shadow: 0 0 rgba(0, 0, 0, 0), 0 0 rgba(0, 0, 0, 0), 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  background-size: cover;
+  background-position: center;
+  transform: translate(-50%, -50%);
+}
+/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/customCursor/cursor/Shape/CursorMagnetic/style.scss ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************************************************/
+.magnetic-cursor {
+  pointer-events: none;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  z-index: 50;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+/*!*******************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/customCursor/cursor/Shape/CursorNeon/style.scss ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************************************************/
+.neon-cursor {
+  pointer-events: none;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+}
+
+.neon-glow {
+  pointer-events: none;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  z-index: 50;
+  filter: blur(24px);
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+}
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/customCursor/cursor/Shape/CursorPixelated/style.scss ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.cursor-pixelated {
+  pointer-events: none;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  z-index: 50;
+  transform: translate(-50%, -50%);
+}
+/*!*******************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/customCursor/cursor/Shape/CursorRing/style.scss ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************************************************/
+.cursor-ring {
+  pointer-events: none;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  z-index: 50;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/customCursor/cursor/Shape/CursorRipple/style.scss ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************************************/
+.cursor-ripple-wrapper {
+  pointer-events: none;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  z-index: 51;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+}
+
+.cursor-ripple {
+  pointer-events: none;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  z-index: 50;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+}
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/customCursor/cursor/Shape/CursorSketch/style.scss ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************************************/
+.cursor-sketch {
+  pointer-events: none;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  z-index: 50;
+  height: 100%;
+  width: 100%;
+}
+
+.cursor-sketch-dot {
+  pointer-events: none;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  z-index: 51;
+}
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/customCursor/cursor/Shape/CursorSpotlight/style.scss ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.cursor-spotlight {
+  pointer-events: none;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  z-index: 50;
+  mix-blend-mode: overlay;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+}
+/*!*******************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/customCursor/cursor/Shape/CursorText/style.scss ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************************************************/
+.cursor-text {
+  pointer-events: none;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 14px;
+  font-weight: 600;
+  transform: translate(-50%, -50%);
+}
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ../plugin-slug/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../plugin-slug/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../plugin-slug/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/customCursor/cursor/Shape/CursorRibbon/style.scss ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************************************/
+.ribbons-container {
+  position: fixed;
+  inset: 0;
+}
+
+canvas {
+  pointer-events: none;
+}
+
+/*# sourceMappingURL=cursor.css.map*/

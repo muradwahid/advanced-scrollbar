@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react';
+import {useMemo } from 'react';
 import useDynamicData from '../../../hooks/useDynamicData';
 import { Spinner } from '@wordpress/components';
 import "./style.scss";

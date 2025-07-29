@@ -7,10 +7,10 @@ import App from './App';
 // import App from './App';
 // import { options } from './options';
 
-const AppContainer = ({options }) => {
+const AppContainer = (props) => {
   return (
     <div>
-      <App options={options} />
+      <App {...props} />
     </div>
   );
 }

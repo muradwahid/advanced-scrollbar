@@ -1,0 +1,17 @@
+.cursor-sketch {
+    pointer-events: none;
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    z-index: 50;
+    height: 100%;
+    width: 100%;
+}
+
+.cursor-sketch-dot {
+    pointer-events: none;
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    z-index: 51;
+}

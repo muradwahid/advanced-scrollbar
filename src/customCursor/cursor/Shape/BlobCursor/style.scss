@@ -1,0 +1,91 @@
+// .bBlocks-blob-cursor-container {
+  /* width: 100%;
+      height: 100%; */
+  // position: fixed;
+  // inset: 0;
+
+  // .bBlocks-blob-cursor-main{
+  //   position: absolute;
+  //   top: 0;
+  //   left: 0;
+  //   width: 100%;
+  //   height: 100%;
+  //   pointer-events: none;
+  //   z-index: 9999;
+  //   transform: translate(-50%, -50%);
+  // }
+
+  .bBlocks-blob-cursor-main {
+    // position: absolute;
+    // width: 100%;
+    // height: 100%;
+    position: fixed;
+    z-index: 9999;
+    inset: 0;
+    pointer-events: none;
+    filter: url("#bBlocks-cursor-blob");
+    overflow: hidden;
+    background: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: default;
+
+
+    & > div {
+      position: fixed;
+      will-change: transform;
+      border-radius: 50%;
+      background: white;
+      box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+      opacity: 0.6;
+      pointer-events: none;
+    }
+  
+    & > div:nth-child(1) {
+      width: 60px;
+      height: 60px;
+    }
+  
+    & > div:nth-child(2) {
+      width: 125px;
+      height: 125px;
+    }
+  
+    & > div:nth-child(3) {
+      width: 75px;
+      height: 75px;
+    }
+  
+    & > div::after {
+      content: "";
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.8);
+      pointer-events: none;
+    }
+  
+    & > div:nth-child(2)::after {
+      top: 35px;
+      left: 35px;
+      width: 35px;
+      height: 35px;
+      pointer-events: none;
+    }
+  
+    & > div:nth-child(3)::after {
+      top: 25px;
+      left: 25px;
+      width: 25px;
+      height: 25px;
+      pointer-events: none;
+    }
+  }
+// }

@@ -16,7 +16,7 @@ const VideoPlayer = ({
   const progressBarRef = useRef(null)
   const volumeBarRef = useRef(null)
   const containerRef = useRef(null)
-  const previewCanvasRef = useRef(null)
+  // const previewCanvasRef = useRef(null)
 
   const [isPlaying, setIsPlaying] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
@@ -26,9 +26,9 @@ const VideoPlayer = ({
   const [isMuted, setIsMuted] = useState(muted)
   const [isDragging, setIsDragging] = useState(false)
   const [showControls, setShowControls] = useState(true)
-  const [previewTime, setPreviewTime] = useState(0)
-  const [showPreview, setShowPreview] = useState(false)
-  const [previewPosition, setPreviewPosition] = useState(0)
+  // const [previewTime, setPreviewTime] = useState(0)
+  // const [showPreview, setShowPreview] = useState(false)
+  // const [previewPosition, setPreviewPosition] = useState(0)
 
   useEffect(() => {
     const video = videoRef.current

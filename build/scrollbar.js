@@ -1,1 +1,408 @@
-(()=>{"use strict";var e={8744:(e,t,r)=>{var n=r(5795);t.H=n.createRoot,n.hydrateRoot},5795:e=>{e.exports=window.ReactDOM}},t={};const r=window.React;var n=function r(n){var o=t[n];if(void 0!==o)return o.exports;var c=t[n]={exports:{}};return e[n](c,c.exports,r),c.exports}(8744);const o=e=>null!=e&&""!==e,c=e=>{const t=Object.values(e).filter((e=>e&&String(e).trim()));return t.length>=2?`linear-gradient(to top, ${t.join(", ")})`:1===t.length?t[0]:"transparent"},s=(e={})=>{const t={top:"0",right:"0",bottom:"0",left:"0",style:"solid",color:"#000",...e},{top:r,right:n,bottom:o,left:c,style:s,color:l}=t;return{borderTop:`${r}px ${s} ${l}`,borderRight:`${n}px ${s} ${l}`,borderBottom:`${o}px ${s} ${l}`,borderLeft:`${c}px ${s} ${l}`}},l=({scrollbarData:e})=>{const{asb_showscrollbar:t,asb_color:n="",asb_background:l="",asb_mousescrollstep:i=40,asb_autohidemode:a=!1,asb_railalign:u="right",asb_scrollspeed:d=60,asb_touchbehavior:m,asb_dynamic_height_scrollbar:b="off",asb_floating_scrollbar:h="off",asb_gradient_color:f={"color-1":"#ffce4b","color-2":"#ff395e","color-3":"#833ab4"},asb_floating_scrollbar_bg_color:g="#9837bf",asb_floating_scrollbar_text_color:p="#ffffff",asb_width:v={spinner:10,unit:"px"},asb_border:w={},asb_border_radius:H={spinner:12}}=e,E=1==JSON.parse(m),y=(0,r.useRef)(null),_=(0,r.useRef)(null),x=(0,r.useRef)(null),L=JSON.parse(t),S="coursor"===a?"coursor":JSON.parse(a),{scrollPercentage:R,dynamicHeight:M,isWheel:$,isLoading:T,thumbHeight:k,thumbPosition:Y}=((e=null,t=null,n=!1,o=40,c=60,s=!1)=>{const[l,i]=(0,r.useState)(!1),[a,u]=(0,r.useState)(!1),[d,m]=(0,r.useState)(0),[b,h]=(0,r.useState)(0),[f,g]=(0,r.useState)(0),[p,v]=(0,r.useState)(!0),[w,H]=(0,r.useState)(!0),[E,y]=(0,r.useState)(!1),[_,x]=(0,r.useState)(0),L=document.documentElement,S=(0,r.useRef)(0),R=(0,r.useRef)(0),M=(0,r.useRef)(),$=(0,r.useRef)(0),T=(0,r.useRef)(0),k=(0,r.useRef)(!1),Y=(0,r.useRef)(),N=(0,r.useRef)(0),O=(0,r.useRef)(0),P=(0,r.useRef)(!1),C=(0,r.useCallback)((()=>{if(!t?.current)return;const e=L.scrollHeight-L.clientHeight;if(e<=0)return;const r=Math.max(L.clientHeight/L.scrollHeight*L.clientHeight,20);m(r);const n=T.current/e,o=n*(L.clientHeight-r);g(n*L.clientHeight),h(o),B()}),[L,t]),D=(0,r.useCallback)((()=>{if(k.current){const e=$.current-T.current,t=e*(.1/(c/60));T.current+=t,window.scrollTo(0,T.current),C(),Math.abs(e)<1&&(T.current=$.current,window.scrollTo(0,T.current),k.current=!1)}M.current=requestAnimationFrame(D)}),[c,C]),A=(0,r.useCallback)((e=>{e.preventDefault(),H(!1);const t=Math.sign(e.deltaY)*(1.5*o);$.current+=t;const r=L.scrollHeight-window.innerHeight;$.current=Math.max(0,Math.min($.current,r)),k.current||(k.current=!0),Y.current&&clearTimeout(Y.current),B(),Y.current=setTimeout((()=>{H(!0)}),500)}),[o,L]),F=(0,r.useCallback)((e=>{const t=L.scrollHeight-L.clientHeight;if(t<=0)return;const r=e-S.current,n=L.clientHeight-d,o=r/n,c=R.current+o*t,s=Math.max(0,Math.min(c,t));L.scrollTop=s,T.current=s,$.current=s,h(s/t*n),B()}),[L,d]),J=(0,r.useCallback)((e=>{if(!P.current)return;const t=L.scrollHeight-L.clientHeight;if(t<=0)return;const r=e-N.current,n=O.current-r,o=Math.max(0,Math.min(n,t));L.scrollTop=o,T.current=o,$.current=o,C(),B()}),[L,C]),B=()=>{const e=window.scrollY||document.documentElement.scrollTop,t=Math.max(document.body.scrollHeight,document.documentElement.scrollHeight,document.body.offsetHeight,document.documentElement.offsetHeight,document.body.clientHeight,document.documentElement.clientHeight),r=window.innerHeight||document.documentElement.clientHeight;x(parseInt(e/(t-r)*100))};return(0,r.useEffect)((()=>{if(i(n),!n)return;const r=()=>{if(!t?.current)return;const e=L.scrollHeight-L.clientHeight;if(e<=0)return;const r=Math.max(L.clientHeight/L.scrollHeight*L.clientHeight,20);m(r);const n=L.scrollTop/e,o=L.clientHeight-r;g(n*L.clientHeight),h(n*o)},o=e=>{a&&t?.current?F(e.clientY):P.current&&s&&J(e.clientY)},c=()=>{u(!1),P.current=!1,y(!1),document.body.style.userSelect="",document.body.style.cursor=""},l=r=>{if(r.preventDefault(),!e.current||!t.current)return;const n=L.scrollHeight-L.clientHeight;if(n<=0)return;const o=L.clientHeight,c=L.scrollTop,s=t.current.getBoundingClientRect();let l;if(r.clientY<s.top)l=c-o;else{if(!(r.clientY>s.bottom))return;l=c+o}const i=Math.max(0,Math.min(l,n));$.current=i,k.current=!0},d=r=>{e?.current?.contains(r.target)||t?.current?.contains(r.target)||0===r.button&&(P.current=!0,N.current=r.clientY,O.current=L.scrollTop,y(!0),document.body.style.userSelect="none")};r(),$.current=window.pageYOffset,T.current=window.pageYOffset,M.current=requestAnimationFrame(D);const b=e=>{r(),B()};return window.addEventListener("resize",r),window.addEventListener("scroll",b),window.addEventListener("wheel",A,{passive:!1}),document.addEventListener("mousemove",o),document.addEventListener("mouseup",c),document.addEventListener("mousedown",d),t.current&&(t.current.addEventListener("mousedown",(e=>{e.stopPropagation(),u(!0),S.current=e.clientY,R.current=L.scrollTop,document.body.style.userSelect="none"})),t.current.addEventListener("click",(e=>{e.stopPropagation()}))),e.current&&e.current.addEventListener("click",l),window.addEventListener("load",(()=>{r(),v(!1),B()})),()=>{L.classList.remove("csb-scrollbar-active"),window.removeEventListener("resize",r),window.removeEventListener("scroll",b),window.removeEventListener("wheel",A),document.removeEventListener("mousemove",o),document.removeEventListener("mouseup",c),document.removeEventListener("mousedown",d),window.removeEventListener("load",r),e.current&&e.current.removeEventListener("click",l),M.current&&cancelAnimationFrame(M.current),Y.current&&clearTimeout(Y.current),k.current=!1}}),[p,n,L,t,e,a,A,F,J,D]),{scrollPercentage:_,dynamicHeight:f,isLoading:p,isActive:l,thumbHeight:d,thumbPosition:b,isDragging:a,isWheel:w,isGrabbing:E}})(_,y,L,Number(i),Number(d),E),{cursorPosition:N}=(e=>{const[t,n]=(0,r.useState)({});return(0,r.useEffect)((()=>{if(!window.self===window.top&&"off"==e)return;const t=e=>{let t=e.clientX,r=e.clientY;n({x:t,y:r})};return window.addEventListener("mousemove",t),()=>{window.removeEventListener("mousemove",t)}}),[window,t]),{cursorPosition:t}})(h);(0,r.useEffect)((()=>{}),[L]);const O={...L&&{"--csb-scrollbar-rail-display-property":"block"},...o(v?.spinner)&&{"--csb-scrollbar-rail-width":v.spinner+"px"},...o(l)&&{"--csb-scrollbar-rail-background-color":l}},P={...o(k)&&{"--csb-scrollbar-thumb-height":k+"px"},...o(Y)&&{"--csb-scrollbar-thumb-position":Y+"px"},...o(n)&&{"--csb-scrollbar-thumb-color":n},...o(H?.spinner)&&{"--csb-scrollbar-thumb-border-radius":H.spinner+"px"}},C={...o(M)&&{"--csb-scrollbar-rail-dynamic-height":M+"px"}},D={...o(g)&&{"--csb-scrollbar-floating-bg-color":g},...o(p)&&{"--csb-scrollbar-floating-text-color":p}};let A="";return"coursor"==S?A="csb-scrollbar-rail-cursor-hover":S&&(A="csb-scrollbar-auto-hide"),(0,r.createElement)(r.Fragment,null,"off"==b&&"off"==h&&(0,r.createElement)("div",{ref:_,className:`csb-scrollbar-rail railAlign${u} ${$?A:""}`,style:{...O}},(0,r.createElement)("div",{className:"csb-scrollbar-rail-thumb",ref:y,style:{...s(w),...P}})),"on"==b&&(0,r.createElement)("div",{ref:y,className:"csb-scrollbar-dynamic-height",style:{background:c(f),...C}}),"on"==h&&(0,r.createElement)("div",{ref:x,className:"csb-scrollbar-floating",style:{top:N.y+20,left:N.x+20,...D}},"Page Scrolled ",R," %"))};document.addEventListener("DOMContentLoaded",(()=>{const e=document.getElementById("csbScrollbar"),t=JSON.parse(e.dataset.scrollbar);(0,n.H)(e).render((0,r.createElement)(l,{scrollbarData:t})),e.removeAttribute("data-scrollbar")}))})();
+/******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./src/hooks/useMovePosition.js":
+/*!**************************************!*\
+  !*** ./src/hooks/useMovePosition.js ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   useMovePosition: () => (/* binding */ useMovePosition)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+const useMovePosition = floating => {
+  const [cursorPosition, setCursorPosition] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({});
+  const [scrollPercentage, setScrollPercentage] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0);
+  const [dynamicHeight, setDynamicHeight] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0);
+  const html = document.documentElement;
+  const handlePercentScroll = () => {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const documentHeight = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight, document.documentElement.offsetHeight, document.body.clientHeight, document.documentElement.clientHeight);
+    const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+    const scrollPercent = scrollTop / (documentHeight - windowHeight) * 100;
+    setScrollPercentage(parseInt(scrollPercent));
+    setDynamicHeight(scrollPercent * html.clientHeight);
+  };
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    if (!window.self === window.top && floating == "off") return;
+    const moveCursor = e => {
+      let x = e.clientX;
+      let y = e.clientY;
+      setCursorPosition({
+        x,
+        y
+      });
+    };
+    handlePercentScroll();
+
+    // if (!eventEl) return;
+    window.addEventListener('mousemove', moveCursor);
+    window.addEventListener('resize', handlePercentScroll);
+    window.addEventListener('scroll', handlePercentScroll);
+    window.addEventListener('wheel', handlePercentScroll);
+
+    // domEl.style.cursor = 'none';
+
+    return () => {
+      window.removeEventListener('mousemove', moveCursor);
+      window.removeEventListener('mousemove', moveCursor);
+      window.removeEventListener('resize', handlePercentScroll);
+      window.removeEventListener('scroll', handlePercentScroll);
+      window.removeEventListener('wheel', handlePercentScroll);
+      // domEl.style.cursor = 'auto';
+    };
+  }, [window, cursorPosition]);
+  return {
+    cursorPosition,
+    scrollPercentage,
+    dynamicHeight
+  };
+};
+
+/***/ }),
+
+/***/ "./src/utils/function.js":
+/*!*******************************!*\
+  !*** ./src/utils/function.js ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   generateGradient: () => (/* binding */ generateGradient),
+/* harmony export */   getBorderCSS: () => (/* binding */ getBorderCSS),
+/* harmony export */   isSet: () => (/* binding */ isSet)
+/* harmony export */ });
+const isSet = v => v !== undefined && v !== null && v !== '';
+const generateGradient = colorObject => {
+  const validColors = Object.values(colorObject).filter(color => color && String(color).trim());
+  if (validColors.length >= 2) {
+    return `linear-gradient(to top, ${validColors.join(', ')})`;
+  } else if (validColors.length === 1) {
+    return validColors[0];
+  } else {
+    return 'transparent';
+  }
+};
+const getBorderCSS = (border = {}) => {
+  // Default values
+  const defaults = {
+    top: '1',
+    right: '1',
+    bottom: '1',
+    left: '1',
+    style: 'solid',
+    color: '#fff'
+  };
+
+  // Merge with defaults
+  const finalBorder = {
+    ...defaults,
+    ...border
+  };
+
+  // Extract values
+  const {
+    top,
+    right,
+    bottom,
+    left,
+    style,
+    color
+  } = finalBorder;
+
+  // Check if all sides have the same width
+  if (top === right && right === bottom && bottom === left) {
+    // Use shorthand if all sides are equal
+    return `${top}px ${style} ${color}`;
+  }
+};
+
+/***/ }),
+
+/***/ "./src/scrollbar/style.scss":
+/*!**********************************!*\
+  !*** ./src/scrollbar/style.scss ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "../plugin-slug/node_modules/react-dom/client.js":
+/*!*******************************************************!*\
+  !*** ../plugin-slug/node_modules/react-dom/client.js ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+
+
+var m = __webpack_require__(/*! react-dom */ "react-dom");
+if (false) {} else {
+  var i = m.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+  exports.createRoot = function(c, o) {
+    i.usingClientEntryPoint = true;
+    try {
+      return m.createRoot(c, o);
+    } finally {
+      i.usingClientEntryPoint = false;
+    }
+  };
+  exports.hydrateRoot = function(c, h, o) {
+    i.usingClientEntryPoint = true;
+    try {
+      return m.hydrateRoot(c, h, o);
+    } finally {
+      i.usingClientEntryPoint = false;
+    }
+  };
+}
+
+
+/***/ }),
+
+/***/ "react":
+/*!************************!*\
+  !*** external "React" ***!
+  \************************/
+/***/ ((module) => {
+
+module.exports = window["React"];
+
+/***/ }),
+
+/***/ "react-dom":
+/*!***************************!*\
+  !*** external "ReactDOM" ***!
+  \***************************/
+/***/ ((module) => {
+
+module.exports = window["ReactDOM"];
+
+/***/ }),
+
+/***/ "jquery":
+/*!*************************!*\
+  !*** external "jQuery" ***!
+  \*************************/
+/***/ ((module) => {
+
+module.exports = window["jQuery"];
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/************************************************************************/
+var __webpack_exports__ = {};
+// This entry needs to be wrapped in an IIFE because it needs to be isolated against other modules in the chunk.
+(() => {
+/*!************************************!*\
+  !*** ./src/scrollbar/scrollbar.js ***!
+  \************************************/
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! jquery */ "jquery");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_dom_client__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-dom/client */ "../plugin-slug/node_modules/react-dom/client.js");
+/* harmony import */ var _hooks_useMovePosition__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../hooks/useMovePosition */ "./src/hooks/useMovePosition.js");
+/* harmony import */ var _utils_function__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../utils/function */ "./src/utils/function.js");
+/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./style.scss */ "./src/scrollbar/style.scss");
+
+
+
+
+// import 'jquery.nicescroll'; 
+// import { useSmoothScroll } from '../hooks/useSmoothScroll';
+
+
+
+const Scrollbar = ({
+  scrollbarData
+}) => {
+  const {
+    asb_showscrollbar,
+    asb_color = '#46b3e6',
+    asb_background = '',
+    asb_mousescrollstep = 40,
+    asb_autohidemode = false,
+    asb_railalign = "right",
+    asb_scrollspeed = 60,
+    asb_touchbehavior,
+    asb_dynamic_height_scrollbar = 'off',
+    asb_floating_scrollbar = "off",
+    asb_gradient_color = {
+      "color-1": "#ffce4b",
+      "color-2": "#ff395e",
+      "color-3": "#833ab4"
+    },
+    asb_floating_scrollbar_bg_color = "#9837bf",
+    asb_floating_scrollbar_text_color = "#ffffff",
+    asb_width = {
+      spinner: 10,
+      unit: "px"
+    },
+    asb_border = {},
+    asb_border_radius = {
+      spinner: 12
+    }
+  } = scrollbarData;
+  const floatingRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  const touchBehavior = JSON.parse(asb_touchbehavior) == 1 ? true : false;
+  const showScrollbar = JSON.parse(asb_showscrollbar);
+  const autoHideMode = asb_autohidemode === "cursor" ? "cursor" : JSON.parse(asb_autohidemode);
+  // console.log(getBorderCSS(asb_border))
+  const isShowScrollBar = asb_dynamic_height_scrollbar == "off" && asb_floating_scrollbar == "off" && showScrollbar;
+  const {
+    cursorPosition,
+    scrollPercentage
+  } = (0,_hooks_useMovePosition__WEBPACK_IMPORTED_MODULE_3__.useMovePosition)(asb_floating_scrollbar);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    if (isShowScrollBar) {
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()("html").niceScroll({
+        hwacceleration: true,
+        cursorcolor: asb_color,
+        cursorwidth: asb_width?.spinner + "px",
+        cursorborder: (0,_utils_function__WEBPACK_IMPORTED_MODULE_4__.getBorderCSS)(asb_border),
+        cursorborderradius: asb_border_radius?.spinner + "px",
+        scrollspeed: asb_scrollspeed,
+        railalign: asb_railalign,
+        background: asb_background,
+        touchbehavior: touchBehavior,
+        grabcursorenabled: true,
+        mousescrollstep: asb_mousescrollstep,
+        autohidemode: autoHideMode
+      });
+    }
+
+    // Cleanup function
+    return () => {
+      if (jquery__WEBPACK_IMPORTED_MODULE_1___default()("html").getNiceScroll()) {
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()("html").getNiceScroll().remove();
+      }
+    };
+  }, [showScrollbar, asb_dynamic_height_scrollbar, asb_floating_scrollbar, asb_color, asb_width?.spinner, (0,_utils_function__WEBPACK_IMPORTED_MODULE_4__.getBorderCSS)(asb_border), asb_border_radius?.spinner, asb_scrollspeed, asb_scrollspeed, asb_railalign, asb_background, touchBehavior, asb_mousescrollstep, autoHideMode]);
+  const dynamicHeightStyle = {
+    ...((0,_utils_function__WEBPACK_IMPORTED_MODULE_4__.isSet)(scrollPercentage) && {
+      "--csb-scrollbar-rail-dynamic-height": scrollPercentage + "%"
+    })
+  };
+  const floatingStyle = {
+    ...((0,_utils_function__WEBPACK_IMPORTED_MODULE_4__.isSet)(asb_floating_scrollbar_bg_color) && {
+      "--csb-scrollbar-floating-bg-color": asb_floating_scrollbar_bg_color
+    }),
+    ...((0,_utils_function__WEBPACK_IMPORTED_MODULE_4__.isSet)(asb_floating_scrollbar_text_color) && {
+      "--csb-scrollbar-floating-text-color": asb_floating_scrollbar_text_color
+    })
+  };
+
+  // if (isLoading ) return;
+
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, asb_dynamic_height_scrollbar == "on" && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: `csb-scrollbar-dynamic-height`,
+    style: {
+      background: (0,_utils_function__WEBPACK_IMPORTED_MODULE_4__.generateGradient)(asb_gradient_color),
+      ...dynamicHeightStyle
+    }
+  }), asb_floating_scrollbar == "on" && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    ref: floatingRef,
+    className: `csb-scrollbar-floating`,
+    style: {
+      top: cursorPosition.y + 20,
+      left: cursorPosition.x + 20,
+      ...floatingStyle
+    }
+  }, "Page Scrolled ", scrollPercentage, " %"));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Scrollbar);
+document.addEventListener('DOMContentLoaded', () => {
+  const scrollbarEl = document.getElementById("csbScrollbar");
+  const scrollbarData = JSON.parse(scrollbarEl.dataset.scrollbar);
+  const root = (0,react_dom_client__WEBPACK_IMPORTED_MODULE_2__.createRoot)(scrollbarEl);
+  root.render((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(Scrollbar, {
+    scrollbarData: scrollbarData
+  }));
+  scrollbarEl.removeAttribute('data-scrollbar');
+});
+})();
+
+/******/ })()
+;
+//# sourceMappingURL=scrollbar.js.map

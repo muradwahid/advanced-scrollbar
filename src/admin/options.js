@@ -52,7 +52,7 @@ export const options = {
                     options: {
                         true: "On",
                         false: "Off",
-                        coursor: "Cursor Only"
+                        cursor: "Cursor Only"
                     },
                     default: false
 
@@ -169,14 +169,15 @@ export const options = {
                     title: "Scrollbar Border CSS",
                     field: "border",
                     after: "Css definition for cursor border",
-                    default: {
-                        top: "1",
-                        right: "1",
-                        bottom: "1",
-                        left: "1",
-                        style: "solid",
-                        color: "#fff"
-                    }
+                    all:true,
+                    // default: {
+                    //     top: "1",
+                    //     right: "1",
+                    //     bottom: "1",
+                    //     left: "1",
+                    //     style: "solid",
+                    //     color: "#fff"
+                    // }
                 },
                 {
                     id: "asb_border_radius",

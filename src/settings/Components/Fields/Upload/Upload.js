@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import BTextControl from "../BTextControl/BTextControl";
 import Button from "../Button/Button";
 import "./style.scss";
-const Upload = ({ value, onChange = () => { }, preview = false, url = true, library = 'image', placeholder, button_title = "Upload", ...props }) => {
+const Upload = ({ value, onChange = () => { }, preview = false, url = true, library = 'image', placeholder, button_title = "Upload" }) => {
     const [data, setData] = useState(value || "")
     useEffect(() => {
         onChange(data)

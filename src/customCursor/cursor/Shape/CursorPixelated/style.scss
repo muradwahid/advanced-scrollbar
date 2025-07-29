@@ -1,0 +1,8 @@
+.cursor-pixelated {
+    pointer-events: none;
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    z-index: 50;
+    transform: translate(-50%, -50%)
+}

@@ -7,11 +7,11 @@ if( !class_exists('CSBAdmin') ){
 			add_action( 'admin_menu', [$this, 'adminMenu'] );
 		}
 
-        function adminEnqueueScripts( $hook ) {
-			if( str_contains( $hook, 'plugin-slug' ) ){
-				wp_enqueue_style( 'plugin-slug-admin-style', CSB_DIR_URL . 'build/admin.css', [], CSB_VERSION );
-	
-				wp_enqueue_script( 'plugin-slug-admin-script', CSB_DIR_URL . 'build/admin.js', [ 'react', 'react-dom',  'wp-components', 'wp-i18n', 'wp-api', 'wp-util' ,'lodash', 'wp-media-utils' ,'wp-data','wp-core-data','wp-api-request' ], CSB_VERSION, true );
+		function adminEnqueueScripts( $hook ) {
+			if( str_contains( $hook, 'advanced-scrollbar' ) ){
+				// wp_enqueue_media('media');
+				wp_enqueue_style( 'advanced-scrollbar-admin-style', CSB_DIR_URL . 'build/admin.css', ['wp-components','wp-edit-blocks'], CSB_VERSION );
+				wp_enqueue_script( 'advanced-scrollbar-admin-script', CSB_DIR_URL . 'build/admin.js', [ 'react', 'react-dom',  'wp-components', 'wp-i18n', 'wp-api', 'wp-util' ,'lodash', 'wp-media-utils' ,'wp-data','wp-core-data','wp-api-request' ], CSB_VERSION, true );
 			}
 		}
 	
@@ -21,35 +21,38 @@ if( !class_exists('CSBAdmin') ){
 			</svg>";
 	
 			add_menu_page(
-				__( 'Plugin Menu', 'text-domain' ),
-				__( 'Advanced Scrollbar', 'text-domain' ),
+				__( 'Plugin Menu', 'advanced-scrollbar' ),
+				__( 'Advanced Scrollbar', 'advanced-scrollbar' ),
 				'manage_options',
-				'plugin-slug',
+				'advanced-scrollbar',
 				'',
 				'data:image/svg+xml;base64,' . base64_encode( $menuIcon ),
 				12
 			);
 			add_submenu_page(
-				'plugin-slug',
-				__( 'Dashboard', 'text-domain' ),
-				__( 'Dashboard', 'text-domain' ),
+				'advanced-scrollbar',
+				__( 'Dashboard', 'advanced-scrollbar' ),
+				__( 'Dashboard', 'advanced-scrollbar' ),
 				'manage_options',
-				'plugin-slug',
+				'advanced-scrollbar',
 				[$this, 'dashboardPage']
 			);
 			add_submenu_page(
-				'plugin-slug',
-				__( 'UPGRADE', 'text-domain' ),
-				__( 'UPGRADE', 'text-domain' ),
+				'advanced-scrollbar',
+				__( 'UPGRADE', 'advanced-scrollbar' ),
+				__( 'UPGRADE', 'advanced-scrollbar' ),
 				'manage_options',
-				'plugin-slug-upgrade',
+				'advanced-scrollbar-upgrade',
 				[$this, 'upgradePage']
 			);
 		}
 	
 		function dashboardPage(){ ?>
 			<div id='csbAdminDashboard' data-info=<?php echo esc_attr( wp_json_encode([
-				'version' => CSB_VERSION
+				'version' => CSB_VERSION,
+				"dirUrl" => CSB_DIR_URL,
+				"dirPath" => CSB_DIR_PATH,
+				"nonce" => wp_create_nonce("wp_rest")
 			]) ); ?> ></div>
 		<?php }
 

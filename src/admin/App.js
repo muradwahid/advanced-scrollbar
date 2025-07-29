@@ -10,8 +10,9 @@ import FreeTrialPopup from './Pages/FreeTrialPopup/FreeTrialPopup';
 import InDev from './Pages/InDev';
 import Video from './Pages/Video/Video';
 import Welcome from './Pages/Welcome';
+import CursorEffect from './Pages/CursorEffect/CursorEffect';
 
-const App = ({ options }) => {
+const App = ({ options, dataInfo }) => {
 
   const freemius = {
     product_id: '18090',
@@ -32,6 +33,7 @@ const App = ({ options }) => {
         <Route path="/demo" element={<Demo />} />
         <Route path="/demo2" element={<DemoTwo />} />
         <Route path="/video" element={<Video />} />
+        <Route path="/custom-cursor" element={<CursorEffect dataInfo={dataInfo} />} />
 
         {/* add more params here */}
         {/* https://freemius.com/help/documentation/selling-with-freemius/freemius-checkout-buy-button/ */}

@@ -1,0 +1,37 @@
+$followCursorSize: var(--bBlocks-follow-cursor-size, 40px);
+$followCursorBg: var(--bBlocks-follow-cursor-bg, #f59f0b94);
+$followInnerCursorBg: var(--bBlocks-follow-inner-cursor-bg, #f974167c);
+$followCursorBorderColor: var(--bBlocks-follow-cursor-border-color, #f59f0b94);
+$followCursorBorderWidth: var(--bBlocks-follow-cursor-border-width, 1px);
+$followInnerCursorBorderColor: var(--bBlocks-follow-inner-cursor-border, #f974167c);
+$followInnerCursorBorderWidth: var(--bBlocks-follow-inner-cursor-border-width,1px);
+
+
+.bBlocks-follow-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 9999;
+    background: $followCursorBg;
+    width: $followCursorSize;
+    height: $followCursorSize;
+    border: $followCursorBorderWidth solid $followCursorBorderColor;
+}
+
+.bBlocks-follow-inner-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 10000;
+    background: $followInnerCursorBg;
+    border: $followInnerCursorBorderWidth solid $followInnerCursorBorderColor;
+    backdrop-filter: blur(5px);
+    width: calc($followCursorSize / 2.5);
+    height: calc($followCursorSize / 2.5);
+}

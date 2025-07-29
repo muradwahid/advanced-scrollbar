@@ -1,0 +1,27 @@
+$primaryColor: #146ef5;
+
+.components-button{
+  .cursor-icon-plugin-menu{
+    color:$primaryColor;
+    fill:$primaryColor;
+  }
+  &.is-pressed{
+    .cursor-icon-plugin-menu{
+      color:#fff;
+      fill:#fff;
+    }
+  }
+}
+.bPlPanelBody{
+  .gradientBtn-delete{
+    color: #f44336;
+  }
+  .whiteSpaceNoWrap{
+    white-space: nowrap;
+  }
+}
+
+.bPlPanelBody .settings-custom-cursor-button{
+  margin-top: 20px;
+  padding:5px 30px;
+}

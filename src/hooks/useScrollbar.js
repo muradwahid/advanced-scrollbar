@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useCallback, useEffect, useRef, useState } from "react";
 
 export const useScrollbar = (
@@ -198,7 +199,7 @@ export const useScrollbar = (
         const handleMouseMove = (e) => {
             if (isDragging && thumbRef?.current) {
                 handleThumbDrag(e.clientY);
-            } else if (isGrabDragging.current && touchBehavior ) {
+            } else if (isGrabDragging.current && touchBehavior) {
                 handleGrabDrag(e.clientY);
             }
         };
@@ -261,8 +262,7 @@ export const useScrollbar = (
 
         // Start animation loop immediately
         animationFrameId.current = requestAnimationFrame(animate);
-
-        const handleScroll = (e) => { 
+        const handleScroll = (e) => {
             updateScrollbar()
             handlePercentScroll()
             // If you have multiple elements with class 'scrollbar'
@@ -341,5 +341,5 @@ export const useScrollbar = (
         animate
     ]);
 
-    return { scrollPercentage, dynamicHeight,isLoading, isActive, thumbHeight, thumbPosition, isDragging, isWheel, isGrabbing };
+    return { scrollPercentage, dynamicHeight, isLoading, isActive, thumbHeight, thumbPosition, isDragging, isWheel, isGrabbing };
 };
