@@ -1,19 +1,26 @@
 import { __ } from '@wordpress/i18n';
 export const cursorStyleTabs = [
-  { name: 'cursor', title: __('Cursor', 'advanced-scrollbar') },
-  { name: 'style', title: __('Style', 'advanced-scrollbar') }
-];
-
-export const cursorEffectTabs = [
   { name: 'shape', title: __('Cursor Shape', 'advanced-scrollbar') },
   { name: 'effect', title: __('Click Effect', 'advanced-scrollbar') }
 ];
 
+export const cursorShapeTabs = [
+  { name: 'shape', title: __('Cursor Shape', 'advanced-scrollbar') },
+  { name: 'style', title: __('Shape Style', 'advanced-scrollbar') }
+];
+  
+export const cursorEffectTabs = [
+  { name: 'type', title: __('Effect Type', 'advanced-scrollbar') },
+  { name: 'style', title: __('Effect Style', 'advanced-scrollbar') }
+];
+
+// export const 
+
 export const cursorSourceOptions = [
   { label: __('Cursor Only', 'advanced-scrollbar'), value: 'cursor', default: true },
   { label: __('Pre Defined Shape', 'advanced-scrollbar'), value: 'shape' },
-  { label: __('Pre Defined Image', 'advanced-scrollbar'), value: 'image' },
-  { label: __('Custom Url', 'advanced-scrollbar'), value: 'url' },
+  { label: __('Pre Defined Image', 'advanced-scrollbar'), value: 'predefined' },
+  { label: __('Custom Url', 'advanced-scrollbar'), value: 'customUrl' },
 ]
 
 export const cursorOptions = [

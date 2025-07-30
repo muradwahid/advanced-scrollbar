@@ -22,10 +22,8 @@ if(!class_exists('ASB_Import')){
 
             $tab_1 = get_option('wedevs_basics');
             $tab_2 = get_option('wedevs_advanced');
-            $tab_3 = get_option('wedevs_cursor_options');
-            $new_data = wp_parse_args($tab_1, wp_parse_args($tab_2, $tab_3));
+            $new_data = wp_parse_args($tab_1, $tab_2);
 
-            
             $border = explode(' ', $new_data['asb_border']);
             $touch = $new_data['asb_touchbehavior'] == "on" ? 1 : 0 ;
 
@@ -55,10 +53,26 @@ if(!class_exists('ASB_Import')){
                 ], //(string)(int) $new_data['asb_border_radius'],
                 // 'asb_border_radius' => (int) $this->isset($new_data, 'asb_border_radius') //(string)(int) $new_data['asb_border_radius'],
             ], $new_data);
+            
+            
+            $tab_3 = get_option('wedevs_cursor_options');
+
+            
+            $cursor_data = [
+                'shape'=> [
+                    'type' => 'follow',
+                    'customImg' => [
+                        'img' => $this->isset($tab_3,'asb_predefined_img'),
+                        'url'=> $this->isset($tab_3,'asb_cursor_image') 
+                    ]
+                    ],
+                    'source' => $this->isset($tab_3,'asb_cursor_source')
+            ];
     
             $data = get_option($this->key, null);
     
             if(!$data){
+                update_option('csb_adv_scrollbar_cursor_settings', $cursor_data);
                 update_option($this->key, $new_data);
                 update_option('asb_import_ver', $this->version);
             }

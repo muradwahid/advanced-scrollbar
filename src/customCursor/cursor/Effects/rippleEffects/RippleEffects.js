@@ -1,5 +1,5 @@
 import { isSet } from '../../../utils/common';
-import './style.scss';
+// import './style.scss';
 /**
  * RippleEffects component renders different ripple effects based on the type prop.
  * @param {Object} props - Component properties.

@@ -1,5 +1,5 @@
 
-import { SelectControl, TabPanel } from "@wordpress/components";
+import { SelectControl, TabPanel, ToggleControl } from "@wordpress/components";
 import { useEffect, useState } from "react";
 import { __ } from "@wordpress/i18n";
 
@@ -12,7 +12,7 @@ import { cursorSourceOptions } from "../../../../customCursor/utils/options";
 import { shapeAndEffectOptions } from "../utils/options";
 import useWPAjax from "../../../utils/useWPAjax";
 import CursorImgShape from "./General/CursorImgShape";
-import { InlineMediaUpload } from "../../../../../../bpl-tools/Components";
+import { InlineMediaUpload } from "../../../../components/InlineMediaUpload";
 
 const Settings = ({ dataInfo }) => {
   const { dirUrl, nonce } = dataInfo;
@@ -54,8 +54,8 @@ const Settings = ({ dataInfo }) => {
             {tab.name == "shape" && <>
               <SelectControl className="mt10" label={__("Select Cursor Source", "advanced-scrollbar")} labelPosition="edge" options={cursorSourceOptions} value={csbAvScrData?.source} onChange={value => setCsbAvScrData({ ...csbAvScrData, source: value })} />
               {csbAvScrData?.source === "shape" && <CursorShape {...{ csbAvScrData, setCsbAvScrData }} />}
-              {csbAvScrData?.source === "image" && <CursorImgShape {...{ csbAvScrData, setCsbAvScrData, dirUrl }} />}
-              {csbAvScrData?.source === "url" && <InlineMediaUpload />}
+              {csbAvScrData?.source === "predefined" && <CursorImgShape {...{ csbAvScrData, setCsbAvScrData, dirUrl }} />}
+              {csbAvScrData?.source === "customUrl" && <InlineMediaUpload label={__("Choose Cursor Image", "advanced-scrollbar")} value={csbAvScrData?.shape?.customImg?.url} onChange={value => setCsbAvScrData({ ...csbAvScrData, shape: { ...csbAvScrData?.shape, customImg: { ...csbAvScrData?.shape?.customImg, url: value } } })} />}
               
             </>}
             {tab.name == "effect" && <CursorEffect {...{ csbAvScrData, setCsbAvScrData }} />}

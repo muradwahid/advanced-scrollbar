@@ -1,4 +1,4 @@
-import { Button, Flex, PanelBody, RangeControl, TabPanel } from "@wordpress/components";
+import { Button, Flex, RangeControl, TabPanel } from "@wordpress/components";
 import { __ } from "@wordpress/i18n";
 import { ColorControl, Label, SolidBackground } from "../../../../../bpl-tools/Components";
 import { tabController, updateData } from "../../../../../bpl-tools/utils/functions";
@@ -16,7 +16,7 @@ const ShapeStyleOptions = ({ value, onChange }) => {
   const ribbonColors = ribbon?.colors || ["#FC8EAC"];
 
   return (
-    <PanelBody className="bPlPanelBody" title="Cursor Shape Styles" initialOpen={true}>
+    <>
       {
         value?.type === 'follow' && <>
           <RangeControl label="Cursor Size" labelPosition="edge" value={parseInt(value?.follow?.size) >= 0 ? parseInt(value?.follow?.size) : 40} onChange={val => onChange(updateData(value, val + "px", 'follow', 'size'))} />
@@ -248,7 +248,7 @@ const ShapeStyleOptions = ({ value, onChange }) => {
         </>
       }
 
-    </PanelBody>
+    </>
   );
 };
 

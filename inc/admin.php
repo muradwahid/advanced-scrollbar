@@ -9,9 +9,9 @@ if( !class_exists('CSBAdmin') ){
 
 		function adminEnqueueScripts( $hook ) {
 			if( str_contains( $hook, 'advanced-scrollbar' ) ){
-				// wp_enqueue_media('media');
-				wp_enqueue_style( 'advanced-scrollbar-admin-style', CSB_DIR_URL . 'build/admin.css', ['wp-components','wp-edit-blocks'], CSB_VERSION );
-				wp_enqueue_script( 'advanced-scrollbar-admin-script', CSB_DIR_URL . 'build/admin.js', [ 'react', 'react-dom',  'wp-components', 'wp-i18n', 'wp-api', 'wp-util' ,'lodash', 'wp-media-utils' ,'wp-data','wp-core-data','wp-api-request' ], CSB_VERSION, true );
+				wp_enqueue_media();
+				wp_enqueue_style( 'advanced-scrollbar-admin-style', CSB_DIR_URL . 'build/admin.css', ['wp-components','wp-edit-blocks','wp-block-editor'], CSB_VERSION );
+				wp_enqueue_script( 'advanced-scrollbar-admin-script', CSB_DIR_URL . 'build/admin.js', [ 'react', 'react-dom',  'wp-components', 'wp-i18n', 'wp-api', 'wp-util' ,'lodash', 'wp-media-utils' ,'wp-data','wp-core-data','wp-api-request','wp-element','wp-edit-post','wp-block-editor' ], CSB_VERSION, true );
 			}
 		}
 	
@@ -48,17 +48,16 @@ if( !class_exists('CSBAdmin') ){
 		}
 	
 		function dashboardPage(){ ?>
-			<div id='csbAdminDashboard' data-info=<?php echo esc_attr( wp_json_encode([
+<div id='csbAdminDashboard' data-info=<?php echo esc_attr( wp_json_encode([
 				'version' => CSB_VERSION,
 				"dirUrl" => CSB_DIR_URL,
-				"dirPath" => CSB_DIR_PATH,
 				"nonce" => wp_create_nonce("wp_rest")
-			]) ); ?> ></div>
-		<?php }
+			]) ); ?>></div>
+<?php }
 
 		function upgradePage(){ ?>
-			<div id='csbAdminUpgrade'>Coming soon...</div>
-		<?php }
+<div id='csbAdminUpgrade'>Coming soon...</div>
+<?php }
     }
     new CSBAdmin;
 }

@@ -24,20 +24,20 @@ const Settings = props => {
   const isPublishingPost = useSelect((select) => select('core/editor').isPublishingPost(), []);
 
 
-  const [crblData, setCrblData] = useState(JSON.parse(postMeta?.bBlocksCursor || "{}"));
+  const [csbAvScrData, setCsbAvScrData] = useState(JSON.parse(postMeta?.csbAdvScrollBarCursor || "{}"));
 
   useEffect(() => {
     debounce(() => {
-      if (crblData) {
-        setPostMeta({ bBlocksCursor: JSON.stringify(crblData) });
-        document.dispatchEvent(new CustomEvent("bBlocksCustomEventOnCursor", {
+      if (csbAvScrData) {
+          // setPostMeta({ csbAdvScrollBarCursor: JSON.stringify(csbAvScrData) });
+        document.dispatchEvent(new CustomEvent("advScrCursorCustomEventOnCursor", {
           detail: {
-            data: crblData
+            data: csbAvScrData
           }
         }));
       }
     }, 600)();
-  }, [crblData]);
+  }, [csbAvScrData]);
 
 
   useEffect(() => {
@@ -45,6 +45,7 @@ const Settings = props => {
   }, [isSavingPost, isPublishingPost]);
   const handleCustomPublish = async () => {
     setIsSaving(true);
+    setPostMeta({ csbAdvScrollBarCursor: JSON.stringify(csbAvScrData) });
     await wp.data.dispatch('core/editor').savePost();
   };
 
@@ -53,7 +54,7 @@ const Settings = props => {
       <PluginSidebarMoreMenuItem target="advanced-scrollbar-custom-cursor">Advanced Scrollbar</PluginSidebarMoreMenuItem>
       <PluginSidebar name="advanced-scrollbar-custom-cursor" title={__("Advanced Scrollbar - Cursor and Click effect settings.", "b-blocks")}>
         <PanelBody className="bPlPanelBody" title={__("Cursor", "b-blocks")} initialOpen={true}>
-          <OptionSettings {...{ crblData, setCrblData }} />
+          <OptionSettings {...{ csbAvScrData, setCsbAvScrData }} />
 
           <Flex justify="end" width="100%"><Button className="settings-custom-cursor-button" type="button" variant="primary" onClick={handleCustomPublish} disabled={isSaving}>{isSaving ? "Saving..." : "Save"}</Button></Flex>
         </PanelBody>

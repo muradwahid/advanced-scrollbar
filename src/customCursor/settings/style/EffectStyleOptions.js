@@ -1,15 +1,14 @@
-import { PanelBody, RangeControl, SelectControl } from "@wordpress/components";
+import { RangeControl, SelectControl } from "@wordpress/components";
 import { __ } from "@wordpress/i18n";
 import { ColorControl } from "../../../../../bpl-tools/Components";
 import { updateData } from "../../../../../bpl-tools/utils/functions";
 import { effectSparkEasingOptions } from "../../utils/options";
 
-const EffectStyleOptions = ({ value, onChange, initialOpen }) => {
+const EffectStyleOptions = ({ value, onChange }) => {
   const { spark = {}, sparkSimple = {}, starburst = {}, radial = {}, explosion = {}, rippleCircle = {}, rippleDouble = {}, rippleWave = {}, ripplePulse = {} } = value || {}
 
   return (
-    <PanelBody title={__("Click Effect Style", "cursor-block")} initialOpen={initialOpen}>
-
+    <>
       {
         value?.type === 'spark' && <>
           <RangeControl label="Spark Size" value={parseInt(spark?.size) >= 0 ? parseInt(spark?.size) : 12} onChange={val => onChange(updateData(value, val, 'spark', 'size'))} min={0} max={100} step={1} />
@@ -132,7 +131,7 @@ const EffectStyleOptions = ({ value, onChange, initialOpen }) => {
         </>
       }
 
-    </PanelBody>
+    </>
   );
 };
 

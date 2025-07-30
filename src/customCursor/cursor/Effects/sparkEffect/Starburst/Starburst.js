@@ -1,5 +1,5 @@
 import { isSet } from '../../../../utils/common';
-import './style.scss';
+//import './style.scss';
 const Starburst = ({ duration = 1, size = 60, color ='#ff9a8b'}) => {
 
 

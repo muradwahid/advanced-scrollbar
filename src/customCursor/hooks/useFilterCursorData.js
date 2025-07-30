@@ -1,23 +1,3 @@
-// export const useFilterCursorData = (pageData,globalData) => {
-//   const cursorData = {
-//     ...globalData,
-//     ...(pageData?.shape?.type === '' ? { ...pageData, shape: {type:globalData?.shape?.type} }:{...pageData}),
-//   }
-//   return cursorData;
-// };
-
-
-// export const useFilterCursorData = (pageData, globalData) => {
-//   const cursorData = {
-//     ...globalData,
-//     ...pageData,
-//     shape: pageData?.shape?.type === '' ? globalData?.shape : pageData?.shape,
-//     effect: pageData?.effect?.type === '' ? globalData?.effect : pageData?.effect,
-//   };
-
-//   return cursorData;
-// };
-
 import { useEffect, useState } from 'react';
 
 export const useFilterCursorData = (pageData, globalData) => {

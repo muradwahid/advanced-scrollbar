@@ -1,11 +1,20 @@
-import { SelectControl } from '@wordpress/components';
+import { SelectControl, TabPanel } from '@wordpress/components';
 import React from 'react';
-import { cursorEffectsOptions } from '../../utils/options';
+import { cursorEffectsOptions, cursorEffectTabs } from '../../utils/options';
+import { tabController } from '../../../../../bpl-tools/utils/functions';
+import EffectStyleOptions from '../style/EffectStyleOptions';
 
 const CursorEffects = ({value, onChange}) => {
   return (
     <>
-      <SelectControl className='mt10' label="Effect Type" labelPosition='edge' value={value?.type} onChange={(val) => onChange({ ...value, type: val })} options={cursorEffectsOptions} />
+      <TabPanel className='bPlTabPanel mini mt10' activeClass='activeTab' tabs={cursorEffectTabs} onSelect={tabController}>
+      {
+        (tab) => <>
+          {tab.name == "type" && <SelectControl className='mt10' label="Effect Type" labelPosition='edge' value={value?.type} onChange={(val) => onChange({ ...value, type: val })} options={cursorEffectsOptions} />}
+          {tab.name == "style" && <EffectStyleOptions value={value} onChange={onChange} />}
+        </>
+      }
+      </TabPanel>
     </>
   );
 };

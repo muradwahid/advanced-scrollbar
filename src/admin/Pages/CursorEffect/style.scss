@@ -1,5 +1,17 @@
 $primaryColor: #146ef5;
 
+
+.bBlocks-custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999999999;
+  pointer-events: none;
+  cursor: default;
+  // border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .custom-cursor-container {
   width: 70%;
   margin: 0 auto;
@@ -43,6 +55,7 @@ $primaryColor: #146ef5;
       }
 
       .bPlTabPanel {
+
         .components-base-control__label,
         .components-input-control__label {
           font-size: 13px;
@@ -67,7 +80,8 @@ $primaryColor: #146ef5;
         display: flex;
         flex: 1 1 auto;
         background: url("https://bblockswp.com/wp-content/themes/b-technologies/assets/images/shape/shape-6.jpg") no-repeat center center / cover;
-
+        // cursor: url($cursorImg), auto;
+        
         .custom-cursor-playground-contents-wrapper {
           flex: 1 1 auto;
           padding: 15px 20px;
