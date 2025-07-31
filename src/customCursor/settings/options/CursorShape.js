@@ -3,13 +3,15 @@ import { __ } from '@wordpress/i18n';
 
 import { updateData } from '../../../../../bpl-tools/utils/functions';
 import { MediaArea } from "../../../../../bpl-tools/Components";
+import { SelectControlPro } from '../../../../../bpl-tools/ProControls';
 
-import { cursorOptions, glitchBlendModeOptions, glitchSpeedOptions, magneticTargetElDefaults } from '../../utils/options';
+import { cursorOptions, cursorProOptions, glitchBlendModeOptions, glitchSpeedOptions, magneticTargetElDefaults } from '../../utils/options';
 
 const CursorShape = (props) => {
-  const { value = {}, onChange } = props;
+  const { value = {}, onChange, isPremium } = props;
+
   return <>
-    <SelectControl className='mt10' label={__('Cursor Shape', 'b-blocks')} labelPosition='edge' value={value?.type} onChange={(val) => onChange(updateData(value, val, 'type'))} options={cursorOptions} />
+    <SelectControlPro className='mt10' label={__('Cursor Shape', 'b-blocks')} labelPosition='edge' value={value?.type} onChange={(val) => onChange(updateData(value, val, 'type'))} options={cursorOptions} isPremium={isPremium} proValues={cursorProOptions} />
     {value?.type === "follow" && <>
       <RangeControl label={__('Cursor Duration', 'b-blocks')} value={value?.follow?.duration >= 0 ? value?.follow?.duration : 0.6} defaultValue={0.6} resetFallbackValue={0.6} min={0} max={5} step={0.1} onChange={(val) => onChange(updateData(value, val, 'follow', 'duration'))} />
 

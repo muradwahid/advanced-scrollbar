@@ -14,10 +14,13 @@ import { pluginIcon } from "./utils/icons";
 
 import "./editor.scss";
 import { Button } from "@wordpress/components";
+import useWPAjax from "../settings/hooks/useWPAjax";
 // const customEvent = new CustomEvent("dataFetched2");
 const Settings = props => {
   const { postMeta, setPostMeta } = props;
 
+  const { data, isLoading, refetch } = useWPAjax('csbAdvScrollbarPremiumChecker', { _wpnonce: window.wpApiSettings.nonce },true);
+  const { isPremium = false } = data || {};
   const [isSaving, setIsSaving] = useState(false);
   
   const isSavingPost = useSelect((select) => select('core/editor').isSavingPost(), []);
@@ -43,7 +46,10 @@ const Settings = props => {
   useEffect(() => {
     setIsSaving(isSavingPost || isPublishingPost);
   }, [isSavingPost, isPublishingPost]);
-  const handleCustomPublish = async () => {
+
+
+
+  const handlePublish = async () => {
     setIsSaving(true);
     setPostMeta({ csbAdvScrollBarCursor: JSON.stringify(csbAvScrData) });
     await wp.data.dispatch('core/editor').savePost();
@@ -54,9 +60,9 @@ const Settings = props => {
       <PluginSidebarMoreMenuItem target="advanced-scrollbar-custom-cursor">Advanced Scrollbar</PluginSidebarMoreMenuItem>
       <PluginSidebar name="advanced-scrollbar-custom-cursor" title={__("Advanced Scrollbar - Cursor and Click effect settings.", "b-blocks")}>
         <PanelBody className="bPlPanelBody" title={__("Cursor", "b-blocks")} initialOpen={true}>
-          <OptionSettings {...{ csbAvScrData, setCsbAvScrData }} />
+          <OptionSettings {...{ csbAvScrData, setCsbAvScrData, isPremium }} />
 
-          <Flex justify="end" width="100%"><Button className="settings-custom-cursor-button" type="button" variant="primary" onClick={handleCustomPublish} disabled={isSaving}>{isSaving ? "Saving..." : "Save"}</Button></Flex>
+          <Flex justify="end" width="100%"><Button className="settings-custom-cursor-button" type="button" variant="primary" onClick={handlePublish} disabled={isSaving}>{isSaving ? "Saving..." : "Save"}</Button></Flex>
         </PanelBody>
       </PluginSidebar>
     </div>

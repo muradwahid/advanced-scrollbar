@@ -28,7 +28,7 @@ if (!class_exists("CSB_Scrollbar")) {
         }
 
         function csbFooter(){
-            $csb_data = get_option('admin-dashboard-secondssm');
+            $csb_data = get_option('asb-advanced-scrollbar-seconds');
             $csb_data = json_encode($csb_data);
             echo '<div id="csbScrollbar" isPremium="'. asbIsPremium() .'" data-scrollbar="'. esc_attr( $csb_data ) .'"></div>';
         }
@@ -95,9 +95,7 @@ function asbIsPremium(){
 /*-------------------------------------------------------------------------------*/
 /*   Include all require file
 /*-------------------------------------------------------------------------------*/
-require_once("inc/class.settings-api.php");
-require_once("inc/fields.php");
-require_once "inc/admin.php";
 require_once "inc/Settings.php";
 require_once "inc/import.php";
 require_once "inc/cursor.php";
+require_once "inc/admin.php";

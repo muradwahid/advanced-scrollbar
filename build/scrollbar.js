@@ -304,7 +304,7 @@ const Scrollbar = ({
     asb_mousescrollstep = 40,
     asb_autohidemode = false,
     asb_railalign = "right",
-    asb_scrollspeed = 60,
+    asb_scrollspeed = "60",
     asb_touchbehavior,
     asb_dynamic_height_scrollbar = 'off',
     asb_floating_scrollbar = "off",
@@ -325,9 +325,12 @@ const Scrollbar = ({
     }
   } = scrollbarData;
   const floatingRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
-  const touchBehavior = JSON.parse(asb_touchbehavior) == 1 ? true : false;
-  const showScrollbar = JSON.parse(asb_showscrollbar);
-  const autoHideMode = asb_autohidemode === "cursor" ? "cursor" : JSON.parse(asb_autohidemode);
+
+  // console.log(scrollbarData)
+
+  const touchBehavior = asb_touchbehavior == 1 ? true : false;
+  const showScrollbar = asb_showscrollbar;
+  const autoHideMode = asb_autohidemode === "cursor" || asb_autohidemode === "coursor" ? "cursor" : JSON.parse(asb_autohidemode);
   // console.log(getBorderCSS(asb_border))
   const isShowScrollBar = asb_dynamic_height_scrollbar == "off" && asb_floating_scrollbar == "off" && showScrollbar;
   const {

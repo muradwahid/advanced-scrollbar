@@ -14,6 +14,7 @@ import CursorEffect from './Pages/CursorEffect/CursorEffect';
 
 const App = ({ options, dataInfo }) => {
 
+  const { version = "" } = dataInfo;
   const freemius = {
     product_id: '18090',
     plan_id: '30020',
@@ -26,14 +27,14 @@ const App = ({ options, dataInfo }) => {
     <HashRouter>
       <Toaster position="bottom-center" />
       <Routes>
-        <Route path="/welcome" element={<Welcome />} />
+        <Route path="/welcome" element={<Welcome version={version} />} />
         <Route path="/blocks" element={<Blocks />} />
         <Route path="/inDev" element={<InDev />} />
-        <Route path="/settings" element={<Layout><div style={{ width: "70%", margin: "0 auto" }}><BPLSettings options={options} /></div></Layout>} />
+        <Route path="/settings" element={<Layout version={version}><div style={{ width: "70%", margin: "0 auto" }}><BPLSettings options={options} /></div></Layout>} />
         <Route path="/demo" element={<Demo />} />
-        <Route path="/demo2" element={<DemoTwo />} />
+        <Route path="/demo2" element={<DemoTwo version={version} />} />
         <Route path="/video" element={<Video />} />
-        <Route path="/custom-cursor" element={<CursorEffect dataInfo={dataInfo} />} />
+        <Route path="/custom-cursor" element={<CursorEffect dataInfo={dataInfo} version={version} />} />
 
         {/* add more params here */}
         {/* https://freemius.com/help/documentation/selling-with-freemius/freemius-checkout-buy-button/ */}

@@ -6,7 +6,7 @@ import "./style.scss";
 import { content, demos } from './data';
 import ExternalButtons from './ExternalButtons';
 import Layout from '../../Layout/Layout';
-const DemoTwo = () => {
+const DemoTwo = ({ version }) => {
 
   const { title, description } = content || {};
 
@@ -23,7 +23,7 @@ const DemoTwo = () => {
 
   const prefix ="bPluginsDemos"
 
-  return <Layout>
+  return <Layout version={version}>
     <div className={prefix}>
       {/* Left Sidebar - Demo Tabs */}
       <div className='sidebar'>

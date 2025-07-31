@@ -2,17 +2,18 @@ import { Flex, RangeControl, SelectControl, TextareaControl, TextControl, Toggle
 
 import { __ } from '@wordpress/i18n';
 import { Label, MediaArea } from '../../../../../../../bpl-tools/Components';
+import { SelectControlPro } from '../../../../../../../bpl-tools/ProControls';
 import { updateData } from '../../../../../../../bpl-tools/utils/functions';
 
-import { glitchBlendModeOptions, glitchSpeedOptions, magneticTargetElDefaults } from '../../../../../customCursor/utils/options';
+import { cursorProOptions, glitchBlendModeOptions, glitchSpeedOptions, magneticTargetElDefaults } from '../../../../../customCursor/utils/options';
 import { cursorOptions } from '../../utils/options';
 
-const ShapeType = ({ value, onChange }) => {
+const ShapeType = ({ value, onChange, isPremium }) => {
   return (
     <>
       <Flex align='center'>
         <Label className=''>{__('Select Shape Type', 'b-blocks')}</Label>
-        <SelectControl className='mt10' label="" labelPosition='edge' options={cursorOptions} value={value?.type} onChange={(val) => onChange(updateData(value, val, 'type'))} />
+        <SelectControlPro className='mt10' label="" labelPosition='edge' options={cursorOptions} value={value?.type} onChange={(val) => onChange(updateData(value, val, 'type'))} isPremium={isPremium} proValues={cursorProOptions} />
       </Flex>
 
       {value?.type === "follow" && <>

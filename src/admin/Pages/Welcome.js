@@ -3,7 +3,7 @@ import Layout from '../Layout/Layout';
 import { changeLog, helpItem } from '../utils/options';
 import { minus, plus } from '../utils/icons';
 
-const Welcome = () => {
+const Welcome = ({ version }) => {
     const [isChangeLog, setIsChangeLog] = useState(false);
 
     const handleCreateNewPage = (e) => {
@@ -19,24 +19,24 @@ const Welcome = () => {
 
     return (
         <>
-            <Layout>
+            <Layout version={version}>
                 <div className="feature-section">
                     <div className="feature-container">
                         <div className="bblocks_welcome_container">
                             <div className="bblocks_left_area">
                                 <div className="bblocks_left">
-                                    <h1>Welcome to bBlocks</h1>
-                                    <p>Power Up Your Gutenberg Editor Website Building Experience With bBlocks.</p>
+                                    <h1>Welcome to Advanced Scrollbar</h1>
+                                    <p>Power Up Your Gutenberg Editor Website Building Experience With Advanced Scrollbar.</p>
                                     <div className="img">
-                                        <img src="https://ps.w.org/b-blocks/assets/banner-772x250.png?rev=3176079" alt="image" />
+                                        <img src="	https://ps.w.org/advanced-scrollbar/assets/banner-772x250.png?rev=3115639" alt="image" />
                                     </div>
                                     <div className="logo_title">
 
                                         <div className="logo">
-                                            <img src="https://ps.w.org/b-blocks/assets/icon-128x128.png?rev=2473946" alt="logo_image" />
+                                            <img src="https://ps.w.org/advanced-scrollbar/assets/icon-128x128.png?rev=1520522" alt="logo_image" />
                                         </div>
                                         <div className="title">
-                                            <h3>B Blocks – The ultimate block collection</h3>
+                                            <h3>Advanced Scrollbar – The ultimate scrollbar collection</h3>
                                             <span>by</span>
                                             <a href="https://bplugins.com" target="_blank" rel="noopener noreferrer">
                                                 bPlugins

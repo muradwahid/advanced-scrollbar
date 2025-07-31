@@ -1,12 +1,9 @@
 <?php
 
-
-
 if(!class_exists('ASB_Import')){
     class ASB_Import {
     
-    
-        private $key = 'admin-dashboard-secondssm';
+        private $key = 'asb-advanced-scrollbar-seconds';
         private $version = '1.0.0';
     
         public function __construct() {
@@ -23,9 +20,8 @@ if(!class_exists('ASB_Import')){
             $tab_1 = get_option('wedevs_basics');
             $tab_2 = get_option('wedevs_advanced');
             $new_data = wp_parse_args($tab_1, $tab_2);
-
-            $border = explode(' ', $new_data['asb_border']);
-            $touch = $new_data['asb_touchbehavior'] == "on" ? 1 : 0 ;
+            $border = explode(' ', $this->isset($new_data, 'asb_border', ''));
+            $touch =$this->isset($new_data, 'asb_touchbehavior', 'off') == "on" ? 1 : 0 ;
 
             $new_data = wp_parse_args([
                 'asb_gradient_color' => [
@@ -45,6 +41,7 @@ if(!class_exists('ASB_Import')){
                     'spinner' => (int) $this->isset($new_data, 'asb_width'),
                     'unit' => 'px'
                 ],
+                'asb_autohidemode' => in_array($this->isset($new_data, 'asb_autohidemode'), ['coursor', 'cursor']) ? 'cursor' : $this->isset($new_data, 'asb_autohidemode'),
                 // 'asb_width' =>(int) $this->isset($new_data, 'asb_width'),
                 'asb_touchbehavior' => $touch,
                 'asb_border_radius' => [
@@ -60,7 +57,6 @@ if(!class_exists('ASB_Import')){
             
             $cursor_data = [
                 'shape'=> [
-                    'type' => 'follow',
                     'customImg' => [
                         'img' => $this->isset($tab_3,'asb_predefined_img'),
                         'url'=> $this->isset($tab_3,'asb_cursor_image') 
@@ -76,7 +72,6 @@ if(!class_exists('ASB_Import')){
                 update_option($this->key, $new_data);
                 update_option('asb_import_ver', $this->version);
             }
-    
         }
 
         public function isset($array, $key, $default = null){

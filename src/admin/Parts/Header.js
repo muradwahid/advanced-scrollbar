@@ -1,15 +1,15 @@
 import { NavLink } from 'react-router-dom';
 
-const Header = ({ navigation }) => {
+const Header = ({ navigation, version }) => {
 
   return (
     <div className="dashboard-heading-container">
       <div className="dashboard-heading">
         <div className="heading">
-          <img className="block-logo" src="https://i.ibb.co.com/HVymqHF/icon-128x128.png" alt="CustomHtmlIcon" />
-          <h1 className="heading-title"> B Blocks </h1>
+          <img className="block-logo" src="	https://ps.w.org/advanced-scrollbar/assets/icon-128x128.png?rev=1520522" alt="CustomHtmlIcon" />
+          <h1 className="heading-title"> Advanced Scrollbar </h1>
         </div>
-        <div className="plugin-version"> v1.9.6 </div>
+        <div className="plugin-version"> v{version} </div>
       </div>
 
       {/* Links */}

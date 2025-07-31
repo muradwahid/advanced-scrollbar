@@ -7,7 +7,7 @@ import { useMovePosition } from '../hooks/useMovePosition';
 import { generateGradient, getBorderCSS, isSet } from '../utils/function';
 import "./style.scss";
 const Scrollbar = ({ scrollbarData }) => {
-    const { asb_showscrollbar, asb_color = '#46b3e6', asb_background = '', asb_mousescrollstep = 40, asb_autohidemode = false, asb_railalign = "right", asb_scrollspeed = 60, asb_touchbehavior, asb_dynamic_height_scrollbar = 'off', asb_floating_scrollbar = "off", asb_gradient_color = {
+    const { asb_showscrollbar, asb_color = '#46b3e6', asb_background = '', asb_mousescrollstep = 40, asb_autohidemode = false, asb_railalign = "right", asb_scrollspeed = "60", asb_touchbehavior, asb_dynamic_height_scrollbar = 'off', asb_floating_scrollbar = "off", asb_gradient_color = {
         "color-1": "#ffce4b",
         "color-2": "#ff395e",
         "color-3": "#833ab4"
@@ -15,9 +15,12 @@ const Scrollbar = ({ scrollbarData }) => {
 
     const floatingRef = useRef(null);
 
-    const touchBehavior = JSON.parse(asb_touchbehavior) == 1 ? true :  false;
-    const showScrollbar = JSON.parse(asb_showscrollbar);
-    const autoHideMode = asb_autohidemode === "cursor" ? "cursor" : JSON.parse(asb_autohidemode);
+
+    // console.log(scrollbarData)
+
+    const touchBehavior = asb_touchbehavior == 1 ? true : false;
+    const showScrollbar = asb_showscrollbar;
+    const autoHideMode = (asb_autohidemode === "cursor" || asb_autohidemode === "coursor") ? "cursor" : JSON.parse(asb_autohidemode);
     // console.log(getBorderCSS(asb_border))
     const isShowScrollBar = asb_dynamic_height_scrollbar == "off" && asb_floating_scrollbar == "off" && showScrollbar
 
@@ -28,9 +31,9 @@ const Scrollbar = ({ scrollbarData }) => {
             $("html").niceScroll({
                 hwacceleration: true,
                 cursorcolor: asb_color,
-                cursorwidth: asb_width?.spinner+"px",
+                cursorwidth: asb_width?.spinner + "px",
                 cursorborder: getBorderCSS(asb_border),
-                cursorborderradius: asb_border_radius?.spinner+"px",
+                cursorborderradius: asb_border_radius?.spinner + "px",
                 scrollspeed: asb_scrollspeed,
                 railalign: asb_railalign,
                 background: asb_background,

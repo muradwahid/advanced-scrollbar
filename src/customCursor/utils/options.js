@@ -8,7 +8,7 @@ export const cursorShapeTabs = [
   { name: 'shape', title: __('Cursor Shape', 'advanced-scrollbar') },
   { name: 'style', title: __('Shape Style', 'advanced-scrollbar') }
 ];
-  
+
 export const cursorEffectTabs = [
   { name: 'type', title: __('Effect Type', 'advanced-scrollbar') },
   { name: 'style', title: __('Effect Style', 'advanced-scrollbar') }
@@ -23,6 +23,8 @@ export const cursorSourceOptions = [
   { label: __('Custom Url', 'advanced-scrollbar'), value: 'customUrl' },
 ]
 
+export const cursorProOptions = ['matrix', 'cyberpunk', 'analog', 'digital', 'glow', 'gradient', 'image', 'magnetic', 'neon', 'pixelated', 'ribbon', 'ring', 'sketch', 'spotlight', 'splash', 'text']
+
 export const cursorOptions = [
   { label: __('Default', 'advanced-scrollbar'), value: '', default: true },
   { label: __('Unset', 'advanced-scrollbar'), value: 'unset' },
@@ -30,23 +32,23 @@ export const cursorOptions = [
   { label: __('Blob', 'advanced-scrollbar'), value: 'blob' },
   { label: __('Dot', 'advanced-scrollbar'), value: 'dot' },
   { label: __('Elastic', 'advanced-scrollbar'), value: 'elastic' },
-  { label: __('Glitch Matrix', 'advanced-scrollbar'), value: 'matrix' },
-  { label: __('Glitch Cyberpunk', 'advanced-scrollbar'), value: 'cyberpunk' },
-  { label: __('Glitch Analog', 'advanced-scrollbar'), value: 'analog' },
-  { label: __('Glitch Digital Error', 'advanced-scrollbar'), value: 'digital' },
-  { label: __('Glow', 'advanced-scrollbar'), value: 'glow' },
-  { label: __('Gradient', 'advanced-scrollbar'), value: 'gradient' },
-  { label: __('Image', 'advanced-scrollbar'), value: 'image' },
-  { label: __('Magnetic', 'advanced-scrollbar'), value: 'magnetic' },
-  { label: __('Neon', 'advanced-scrollbar'), value: 'neon' },
-  { label: __('Pixelated', 'advanced-scrollbar'), value: 'pixelated' },
-  { label: __('Ribbon', 'advanced-scrollbar'), value: 'ribbon' },
-  { label: __('Ring', 'advanced-scrollbar'), value: 'ring' },
+  { label: __(`Glitch Matrix`, 'advanced-scrollbar'), value: 'matrix' },
+  { label: __(`Glitch Cyberpunk`, 'advanced-scrollbar'), value: 'cyberpunk' },
+  { label: __(`Glitch Analog`, 'advanced-scrollbar'), value: 'analog' },
+  { label: __(`Glitch Digital Error`, 'advanced-scrollbar'), value: 'digital' },
+  { label: __(`Glow`, 'advanced-scrollbar'), value: 'glow' },
+  { label: __(`Gradient`, 'advanced-scrollbar'), value: 'gradient' },
+  { label: __(`Image`, 'advanced-scrollbar'), value: 'image' },
+  { label: __(`Magnetic`, 'advanced-scrollbar'), value: 'magnetic' },
+  { label: __(`Neon`, 'advanced-scrollbar'), value: 'neon' },
+  { label: __(`Pixelated`, 'advanced-scrollbar'), value: 'pixelated' },
+  { label: __(`Ribbon`, 'advanced-scrollbar'), value: 'ribbon' },
+  { label: __(`Ring`, 'advanced-scrollbar'), value: 'ring' },
   // { label: __('Ripple','advanced-scrollbar'), value: 'ripple' },
-  { label: __('Sketch', 'advanced-scrollbar'), value: 'sketch' },
-  { label: __('Spotlight', 'advanced-scrollbar'), value: 'spotlight' },
-  { label: __('Splash', 'advanced-scrollbar'), value: 'splash' },
-  { label: __('Text', 'advanced-scrollbar'), value: 'text' },
+  { label: __(`Sketch`, 'advanced-scrollbar'), value: 'sketch' },
+  { label: __(`Spotlight`, 'advanced-scrollbar'), value: 'spotlight' },
+  { label: __(`Splash`, 'advanced-scrollbar'), value: 'splash' },
+  { label: __(`Text`, 'advanced-scrollbar'), value: 'text' },
 ]
 
 export const cursorEffectsOptions = [

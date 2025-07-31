@@ -14,11 +14,10 @@ if( !class_exists('CSBAdmin') ){
 				wp_enqueue_script( 'advanced-scrollbar-admin-script', CSB_DIR_URL . 'build/admin.js', [ 'react', 'react-dom',  'wp-components', 'wp-i18n', 'wp-api', 'wp-util' ,'lodash', 'wp-media-utils' ,'wp-data','wp-core-data','wp-api-request','wp-element','wp-edit-post','wp-block-editor' ], CSB_VERSION, true );
 			}
 		}
+		
 	
 		function adminMenu() {
-			$menuIcon = "<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 500 500' fill='#fff'>
-				<path d='M57.7 50.1c-.4 5.1-.7 25.7-.7 45.9v36.7l11.3.6c6.1.4 16 .7 22 .7H101v230H51v92.1l131.3-.4c141.5-.4 139.3-.3 164.1-5.8 44-9.7 76.7-33.5 88.7-64.4 5.8-14.8 7.2-24.5 6.6-46-.6-21-2.2-30-7.7-44.3-8.2-21.3-25.2-38.7-50.9-52l-11-5.8 6.7-2.9c14.7-6.4 32-20.7 41.1-33.8 12-17.5 17-40.5 14.2-65.9-2.6-23.4-9.8-41-22.6-54.6-20.2-21.4-45.9-31.7-92.8-36.9-11.9-1.3-34.1-1.6-137.3-2l-123.1-.4-.6 9.2zm229.5 87.1c6.6 3.1 13 9.3 16 15.7 1.9 4 2.2 6.3 2.3 17.1 0 11-.3 13.1-2.3 17.5-6.1 13.2-18 18.8-43.6 20.5-7.8.5-16.7 1-19.8 1H234v-75.1l23.8.3c23.3.3 23.8.3 29.4 3zm-10.9 141.4c18.1 4.1 28.4 13.6 31.8 29.6 1.7 7.7.6 24.1-2 30.9-6.3 16.4-22.6 23.6-55.3 24.6l-16.8.6V277h17.6c12.5 0 19.6.5 24.7 1.6z' />
-			</svg>";
+			$menuIcon = "<svg stroke='currentColor' fill='none' strokeWidth={0} viewBox='0 0 24 24' height='1em' width='1em' {...props}><path d='M9.17154 16.8182L7.75732 18.2324L12 22.475L16.2426 18.2324L14.8284 16.8182L12 19.6466L9.17154 16.8182Z' fill='currentColor' /><path d='M14.8284 7.182L16.2426 5.76779L12 1.52515L7.75733 5.76779L9.17155 7.182L12 4.35357L14.8284 7.182Z' fill='currentColor' /><path fillRule='evenodd' clipRule='evenodd' d='M12 9.00018C13.6569 9.00018 15 10.3433 15 12.0002C15 13.657 13.6569 15.0002 12 15.0002C10.3431 15.0002 9 13.657 9 12.0002C9 10.3433 10.3431 9.00018 12 9.00018ZM12 11.0002C12.5523 11.0002 13 11.4479 13 12.0002C13 12.5525 12.5523 13.0002 12 13.0002C11.4477 13.0002 11 12.5525 11 12.0002C11 11.4479 11.4477 11.0002 12 11.0002Z' fill='currentColor' /></svg>";
 	
 			add_menu_page(
 				__( 'Plugin Menu', 'advanced-scrollbar' ),
@@ -27,7 +26,7 @@ if( !class_exists('CSBAdmin') ){
 				'advanced-scrollbar',
 				'',
 				'data:image/svg+xml;base64,' . base64_encode( $menuIcon ),
-				12
+				20
 			);
 			add_submenu_page(
 				'advanced-scrollbar',
@@ -51,7 +50,8 @@ if( !class_exists('CSBAdmin') ){
 <div id='csbAdminDashboard' data-info=<?php echo esc_attr( wp_json_encode([
 				'version' => CSB_VERSION,
 				"dirUrl" => CSB_DIR_URL,
-				"nonce" => wp_create_nonce("wp_rest")
+				"nonce" => wp_create_nonce("wp_rest"),
+				"isPremium" => false //asbIsPremium()
 			]) ); ?>></div>
 <?php }
 

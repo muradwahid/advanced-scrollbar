@@ -17,7 +17,6 @@ const Playground = ({ dataInfo }) => {
   const [cursorData, setCursorData] = useState(null);
   const isCursorVisible = useCursorVisibility();
   const dashboardRef = useRef(null);
-
   const { enableCursor = true} = cursorData || {};
 
   useEffect(() => {
@@ -41,7 +40,7 @@ const Playground = ({ dataInfo }) => {
     }
     
   }, [data, isLoading]);
-  const baseLink = 'https://b-blocks.com';
+  const baseLink = 'https://bplugins.com/products/advanced-scrollbar';
 
   const cursorCssVar = {
     ...((isSet(cursorData?.shape?.customImg?.img) && cursorData?.source == "predefined") && { cursor: `url(${cursorData?.shape?.customImg?.img}), pointer` }),
@@ -53,12 +52,14 @@ const Playground = ({ dataInfo }) => {
     <h3 className='custom-cursor-title'>Playground</h3>
     <div className='custom-cursor-playground' ref={dashboardRef} style={cursorCssVar} >
       <div className='custom-cursor-playground-contents-wrapper'>
-        <h2 className='custom-cursor-playground-contents-title'>B Blocks – The ultimate block collection<br /> and Gutenberg page builder.</h2>
-        <p className='custom-cursor-playground-contents-description'><a href={baseLink} target='_blank' rel="noreferrer" className='cursorPlaygroundLink'>B Blocks</a> is a lightweight and flexible Gutenberg plugin that transforms the native block editor into a powerful page builder for WordPress. Designed with performance and usability in mind, B Blocks extends the capabilities of core blocks by adding 30+ custom elements, pre-built Gutenberg templates, and flexible layout options—all without the need for bulky third-party tools.</p>
+        <div>
+          <h2 className='custom-cursor-playground-contents-title'>Advanced Scrollbar</h2>
+          <p className='custom-cursor-playground-contents-description'>Customize your site scrollbar with the<a href={baseLink} target='_blank' rel="noreferrer" className='cursorPlaygroundLink'> Advanced Scrollbar plugin</a>. Change color, width, Background, Scroll Speed, align the Rail of the scrollbar, and more. Design the scrollbar by following your brand identity.</p>
 
-        <div className='custom-cursor-playground-contents-button-wrapper'>
-          <a href={`${baseLink}/#demos`} target='_blank' rel="noreferrer" className='bPlDashboardPrimaryBtn'>See Demo</a>
-          <a href={`${baseLink}/#pricing`} target='_blank' rel="noreferrer" className='bPlDashboardSecondBtn'>Buy Now</a>
+          <div className='custom-cursor-playground-contents-button-wrapper'>
+            <a href={`https://scrollbar.bplugins.com/`} target='_blank' rel="noreferrer" className='bPlDashboardPrimaryBtn'>See Demo</a>
+            <a href={`${baseLink}/#pricing`} target='_blank' rel="noreferrer" className='bPlDashboardSecondBtn'>Buy Now</a>
+          </div>
         </div>
 
         <div className='custom-cursor-playground-contents-features'>

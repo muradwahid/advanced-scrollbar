@@ -1,7 +1,7 @@
-import { customizeIcon, iconLibraryIcon, layoutIcon } from "../utils/icons";
+import { cursorIcon, floatingIcon, gradientIcon } from "../utils/icons";
 
 export const cardOptions = [
-  { icon: customizeIcon, title: "Customize", description: "Customize every block as per your design requirement. All blocks have their settings." },
-  { icon: layoutIcon, title: "Layouts", description: "Some of the blocks have layouts/themes. It provides the custom pre-designed structure of the block." },
-  { icon: iconLibraryIcon, title: "Icon Library", description: "Include custom icon library. Implements in which blocks are needed." }
+  { icon: cursorIcon, title: "Custom Cursor", description: "Make the cursor in different styles also you can upload the custom image to style the cursor." },
+  { icon: floatingIcon, title: "Layouts", description: "Enable floating scrollbar and choose different color to make your scrollbar different from the default" },
+  { icon: gradientIcon, title:"Gradient" ,description: "Style your scrollbar with a gradient color to enhance its appearance." }
 ];

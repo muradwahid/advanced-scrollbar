@@ -6,10 +6,9 @@ const Spinner = ({
   min = 0,
   step = 1,
   unit,
-  defaultValue,
+  defaultValue="",
 }) => {
-  const def = value || { spinner: defaultValue || 0 };
-
+  const def = value || { spinner: defaultValue };
   const roundToPrecision = (num, precision) => {
     return Number((Math.round(num * Math.pow(10, precision)) / Math.pow(10, precision)).toFixed(precision));
   };

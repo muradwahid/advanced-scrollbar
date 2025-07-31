@@ -24,7 +24,7 @@ export const cursorOptions = [
   { label: __('Gradient', 'b-blocks'), value: 'gradient' },
   { label: __('Image', 'b-blocks'), value: 'image' },
   { label: __('Magnetic', 'b-blocks'), value: 'magnetic' },
-  { label: __('Neon', 'b-blocks'), value: 'neon' },
+  { label: __('Neon', 'b-blocks'), value: 'neon' },  
   { label: __('Pixelated', 'b-blocks'), value: 'pixelated' },
   { label: __('Ribbon', 'b-blocks'), value: 'ribbon' },
   { label: __('Ring', 'b-blocks'), value: 'ring' },
