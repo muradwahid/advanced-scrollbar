@@ -1,6 +1,6 @@
 export const options = {
-    id: "asb-advanced-scrollbar-seconds",
-    title: "Admin Dashboard",
+    id: "asb-advanced-scrollbar-thirds",
+    title: "Advanced Scrollbar",
     saveType: "serialized",
     sections: [
         {
@@ -135,14 +135,16 @@ export const options = {
                     title: "Floating Scrollbar BG Color",
                     after: "Change Scrollbar BG Color",
                     field: "color",
-                    default: "#9837bf"
+                    default: "#9837bf",
+                    isPremium: true
                 },
                 {
                     id: "asb_floating_scrollbar_text_color",
                     title: "Floating Scrollbar Text Color",
                     after: "Change Scrollbar Text Color",
                     field: "color",
-                    default: "#ffffff"
+                    default: "#ffffff",
+                    isPremium: true
                 },
             ]
         },
@@ -161,7 +163,9 @@ export const options = {
                             width: "50%"
                         }
                     },
-                    default: 10
+                    default: {
+                        spinner: 10
+                    }
                 },
                 {
                     id: "asb_border",
@@ -184,7 +188,9 @@ export const options = {
                     field: "spinner",
                     // unit: "px",
                     after: "border radius in pixel",
-                    default: 4
+                    default: {
+                        spinner: 4
+                    }
                 }
             ]
         }

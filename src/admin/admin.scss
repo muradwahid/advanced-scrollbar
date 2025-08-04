@@ -1,6 +1,6 @@
 $containerWidth: 70%;
 
-#csbAdminDashboard {
+#csbScrollbarDashboard {
   width: 100%;
 
   h1,
@@ -191,15 +191,15 @@ $containerWidth: 70%;
         width: 100%;
         box-sizing: border-box;
 
-        .bblocks_welcome_container {
+        .advScrollbar_welcome_container {
           display: flex;
 
           // Welcome Pages Left 
-          .bblocks_left_area {
+          .advScrollbar_left_area {
             display: flex;
             flex-direction: column;
 
-            .bblocks_left {
+            .advScrollbar_left {
               flex-basis: 67%;
               padding: 30px 30px;
 
@@ -274,7 +274,7 @@ $containerWidth: 70%;
               }
             }
 
-            .bblocks_left_btn {
+            .advScrollbar_left_btn {
               padding: 20px 30px;
               border-top: 1px solid #00000030;
               display: flex;
@@ -288,7 +288,7 @@ $containerWidth: 70%;
           }
 
           // WelCome pages Right 
-          .bblocks_right {
+          .advScrollbar_right {
             flex-basis: 33%;
             border-left: 1px solid #00000030;
 
@@ -699,7 +699,7 @@ $containerWidth: 70%;
 }
 
 
-.bblocks-notice {
+.advScrollbar-notice {
   p {
     text-transform: capitalize;
     font-size: 16px;

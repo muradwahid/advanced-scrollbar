@@ -1,5 +1,5 @@
 import { isSet } from '../../../../utils/common';
-// import './style.scss';
+import './style.scss';
 const Explosion = ({ size = 100, color ='#ffb347',duration=1.5,delay=0.05}) => {
     const styles = {
       ...(isSet(duration) && { "--bPl-spark-explosion-transition-duration": duration+'s' }),

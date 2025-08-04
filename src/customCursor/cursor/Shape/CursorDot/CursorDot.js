@@ -51,13 +51,13 @@ const CursorDot = ({
   //   });
   // }, [dotRef.current,isVisible]);
   const followCursorStyle = {
-    ...(isSet(size) && { "--bBlocks-cursor-dot-cursor-size": size + 'px' }),
-    ...(isSet(color) && { "--bBlocks-cursor-dot-cursor-bg": color })
+    ...(isSet(size) && { "--advScrollbar-cursor-dot-cursor-size": size + 'px' }),
+    ...(isSet(color) && { "--advScrollbar-cursor-dot-cursor-bg": color })
   };
   return (
     <div
       ref={dotRef}
-      className={`b-blocks-cursor-dotCursor`}
+      className={`advScrollbar-cursor-dotCursor`}
       style={followCursorStyle}
     />
   );

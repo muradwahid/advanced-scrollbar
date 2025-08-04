@@ -3,11 +3,12 @@ import { useEffect, useState } from 'react';
 import './bpl-settings.scss';
 import Main from './Components/Main/Main';
 import useWPAjax from './hooks/useWPAjax';
+import { extractDefaultsNested } from './utils/functions';
 
 
 const BPLSettings = props => {
 	const { options } = props;
-	const { data: dbData = null, isLoading, refetch, saveData } = useWPAjax('bPlSettingsOptions', { _wpnonce: window.wpApiSettings.nonce, id: options.id, });
+	const { data: dbData = null, isLoading, refetch, saveData } = useWPAjax('csbScrollbarOptions', { _wpnonce: window.wpApiSettings.nonce, id: options.id, });
 	const [data, setData] = useState({});
 	const [isEqual, setIsEqual] = useState(false)
 	const [isSaved, setIsSaved] = useState(false)
@@ -21,7 +22,7 @@ const BPLSettings = props => {
 
 	useEffect(() => {
 
-	},[])
+	}, [])
 
 	const onSaveData = () => {
 		if (!isLoading) {
@@ -53,14 +54,22 @@ const BPLSettings = props => {
 	const handleResetData = () => {
 		if (options?.saveType === 'nested') {
 			const newData = Object.keys(dbData)?.map((key) => dbData[key] = {});
-	
+
 			saveData({ [options.id]: JSON.stringify(newData) })
+			refetch();
 			location.reload()
-			
-		} else { 
-			const db = { ...dbData };
-			Object.keys(db).forEach((key) => db[key] = '');
-			saveData({ [options.id]: JSON.stringify(db) })
+
+		} else {
+			for (const section of options.sections) {
+				const fields = section?.fields;
+				if (fields) {
+					// db = extractDefaultsNested(fields);
+					saveData({ [options.id]: JSON.stringify(extractDefaultsNested(fields)) })
+					setData(extractDefaultsNested(fields));
+					refetch()
+					location.reload()
+				}
+			}
 		}
 	}
 
@@ -76,6 +85,6 @@ const BPLSettings = props => {
 		refetch();
 	})
 
-	return <Main {...{ isEqual, setIsEqual, options, saveData, data, setData, onSaveData, isLoading, refetch, isSaved, setIsSaved, handleResetData, dbData }} />;
+	return <Main {...{ isEqual, setIsEqual, options, saveData, data, setData, onSaveData, isLoading, refetch, isSaved, setIsSaved, handleResetData, dbData }} {...props} />;
 }
 export default BPLSettings;

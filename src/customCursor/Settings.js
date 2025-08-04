@@ -19,7 +19,7 @@ import useWPAjax from "../settings/hooks/useWPAjax";
 const Settings = props => {
   const { postMeta, setPostMeta } = props;
 
-  const { data, isLoading, refetch } = useWPAjax('csbAdvScrollbarPremiumChecker', { _wpnonce: window.wpApiSettings.nonce },true);
+  const { data } = useWPAjax('csbAdvScrollbarPremiumChecker', { _wpnonce: window.wpApiSettings.nonce },true);
   const { isPremium = false } = data || {};
   const [isSaving, setIsSaving] = useState(false);
   
@@ -58,11 +58,11 @@ const Settings = props => {
   return <>
     <div>
       <PluginSidebarMoreMenuItem target="advanced-scrollbar-custom-cursor">Advanced Scrollbar</PluginSidebarMoreMenuItem>
-      <PluginSidebar name="advanced-scrollbar-custom-cursor" title={__("Advanced Scrollbar - Cursor and Click effect settings.", "b-blocks")}>
-        <PanelBody className="bPlPanelBody" title={__("Cursor", "b-blocks")} initialOpen={true}>
+      <PluginSidebar name="advanced-scrollbar-custom-cursor" title={__("Advanced Scrollbar - Cursor and Click effect settings.", "advanced-scrollbar")}>
+        <PanelBody className="bPlPanelBody" title={__("Cursor", "advanced-scrollbar")} initialOpen={true}>
           <OptionSettings {...{ csbAvScrData, setCsbAvScrData, isPremium }} />
 
-          <Flex justify="end" width="100%"><Button className="settings-custom-cursor-button" type="button" variant="primary" onClick={handlePublish} disabled={isSaving}>{isSaving ? "Saving..." : "Save"}</Button></Flex>
+          <Flex className="mt-5" justify="end" width="100%"><Button className="settings-custom-cursor-button" type="button" variant="primary" onClick={handlePublish} disabled={isSaving}>{isSaving ? "Saving..." : "Save"}</Button></Flex>
         </PanelBody>
       </PluginSidebar>
     </div>

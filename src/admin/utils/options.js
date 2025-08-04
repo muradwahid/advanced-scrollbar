@@ -21,13 +21,13 @@ export const helpItem = [
     {
         title: 'Looking for Documentation?',
         description: 'We have detailed documentation on every aspects of the plugin.',
-        link: 'https://ctb.bplugins.com/docs',
+        link: 'https://scrollbar.bplugins.com/',
         linkText: 'Documentation'
     },
     {
         title: 'Liked This Plugin?',
         description: 'Glad to know that, you can support us by leaving a 5 ⭐ rating.',
-        link: 'https://wordpress.org/support/plugin/countdown-time/reviews#new-post',
+        link: 'https://wordpress.org/support/plugin/advanced-scrollbar/reviews/#new-post',
         linkText: 'Rate the Plugin'
     }
 ];

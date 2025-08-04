@@ -19,23 +19,23 @@ const CursorFollow = ({ duration = 0.6, innerDuration = 0.1, size, followBg, fol
 
 
     const followCursorStyle = {
-        ...(isSet(size) && { "--bBlocks-follow-cursor-size": size }),
-        ...(isSet(followBg) && { "--bBlocks-follow-cursor-bg": followBg }),
-        ...(isSet(followBorderColor) && { "--bBlocks-follow-cursor-border-color": followBorderColor }),
-        ...(isSet(followBorderWidth) && { "--bBlocks-follow-cursor-border-width": followBorderWidth }),
+        ...(isSet(size) && { "--advScrollbar-follow-cursor-size": size }),
+        ...(isSet(followBg) && { "--advScrollbar-follow-cursor-bg": followBg }),
+        ...(isSet(followBorderColor) && { "--advScrollbar-follow-cursor-border-color": followBorderColor }),
+        ...(isSet(followBorderWidth) && { "--advScrollbar-follow-cursor-border-width": followBorderWidth }),
     };
 
 
     const innerCursorStyle = {
-        ...(isSet(size) && { "--bBlocks-follow-cursor-size": size }),
-        ...(isSet(innerBg) && { "--bBlocks-follow-inner-cursor-bg": innerBg }),
-        ...(isSet(innerBorderColor) && { "--bBlocks-follow-inner-cursor-border": innerBorderColor }),
-        ...(isSet(innerBorderWidth) && { "--bBlocks-follow-inner-cursor-border-width": innerBorderWidth }),
+        ...(isSet(size) && { "--advScrollbar-follow-cursor-size": size }),
+        ...(isSet(innerBg) && { "--advScrollbar-follow-inner-cursor-bg": innerBg }),
+        ...(isSet(innerBorderColor) && { "--advScrollbar-follow-inner-cursor-border": innerBorderColor }),
+        ...(isSet(innerBorderWidth) && { "--advScrollbar-follow-inner-cursor-border-width": innerBorderWidth }),
     }
 
     return <>
-        <div style={followCursorStyle} className="bBlocks-follow-cursor" ref={cursorRef}></div>
-        <div style={innerCursorStyle} className="bBlocks-follow-inner-cursor" ref={innerCursorRef}></div>
+        <div style={followCursorStyle} className="advScrollbar-follow-cursor" ref={cursorRef}></div>
+        <div style={innerCursorStyle} className="advScrollbar-follow-inner-cursor" ref={innerCursorRef}></div>
     </>
 };
 

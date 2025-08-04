@@ -13,7 +13,7 @@ import { isSet } from '../../../../customCursor/utils/common';
 const Playground = ({ dataInfo }) => {
   const {  nonce } = dataInfo;
 
-  const { data, isLoading } = useWPAjax('csb_get_adv_scrollbar_cursor_data_settings', {nonce }); //authorize
+  const { data, isLoading } = useWPAjax('csb_get_adv_scrollbar_cursor_data_settings', { nonce }); //authorize
   const [cursorData, setCursorData] = useState(null);
   const isCursorVisible = useCursorVisibility();
   const dashboardRef = useRef(null);
@@ -47,7 +47,7 @@ const Playground = ({ dataInfo }) => {
     ...(cursorData?.source == "shape" && { cursor: enableCursor? "auto" :"none" }),
     ...(cursorData?.source == "customUrl" && { cursor: `url(${cursorData?.shape?.customImg?.url}), pointer` }),
   }
-
+  // console.log(csbIsPremium)
   return <div className='custom-cursor-playground-container' >
     <h3 className='custom-cursor-title'>Playground</h3>
     <div className='custom-cursor-playground' ref={dashboardRef} style={cursorCssVar} >

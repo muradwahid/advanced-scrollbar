@@ -4,7 +4,7 @@ Donate link: https://www.buymeacoffee.com/abuhayat
 Tags: Color Scrollbar, custom scroll, nice scrollbar, scrollbar, customizer
 Requires at least: 6.5+
 Tested up to: 6.7.1
-Stable tag: 1.1.5
+Stable tag: 1.1.6
 Requires PHP: 7.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -56,6 +56,11 @@ Overall, Advanced Scrollbar is a powerful and versatile plugin that can help you
 * Gradient Color Options
 * Floating Scrollbar and Color options
 * Custom Cursor Option
+* Cursor Shape
+* Cursor Shape Styles
+* Cursor Click Effect
+* Cursor Click Effect Styles
+
 
 
 = Feedback = 

@@ -1,6 +1,5 @@
 import React, { useMemo } from 'react';
 import { Spinner } from '@wordpress/components';
-import useDynamicData from '../../../hooks/useDynamicData';
 import "./style.scss";
 
 const { useInstanceId } = wp.compose;
@@ -23,7 +22,7 @@ const BRadioControl = ({ options = {}, value = '', categories = false, onChange,
   const instanceId = useInstanceId(BRadioControl);
   const id = `radio-control-${instanceId}`;
 
-  const { data: content = null, isLoading } = useDynamicData("categories");
+  const { data: content = null, isLoading } = {data:""};
 
   const radioData = useMemo(() => {
     if (categories) return content;

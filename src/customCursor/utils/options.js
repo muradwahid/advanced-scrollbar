@@ -16,11 +16,11 @@ export const cursorEffectTabs = [
 
 // export const 
 
-export const cursorSourceOptions = [
+export const cursorSourceOptions =(isPremium)=> [
   { label: __('Cursor Only', 'advanced-scrollbar'), value: 'cursor', default: true },
-  { label: __('Pre Defined Shape', 'advanced-scrollbar'), value: 'shape' },
-  { label: __('Pre Defined Image', 'advanced-scrollbar'), value: 'predefined' },
-  { label: __('Custom Url', 'advanced-scrollbar'), value: 'customUrl' },
+  { label: __('Cursor Shape', 'advanced-scrollbar'), value: 'shape' },
+  { label: __(`Pre Defined Image ${isPremium ? '' : '(Pro)'}`, 'advanced-scrollbar'), value: 'predefined' },
+  { label: __(`Custom Url ${isPremium ? '' : '(Pro)'}`, 'advanced-scrollbar'), value: 'customUrl' },
 ]
 
 export const cursorProOptions = ['matrix', 'cyberpunk', 'analog', 'digital', 'glow', 'gradient', 'image', 'magnetic', 'neon', 'pixelated', 'ribbon', 'ring', 'sketch', 'spotlight', 'splash', 'text']
@@ -52,17 +52,17 @@ export const cursorOptions = [
 ]
 
 export const cursorEffectsOptions = [
-  { Label: __("None", 'advanced-scrollbar'), value: "", default: true },
+  { label: __("None", 'advanced-scrollbar'), value: "", default: true },
   { label: __('Unset', 'advanced-scrollbar'), value: 'unset' },
-  { Label: __("Spark", 'advanced-scrollbar'), value: "spark" },
-  { Label: __("Spark Simple", 'advanced-scrollbar'), value: "sparkSimple" },
-  { Label: __("Starburst", 'advanced-scrollbar'), value: "starburst" },
-  { Label: __("Radial", 'advanced-scrollbar'), value: "radial" },
-  { Label: __("Explosion", 'advanced-scrollbar'), value: "explosion" },
-  { Label: __("Ripple Circle", 'advanced-scrollbar'), value: "rippleCircle" },
-  { Label: __("Ripple Double", 'advanced-scrollbar'), value: "rippleDouble" },
-  { Label: __("Ripple Wave", 'advanced-scrollbar'), value: "rippleWave" },
-  { Label: __("Ripple Pulse", 'advanced-scrollbar'), value: "ripplePulse" },
+  { label: __("Spark", 'advanced-scrollbar'), value: "spark" },
+  { label: __("Spark Simple", 'advanced-scrollbar'), value: "sparkSimple" },
+  { label: __("Starburst", 'advanced-scrollbar'), value: "starburst" },
+  { label: __("Radial", 'advanced-scrollbar'), value: "radial" },
+  { label: __("Explosion", 'advanced-scrollbar'), value: "explosion" },
+  { label: __("Ripple Circle", 'advanced-scrollbar'), value: "rippleCircle" },
+  { label: __("Ripple Double", 'advanced-scrollbar'), value: "rippleDouble" },
+  { label: __("Ripple Wave", 'advanced-scrollbar'), value: "rippleWave" },
+  { label: __("Ripple Pulse", 'advanced-scrollbar'), value: "ripplePulse" },
   // { Label: __("Ripple Tsunami", 'advanced-scrollbar'), value: "tsunami" },
 ]
 

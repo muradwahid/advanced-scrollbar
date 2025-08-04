@@ -1,4 +1,5 @@
 $primaryColor: #146ef5;
+
 @mixin bpl-admin-btn {
   padding: 12px 25px;
   border-radius: 6px;
@@ -39,7 +40,7 @@ $primaryColor: #146ef5;
   }
 }
 
-.bBlocks-custom-cursor {
+.advScrollbar-custom-cursor {
   position: fixed;
   top: 0;
   left: 0;
@@ -86,6 +87,21 @@ $primaryColor: #146ef5;
       .custom-cursor-settings {
         padding: 15px;
         padding-top: 7px;
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+        height: calc(100% - 60px);
+        justify-content: space-between;
+
+        .custom-cursor-dashboard-button {
+          margin-bottom: 15px;
+          justify-content: center;
+          text-align: center;
+
+          &.btnSaving {
+            background: #0021b5;
+          }
+        }
 
         .whiteSpaceNoWrap {
           white-space: nowrap;
@@ -119,7 +135,7 @@ $primaryColor: #146ef5;
         flex: 1 1 auto;
         background: url("https://bblockswp.com/wp-content/themes/b-technologies/assets/images/shape/shape-6.jpg") no-repeat center center / cover;
         // cursor: url($cursorImg), auto;
-        
+
         .custom-cursor-playground-contents-wrapper {
           flex: 1 1 auto;
           padding: 15px 20px;
@@ -149,15 +165,16 @@ $primaryColor: #146ef5;
           }
 
           .custom-cursor-playground-contents-button-wrapper {
-            margin-top: 25px;
+            margin-top: 50px;
             display: flex;
             justify-content: start;
             gap: 20px;
 
-            .bPlDashboardPrimaryBtn{
+            .bPlDashboardPrimaryBtn {
               @include bpl-admin-btn;
             }
-            .bPlDashboardSecondBtn{
+
+            .bPlDashboardSecondBtn {
               @include bpl-admin-btn;
               background: #ff7a00;
             }

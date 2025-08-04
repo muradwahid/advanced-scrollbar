@@ -1,18 +1,21 @@
-import { Flex, RadioControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import { Label } from '../../../../../bpl-tools/Components';
+import { RadioControlPro } from '../../../../../bpl-tools/ProControls';
 
-const CursorImgShape = ({ csbAvScrData, setCsbAvScrData }) => {
+const CursorImgShape = ({ csbAvScrData, setCsbAvScrData, isPremium, setIsProModalOpen }) => {
 
   const { dirUrl } = window.csbAdvScrollbarCursorConfig;
 
   return (
     <div className='mt20'>
-      <Flex align="flex-start" justify="space-between" width="100%" gap="60px">
-        <Label className="whiteSpaceNoWrap mt20">{__("Select Cursor Image", "advanced-scrollbar")}</Label>
-        <RadioControl
+ 
+      <RadioControlPro
+        gap=''
+        direction='column'
+          label={__("Select Cursor Image", "advanced-scrollbar")}
           help="Select any option for showing cursor"
-          selected={csbAvScrData?.shape?.customImg?.img}
+        selected={csbAvScrData?.shape?.customImg?.img}
+        isPremium={isPremium}
+        setIsProModalOpen={setIsProModalOpen}
           options={[
             { label: <img src={dirUrl + "img/cursor1.png"}></img>, value: `${dirUrl}img/cursor1.png` },
             { label: <img src={dirUrl + "img/cursor2.png"}></img>, value: `${dirUrl}img/cursor2.png` },
@@ -21,7 +24,6 @@ const CursorImgShape = ({ csbAvScrData, setCsbAvScrData }) => {
           ]}
           onChange={(value) => setCsbAvScrData({ ...csbAvScrData, shape: { ...csbAvScrData?.shape, customImg: { ...csbAvScrData?.shape?.customImg, img: value } } })}
         />
-      </Flex>
     </div>
   );
 };

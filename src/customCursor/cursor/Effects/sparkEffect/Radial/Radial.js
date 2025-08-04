@@ -1,5 +1,5 @@
 import { isSet } from '../../../../utils/common';
-//import './style.scss';
+import './style.scss';
 const Radial = ({ duration = 1.2, size = 80, color ='#74ebd5'}) => {
 
     const styles = {

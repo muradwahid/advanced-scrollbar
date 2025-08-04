@@ -2,6 +2,7 @@ import { Button, Flex, RangeControl, TabPanel } from "@wordpress/components";
 import { __ } from "@wordpress/i18n";
 import { ColorControl, Label, SolidBackground } from "../../../../../bpl-tools/Components";
 import { tabController, updateData } from "../../../../../bpl-tools/utils/functions";
+import { rgbaStringToHex } from "../../utils/functions";
 
 const ShapeStyleOptions = ({ value, onChange }) => {
   const { ribbon} = value;
@@ -21,7 +22,7 @@ const ShapeStyleOptions = ({ value, onChange }) => {
         value?.type === 'follow' && <>
           <RangeControl label="Cursor Size" labelPosition="edge" value={parseInt(value?.follow?.size) >= 0 ? parseInt(value?.follow?.size) : 40} onChange={val => onChange(updateData(value, val + "px", 'follow', 'size'))} />
           
-          <TabPanel className='bPlTabPanel mini' activeClass='activeTab' tabs={[{ title: __("Follow Cursor", 'b-blocks'), name: "follow" }, { title: __("Inner Cursor", 'b-blocks'), name: "inner" }]} onSelect={tabController}>
+          <TabPanel className='bPlTabPanel mini' activeClass='activeTab' tabs={[{ title: __("Follow Cursor", 'advanced-scrollbar'), name: "follow" }, { title: __("Inner Cursor", 'advanced-scrollbar'), name: "inner" }]} onSelect={tabController}>
             {
               (tab) => <>
                 {tab.name === "follow" && <>
@@ -53,9 +54,9 @@ const ShapeStyleOptions = ({ value, onChange }) => {
 
       {
         value?.type === 'blob' && <>
-          <RangeControl label={__('Blob Size', 'b-blocks')} value={parseInt(value?.blob?.blobSize) >= 0 ? parseInt(value?.blob?.blobSize) : 125} onChange={val => onChange(updateData(value, val, 'blob', 'blobSize'))} min={0} max={600} step={1} />
+          <RangeControl label={__('Blob Size', 'advanced-scrollbar')} value={parseInt(value?.blob?.blobSize) >= 0 ? parseInt(value?.blob?.blobSize) : 125} onChange={val => onChange(updateData(value, val, 'blob', 'blobSize'))} min={0} max={600} step={1} />
 
-          <ColorControl label={__('Blob Color', 'b-blocks')} value={value?.blob?.fillColor ?? '#00f0ff'} onChange={val => onChange(updateData(value, val, 'blob', 'fillColor'))} />
+          <ColorControl label={__('Blob Color', 'advanced-scrollbar')} value={value?.blob?.fillColor ?? '#00f0ff'} onChange={val => onChange(updateData(value, val, 'blob', 'fillColor'))} />
 
         </>
       }
@@ -98,7 +99,7 @@ const ShapeStyleOptions = ({ value, onChange }) => {
 
           <RangeControl label="Inner Cursor Size" value={parseInt(value?.glow?.innerSize) >= 0 ? parseInt(value?.glow?.innerSize) : 10} onChange={val => onChange(updateData(value, val, 'glow', 'innerSize'))} min={0} max={150} step={1} />
 
-          <ColorControl label={__('Cursor Color', 'b-blocks')} value={value?.glow?.color ?? '#F97316'} onChange={val => onChange(updateData(value, val, 'glow', 'color'))} />
+          <ColorControl label={__('Cursor Color', 'advanced-scrollbar')} value={value?.glow?.color ?? '#F97316'} onChange={val => onChange(updateData(value, val, 'glow', 'color'))} />
         </>
       }
 
@@ -143,9 +144,9 @@ const ShapeStyleOptions = ({ value, onChange }) => {
         value?.type === 'magnetic' && <>
           <RangeControl label="Cursor Size" value={parseInt(value?.magnetic?.size) >= 0 ? parseInt(value?.magnetic?.size) : 40} onChange={val => onChange(updateData(value, val, 'magnetic', 'size'))} min={0} max={200} step={1} />
 
-          <ColorControl label={__('background Color', 'b-blocks')} value={value?.magnetic?.backgroundColor ?? '#f59e0b1a'} onChange={val => onChange(updateData(value, val, 'magnetic', 'backgroundColor'))} />
+          <ColorControl label={__('background Color', 'advanced-scrollbar')} value={value?.magnetic?.backgroundColor ?? '#f59e0b1a'} onChange={val => onChange(updateData(value, val, 'magnetic', 'backgroundColor'))} />
 
-          <ColorControl label={__('Border Color', 'b-blocks')} value={value?.magnetic?.borderColor ?? '#F59E0B'} onChange={val => onChange(updateData(value, val, 'magnetic', 'borderColor'))} />
+          <ColorControl label={__('Border Color', 'advanced-scrollbar')} value={value?.magnetic?.borderColor ?? '#F59E0B'} onChange={val => onChange(updateData(value, val, 'magnetic', 'borderColor'))} />
 
           <RangeControl label="Border Width" value={parseInt(value?.magnetic?.borderWidth) >= 0 ? parseInt(value?.magnetic?.borderWidth) : 2} onChange={val => onChange(updateData(value, val, 'magnetic', 'borderWidth'))} min={0} max={30} step={1} />
 
@@ -155,7 +156,7 @@ const ShapeStyleOptions = ({ value, onChange }) => {
         value?.type === 'neon' && <>
           <RangeControl label="Cursor Size" value={parseInt(value?.neon?.size) >= 0 ? parseInt(value?.neon?.size) : 30} onChange={val => onChange(updateData(value, val, 'neon', 'size'))} min={0} max={200} step={1} />
 
-          <ColorControl label={__('Color', 'b-blocks')} value={value?.neon?.color ?? '#08F7FE'} onChange={val => onChange(updateData(value, val, 'neon', 'color'))} />
+          <ColorControl label={__('Color', 'advanced-scrollbar')} value={value?.neon?.color ?? '#08F7FE'} onChange={val => onChange(updateData(value, val, 'neon', 'color'))} />
 
           {/* <RangeControl label="Shadow Size" value={Number(value?.neon?.shadowSize) >= 0 ? Number(value?.neon?.shadowSize) : 20} onChange={val => onChange(updateData(value, val, 'neon', 'shadowSize'))} min={0} max={250} step={1} /> */}
 
@@ -172,7 +173,7 @@ const ShapeStyleOptions = ({ value, onChange }) => {
                   value={color}
                   onChange={val => {
                     const newColors = [...ribbonColors];
-                    newColors[index] = val;
+                    newColors[index] = rgbaStringToHex(val);
                     onChange(updateData(value, newColors, 'ribbon', 'colors'));
                   }}
                 />
@@ -194,11 +195,11 @@ const ShapeStyleOptions = ({ value, onChange }) => {
       color = '#0EA5E9', */}
       {
         value?.type === 'pixelated' && <>
-          <RangeControl label="Cursor Size" value={parseInt(value?.pixelated?.size) >= 0 ? parseInt(value?.pixelated?.size) : 60} onChange={val => onChange(updateData(value, val, 'pixelated', 'size'))} min={0} max={250} step={1} />
+          <RangeControl label="Cursor Size" value={parseInt(value?.pixelated?.size) >= 0 ? parseInt(value?.pixelated?.size) : 60} onChange={val => onChange(updateData(value, val, 'pixelated', 'size'))} min={6} max={250} step={1} />
 
           <RangeControl label="Pixel Size" value={parseInt(value?.pixelated?.pixelSize) >= 0 ? parseInt(value?.pixelated?.pixelSize) : 6} onChange={val => onChange(updateData(value, val, 'pixelated', 'pixelSize'))} min={0} max={150} step={1} />
 
-          <SolidBackground label={__('Color', 'b-blocks')} value={value?.pixelated?.color ?? 'linear-gradient(135deg, #fecda5 0%, #fe2d2d 50%, #6b003e 100%)'} onChange={val => onChange(updateData(value, val, 'pixelated', 'color'))} />
+          <SolidBackground label={__('Color', 'advanced-scrollbar')} value={value?.pixelated?.color ?? 'linear-gradient(135deg, #fecda5 0%, #fe2d2d 50%, #6b003e 100%)'} onChange={val => onChange(updateData(value, val, 'pixelated', 'color'))} />
 
           {/* <RangeControl label="Shadow Size" value={Number(value?.neon?.shadowSize) >= 0 ? Number(value?.neon?.shadowSize) : 20} onChange={val => onChange(updateData(value, val, 'neon', 'shadowSize'))} min={0} max={250} step={1} /> */}
 
@@ -207,43 +208,43 @@ const ShapeStyleOptions = ({ value, onChange }) => {
 
       {
         value?.type === 'ring' && <>
-          <RangeControl label={__("Cursor Size", 'b-blocks')} value={parseInt(value?.ring?.size) >= 0 ? parseInt(value?.ring?.size) : 40} onChange={val => onChange(updateData(value, val, 'ring', 'size'))} min={0} max={250} step={1} />
+          <RangeControl label={__("Cursor Size", 'advanced-scrollbar')} value={parseInt(value?.ring?.size) >= 0 ? parseInt(value?.ring?.size) : 40} onChange={val => onChange(updateData(value, val, 'ring', 'size'))} min={0} max={250} step={1} />
 
-          <ColorControl label={__('Border Color', 'b-blocks')} value={value?.ring?.borderColor ?? '#10B981'} onChange={val => onChange(updateData(value, val, 'ring', 'borderColor'))} />
+          <ColorControl label={__('Border Color', 'advanced-scrollbar')} value={value?.ring?.borderColor ?? '#10B981'} onChange={val => onChange(updateData(value, val, 'ring', 'borderColor'))} />
 
-          <RangeControl label={__("Border Size", 'b-blocks')} value={parseInt(value?.ring?.borderWidth) >= 0 ? parseInt(value?.ring?.borderWidth) : 2} onChange={val => onChange(updateData(value, val, 'ring', 'borderWidth'))} min={0} max={20} step={1} />
+          <RangeControl label={__("Border Size", 'advanced-scrollbar')} value={parseInt(value?.ring?.borderWidth) >= 0 ? parseInt(value?.ring?.borderWidth) : 2} onChange={val => onChange(updateData(value, val, 'ring', 'borderWidth'))} min={0} max={20} step={1} />
         </>
       }
 
       {
         value?.type === 'sketch' && <>
-          <ColorControl label={__('Color', 'b-blocks')} value={value?.sketch?.color ?? '#000000'} onChange={val => onChange(updateData(value, val, 'sketch', 'color'))} />
+          <ColorControl label={__('Color', 'advanced-scrollbar')} value={value?.sketch?.color ?? '#000000'} onChange={val => onChange(updateData(value, val, 'sketch', 'color'))} />
         </>
       }
 
       {
         value?.type === 'spotlight' && <>
-          <RangeControl label={__("Cursor Size", 'b-blocks')} value={parseInt(value?.spotlight?.size) >= 0 ? parseInt(value?.spotlight?.size) : 150} onChange={val => onChange(updateData(value, val, 'spotlight', 'size'))} min={0} max={500} step={1} />
+          <RangeControl label={__("Cursor Size", 'advanced-scrollbar')} value={parseInt(value?.spotlight?.size) >= 0 ? parseInt(value?.spotlight?.size) : 150} onChange={val => onChange(updateData(value, val, 'spotlight', 'size'))} min={0} max={500} step={1} />
 
-          <ColorControl label={__('Color', 'b-blocks')} value={value?.spotlight?.color ?? '#ff0000'} onChange={val => onChange(updateData(value, val, 'spotlight', 'color'))} />
+          <ColorControl label={__('Color', 'advanced-scrollbar')} value={value?.spotlight?.color ?? '#ff0000'} onChange={val => onChange(updateData(value, val, 'spotlight', 'color'))} />
         </>
       }
 
       {
         value?.type === 'splash' && <>
 
-          <RangeControl label={__("Cursor Size", 'b-blocks')} value={Number(value?.splash?.size) >= 0 ? Number(value?.splash?.size) : 0.2} onChange={val => onChange(updateData(value, val, 'splash', 'size'))} min={0} max={1} step={0.01} />
+          <RangeControl label={__("Cursor Size", 'advanced-scrollbar')} value={Number(value?.splash?.size) >= 0 ? Number(value?.splash?.size) : 0.2} onChange={val => onChange(updateData(value, val, 'splash', 'size'))} min={0} max={1} step={0.01} />
 
           </>
       }
 
       { 
         value?.type === 'text' && <>
-          <RangeControl label={__("Cursor Size", 'b-blocks')} value={parseInt(value?.text?.size) >= 0 ? parseInt(value?.text?.size) : 80} onChange={val => onChange(updateData(value, val, 'text', 'size'))} min={0} max={1000} step={1} />
+          <RangeControl label={__("Cursor Size", 'advanced-scrollbar')} value={parseInt(value?.text?.size) >= 0 ? parseInt(value?.text?.size) : 80} onChange={val => onChange(updateData(value, val, 'text', 'size'))} min={0} max={1000} step={1} />
 
-          <SolidBackground label={__('Background Color', 'b-blocks')} value={value?.text?.backgroundColor ?? '#3b82f6'} onChange={val => onChange(updateData(value, val, 'text', 'backgroundColor'))} />
+          <SolidBackground label={__('Background Color', 'advanced-scrollbar')} value={value?.text?.backgroundColor ?? '#3b82f6'} onChange={val => onChange(updateData(value, val, 'text', 'backgroundColor'))} />
           
-          <ColorControl label={__('Text Color', 'b-blocks')} value={value?.text?.textColor ?? '#ffffff'} onChange={val => onChange(updateData(value, val, 'text', 'textColor'))} />
+          <ColorControl label={__('Text Color', 'advanced-scrollbar')} value={value?.text?.textColor ?? '#ffffff'} onChange={val => onChange(updateData(value, val, 'text', 'textColor'))} />
 
         </>
       }

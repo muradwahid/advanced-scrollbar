@@ -23,7 +23,7 @@ const EffectStyleOptions = ({ value, onChange }) => {
 
           <RangeControl label="Duration (s)" value={Number(spark?.duration) >= 0 ? Number((Number(spark?.duration) / 1000).toFixed(2)) : 0.4} onChange={val => onChange(updateData(value, val * 1000, 'spark', 'duration'))} min={0} max={10} step={0.05} />
 
-          <SelectControl label={__('Easing', 'b-blocks')} labelPosition="edge" value={spark?.easing} onChange={val => onChange(updateData(value, val, 'spark', 'easing'))} options={effectSparkEasingOptions} />
+          <SelectControl label={__('Easing', 'advanced-scrollbar')} labelPosition="edge" value={spark?.easing} onChange={val => onChange(updateData(value, val, 'spark', 'easing'))} options={effectSparkEasingOptions} />
         </>
       }
 
@@ -34,7 +34,7 @@ const EffectStyleOptions = ({ value, onChange }) => {
           <ColorControl label="Color" value={sparkSimple?.color ?? '#ff6b6b'} onChange={val => onChange(updateData(value, val, 'sparkSimple', 'color'))} />
           <RangeControl label="Duration (s)" value={Number(sparkSimple?.duration) >= 0 ? Number((Number(sparkSimple?.duration) / 1000).toFixed(2)) : 0.8} onChange={val => onChange(updateData(value, val * 1000, 'sparkSimple', 'duration'))} min={0} max={10} step={0.05} />
 
-          <SelectControl label={__('Easing', 'b-blocks')} labelPosition="edge" value={sparkSimple?.easing} onChange={val => onChange(updateData(value, val, 'sparkSimple', 'easing'))} options={effectSparkEasingOptions} />
+          <SelectControl label={__('Easing', 'advanced-scrollbar')} labelPosition="edge" value={sparkSimple?.easing} onChange={val => onChange(updateData(value, val, 'sparkSimple', 'easing'))} options={effectSparkEasingOptions} />
         </>
       }
 

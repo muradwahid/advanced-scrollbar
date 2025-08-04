@@ -3,7 +3,7 @@
  * Plugin Name: Advanced scrollbar
  * Author URI: http://bplugins.com
  * Description: Customize scrollbar of your website with unlimited styling and color using the plugin. 
- * Version: 1.1.5
+ * Version: 1.1.6
  * Author: bPlugins
  * License: GPLv3
  * License URI: https://www.gnu.org/licenses/gpl-3.0.txt
@@ -14,36 +14,16 @@
 /*   Rendering all javaScript
 /*-------------------------------------------------------------------------------*/
 
-/* Latest jQuery of wordpress */
-define('CSB_VERSION', isset( $_SERVER['HTTP_HOST'] ) && 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '1.1.5' );
-define('CSB_DIR_URL', plugin_dir_url(__FILE__));
-define('CSB_DIR_PATH', plugin_dir_path(__FILE__));
-
-if (!class_exists("CSB_Scrollbar")) {
-    class CSB_Scrollbar {
-
-        function __construct() {
-            add_action("wp_enqueue_scripts", [$this,"enqueueScrollbarScript"]);
-            add_action('wp_footer',[$this,"csbFooter"]);
-        }
-
-        function csbFooter(){
-            $csb_data = get_option('asb-advanced-scrollbar-seconds');
-            $csb_data = json_encode($csb_data);
-            echo '<div id="csbScrollbar" isPremium="'. asbIsPremium() .'" data-scrollbar="'. esc_attr( $csb_data ) .'"></div>';
-        }
-
-        function enqueueScrollbarScript(){
-            wp_enqueue_script('ppm-customscrollbar-js', CSB_DIR_URL . 'assets/js/jquery.nicescroll.min.js', array('jquery'), CSB_VERSION, false);
-            wp_enqueue_style( 'csb-scrollbar-style', CSB_DIR_URL . 'build/scrollbar.css', array(), CSB_VERSION );
-            wp_enqueue_script( 'csb-scrollbar-script', CSB_DIR_URL . 'build/scrollbar.js', array('react','react-dom','jquery'), CSB_VERSION, true );
-        }
-
-    }
-    new CSB_Scrollbar();
-}
-
-if ( ! function_exists( 'asb_fs' ) ) {
+if ( function_exists( 'asb_fs' ) ) {
+    asb_fs()->set_basename( true, __FILE__ );
+} else {
+    /* Latest jQuery of wordpress */
+        define('CSB_VERSION', isset( $_SERVER['HTTP_HOST'] ) && 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '1.1.6' );
+        define('CSB_DIR_URL', plugin_dir_url(__FILE__));
+        define('CSB_DIR_PATH', plugin_dir_path(__FILE__));
+        define('CSB_HAS_FREE', 'advanced-scrollbar/plugin.php' === plugin_basename(__FILE__));
+        define('CSB_HAS_PRO', 'advanced-scrollbar-pro/plugin.php' === plugin_basename(__FILE__));
+    if ( ! function_exists( 'asb_fs' ) ) {
     // Create a helper function for easy SDK access.
     function asb_fs() {
         global $asb_fs;
@@ -66,15 +46,12 @@ if ( ! function_exists( 'asb_fs' ) ) {
                 'has_paid_plans'      => true,
                 'trial'               => array(
                     'days'               => 7,
-                    'is_require_payment' => true,
+                    'is_require_payment' => false,
                 ),
                 'menu'                => array(
-                    'slug'           => 'c_s_b_setting',
+                    'slug'           => 'advanced-scrollbar',
                     'contact'        => false,
                     'support'        => false,
-                    'parent'         => array(
-                        'slug' => 'options-general.php',
-                    ),
                 ),
             ) );
         }
@@ -92,6 +69,41 @@ function asbIsPremium(){
 	return asb_fs()->is__premium_only() && asb_fs()->can_use_premium_code();
 }
 
+
+if (!class_exists("CSB_Scrollbar")) {
+    class CSB_Scrollbar {
+
+        function __construct() {
+            add_action("wp_enqueue_scripts", [$this,"enqueueScrollbarScript"]);
+            add_action('wp_footer',[$this,"csbFooter"]);
+            add_action('wp_head', [$this,"isPremium"]);
+            add_action('admin_head', [$this,"isPremium"]);
+            // add_action('edit_attachment_head"', [$this,"isPremium"]);
+        }
+
+        function csbFooter(){
+            $csb_data = get_option('asb-advanced-scrollbar-thirds');
+            $csb_data = json_encode($csb_data);
+            echo '<div id="csbScrollbar" . data-scrollbar="'. esc_attr( $csb_data ) .'"></div>';
+        }
+
+        function enqueueScrollbarScript(){
+            wp_enqueue_script('csb-nicescroll-js', CSB_DIR_URL . 'assets/js/jquery.nicescroll.min.js', array('jquery'), CSB_VERSION, false);
+            wp_enqueue_style( 'csb-scrollbar-style', CSB_DIR_URL . 'build/scrollbar.css', array(), CSB_VERSION );
+            wp_enqueue_script( 'csb-scrollbar-script', CSB_DIR_URL . 'build/scrollbar.js', array('react','react-dom','jquery'), CSB_VERSION, true );
+        }
+
+        function isPremium () {
+            ?>
+            <script type="text/javascript">
+                const csbIsPremium = <?php echo json_encode(asbIsPremium()); ?>;
+            </script>
+            <?php
+        }
+    }
+    new CSB_Scrollbar();
+}
+
 /*-------------------------------------------------------------------------------*/
 /*   Include all require file
 /*-------------------------------------------------------------------------------*/
@@ -99,3 +111,4 @@ require_once "inc/Settings.php";
 require_once "inc/import.php";
 require_once "inc/cursor.php";
 require_once "inc/admin.php";
+}

@@ -3,7 +3,7 @@
 if(!class_exists('ASB_Import')){
     class ASB_Import {
     
-        private $key = 'asb-advanced-scrollbar-seconds';
+        private $key = 'asb-advanced-scrollbar-thirds';
         private $version = '1.0.0';
     
         public function __construct() {
@@ -23,7 +23,7 @@ if(!class_exists('ASB_Import')){
             $border = explode(' ', $this->isset($new_data, 'asb_border', ''));
             $touch =$this->isset($new_data, 'asb_touchbehavior', 'off') == "on" ? 1 : 0 ;
 
-            $new_data = wp_parse_args([
+            $scroll_data = wp_parse_args([
                 'asb_gradient_color' => [
                     'color-1' => $this->isset($new_data, 'asb_gradient_color'),
                     'color-2' => $this->isset($new_data, 'asb_gradient_color_mid'),
@@ -66,12 +66,21 @@ if(!class_exists('ASB_Import')){
             ];
     
             $data = get_option($this->key, null);
-    
-            if(!$data){
-                update_option('csb_adv_scrollbar_cursor_settings', $cursor_data);
-                update_option($this->key, $new_data);
+
+            if (!$data && $new_data) {
+                update_option($this->key, $scroll_data);
                 update_option('asb_import_ver', $this->version);
             }
+            if (!$data && $tab_3) {
+                update_option('csb_adv_scrollbar_cursor_settings', $cursor_data);
+                update_option('asb_import_ver', $this->version);
+            }
+            
+            // if(!$data){
+            //     update_option('csb_adv_scrollbar_cursor_settings', $cursor_data);
+            //     update_option($this->key, $new_data);
+            //     update_option('asb_import_ver', $this->version);
+            // }
         }
 
         public function isset($array, $key, $default = null){

@@ -1,13 +1,13 @@
-$followCursorSize: var(--bBlocks-follow-cursor-size, 40px);
-$followCursorBg: var(--bBlocks-follow-cursor-bg, #f59f0b94);
-$followInnerCursorBg: var(--bBlocks-follow-inner-cursor-bg, #f974167c);
-$followCursorBorderColor: var(--bBlocks-follow-cursor-border-color, #f59f0b94);
-$followCursorBorderWidth: var(--bBlocks-follow-cursor-border-width, 1px);
-$followInnerCursorBorderColor: var(--bBlocks-follow-inner-cursor-border, #f974167c);
-$followInnerCursorBorderWidth: var(--bBlocks-follow-inner-cursor-border-width,1px);
+$followCursorSize: var(--advScrollbar-follow-cursor-size, 40px);
+$followCursorBg: var(--advScrollbar-follow-cursor-bg, #f59f0b94);
+$followInnerCursorBg: var(--advScrollbar-follow-inner-cursor-bg, #f974167c);
+$followCursorBorderColor: var(--advScrollbar-follow-cursor-border-color, #f59f0b94);
+$followCursorBorderWidth: var(--advScrollbar-follow-cursor-border-width, 1px);
+$followInnerCursorBorderColor: var(--advScrollbar-follow-inner-cursor-border, #f974167c);
+$followInnerCursorBorderWidth: var(--advScrollbar-follow-inner-cursor-border-width, 1px);
 
 
-.bBlocks-follow-cursor {
+.advScrollbar-follow-cursor {
     position: fixed;
     top: 0;
     left: 0;
@@ -21,7 +21,7 @@ $followInnerCursorBorderWidth: var(--bBlocks-follow-inner-cursor-border-width,1p
     border: $followCursorBorderWidth solid $followCursorBorderColor;
 }
 
-.bBlocks-follow-inner-cursor {
+.advScrollbar-follow-inner-cursor {
     position: fixed;
     top: 0;
     left: 0;

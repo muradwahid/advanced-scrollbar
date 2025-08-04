@@ -1,8 +1,8 @@
-$bgColor: var(--bBlocks-cursor-dot-cursor-bg, #3B82F6);
-$size: var(--bBlocks-cursor-dot-cursor-size, 12px);
+$bgColor: var(--advScrollbar-cursor-dot-cursor-bg, #3B82F6);
+$size: var(--advScrollbar-cursor-dot-cursor-size, 12px);
 
 
-.b-blocks-cursor-dotCursor {
+.advScrollbar-cursor-dotCursor {
     position: fixed;
     top: 0;
     left: 0;
@@ -10,7 +10,7 @@ $size: var(--bBlocks-cursor-dot-cursor-size, 12px);
     height: $size;
     width: $size;
     background: $bgColor;
-    pointer-events: none; 
+    pointer-events: none;
     cursor: default;
     border-radius: 50%;
     transform: translate(-50%, -50%);

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
-import './style.scss';
 import { useCursor } from '../../../hooks/useCursor';
 import { isSet } from '../../../utils/common';
+import './style.scss';
 
 
 // interface GlitchCursorProps {
@@ -44,20 +44,20 @@ const CursorGlitch = ({
   // console.log(blendMode)
   useEffect(() => {
     if (!enabled) return;
-      if (showTrail) {
-        setTrails(prev => {
-          const newTrails = [
-            { x: cursorPosition.x, y: cursorPosition.y, opacity: 1 },
-            ...prev.slice(0, tailLength - 1).map((trail, index) => ({
-              ...trail,
-              opacity: 1 - (index + 1) / tailLength
-            }))
-          ];
-          return newTrails;
-        });
-      }
+    if (showTrail) {
+      setTrails(prev => {
+        const newTrails = [
+          { x: cursorPosition.x, y: cursorPosition.y, opacity: 1 },
+          ...prev.slice(0, tailLength - 1).map((trail, index) => ({
+            ...trail,
+            opacity: 1 - (index + 1) / tailLength
+          }))
+        ];
+        return newTrails;
+      });
+    }
 
-  }, [cursorPosition,enabled, showTrail, tailLength]);
+  }, [cursorPosition, enabled, showTrail, tailLength]);
 
   if (!enabled) return null;
 
@@ -86,11 +86,11 @@ const CursorGlitch = ({
   }
 
   const cursorStyle = {
-    '--bBlocks-cursor-glitch-size': `${size}px`,
-    '--bBlocks-cursor-glitch-primary-color': isSet(primaryColor) ? primaryColor : colors[glitchMode].primary,
-    '--bBlocks-cursor-glitch-secondary-color': isSet(secondaryColor) ? secondaryColor : colors[glitchMode].secondary,
-    '--bBlocks-cursor-glitch-tertiary-color': isSet(tertiaryColor) ? tertiaryColor : colors[glitchMode].tertiary,
-    '--bBlocks-cursor-glitch-blend-mode': blendMode,
+    '--advScrollbar-cursor-glitch-size': `${size}px`,
+    '--advScrollbar-cursor-glitch-primary-color': isSet(primaryColor) ? primaryColor : colors[glitchMode].primary,
+    '--advScrollbar-cursor-glitch-secondary-color': isSet(secondaryColor) ? secondaryColor : colors[glitchMode].secondary,
+    '--advScrollbar-cursor-glitch-tertiary-color': isSet(tertiaryColor) ? tertiaryColor : colors[glitchMode].tertiary,
+    '--advScrollbar-cursor-glitch-blend-mode': blendMode,
     left: cursorPosition.x,
     top: cursorPosition.y,
     transform: `translate(-50%, -50%) ${isClicking && clickEffect ? 'scale(1.5)' : 'scale(1)'}`
@@ -105,7 +105,7 @@ const CursorGlitch = ({
   ].filter(Boolean).join(' ');
 
 
-  
+
 
   return (
     <>
@@ -115,9 +115,9 @@ const CursorGlitch = ({
           key={index}
           className="glitch-cursor-trail"
           style={{
-            '--bBlocks-cursor-glitch-size': `${size * (1 - index * 0.1)}px`,
-            '--bBlocks-cursor-glitch-primary-color': primaryColor,
-            '--bBlocks-cursor-glitch-trail-opacity': trail.opacity,
+            '--advScrollbar-cursor-glitch-size': `${size * (1 - index * 0.1)}px`,
+            '--advScrollbar-cursor-glitch-primary-color': primaryColor,
+            '--advScrollbar-cursor-glitch-trail-opacity': trail.opacity,
             left: trail.x,
             top: trail.y,
             transform: 'translate(-50%, -50%)',

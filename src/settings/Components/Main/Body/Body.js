@@ -1,85 +1,157 @@
-import { useEffect, useState } from 'react';
-import { AiFillQuestionCircle } from '../../../utils/icons';
-import FieldSwitch from './FieldSwitch';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { checkDependency } from '../../../utils/functions';
+import { AiFillQuestionCircle } from '../../../utils/icons';
+import ProModal from '../ProModal/ProModal';
+import FieldSwitch from './FieldSwitch';
 
 const Body = (props) => {
-  const { options, data, sections, activeSection, activeChild, updateData, setData, isLoading, refetch, dbData } = props;
-  const [item, setItem] = useState(sections.find(s => s.name === activeSection));
-  useEffect(() => {
+  const { options, data, sections, activeSection, activeChild, updateData, setData, isLoading, refetch, dbData, isPremium } = props;
+
+  const item = useMemo(() => {
     const section = sections.find(s => s.name === activeSection);
-
     if (activeChild && activeChild !== "null") {
-      const child = section.children.find(c => c.name === activeChild);
-      setItem(child)
-    } else {
-      setItem(section)
+      return section?.children?.find(c => c.name === activeChild);
     }
-  }, [activeSection, activeChild])
+    return section;
+  }, [sections, activeSection, activeChild]);
 
-  const { fields = [], description = '' } = item;
-  
+  const { fields = [], description = '' } = item || {};
+
   return <>
     {description && <p className='description' dangerouslySetInnerHTML={{ __html: description }} />}
-
+    {!isPremium && <ProModal />}
     <div className='fields'>
-      {fields.map((field, i) => checkDependency(field?.dependency, data, fields) ? <Field key={i} {...{ saveType: options.saveType, data, setData, dbData, activeSection, activeChild, field, updateData, fields, isLoading, refetch }} />: null)}
+      {fields.map((field, i) => checkDependency(field?.dependency, data, fields) ?
+        <Field key={`${activeSection}-${activeChild}-${field.id || i}`} {...{ saveType: options.saveType, data, setData, dbData, activeSection, activeChild, field, updateData, fields, isLoading, refetch, isPremium }} /> : null)}
     </div>
   </>;
 };
-export default Body;
 
-const Field = ({ saveType = 'nested', data, setData, activeSection, activeChild, field, updateData, isLoading, refetch, dbData }) => {
-  const { id, title, subtitle, before, after, field: fieldProps, help, desc = "" } = field;
+const Field = ({ saveType = 'nested', data, setData, activeSection, activeChild, field, updateData, isLoading, refetch, dbData, isPremium }) => {
+  // eslint-disable-next-line no-unused-vars
+  const { id, title, default: defaultValue = {}, subtitle, before, after, field: fieldProps, help, desc = "", isPremium: isPro, hints = '' } = field;
+
   const [value, setValue] = useState();
   const [dbValue, setDbValue] = useState();
-
   useEffect(() => {
     if (saveType === 'nested') {
       if (activeChild) {
-        setValue(data?.[activeSection]?.[activeChild]?.[id] || '');
+        setValue(data?.[activeSection]?.[activeChild]?.[id] || "");
       } else {
-        setValue(data?.[activeSection]?.[id] || '');
+        setValue(data?.[activeSection]?.[id] || "");
       }
     } else {
-      setValue(data?.[id] || '');
+      setValue(data?.[id]);
     }
     //dbData
     if (saveType === 'nested') {
       if (activeChild) {
-        setDbValue(dbData?.[activeSection]?.[activeChild]?.[id] || '');
+        setDbValue(dbData?.[activeSection]?.[activeChild]?.[id] || "");
       } else {
-        setDbValue(dbData?.[activeSection]?.[id] || '');
+        setDbValue(dbData?.[activeSection]?.[id] || "");
       }
     } else {
-      setDbValue(dbData?.[id] || '');
+      setDbValue(dbData?.[id] || "");
     }
-  }, [activeSection, activeChild, isLoading, value, refetch]);
+  }, [dbData, data, activeSection, activeChild, isLoading, value, refetch]);
 
-  return <div className={`field ${["notice", "heading", "subheading", "content", "submessage"].includes(fieldProps) ? "" : "fieldPadding"}`}>
-    {
-      title && <div className={`fieldLabel ${["notice", "heading", "subheading", "content", "submessage"].includes(fieldProps) ? "" : "pr15"}`}>
-        <label className='label'>{title}</label>
-        {subtitle && <p className='subTitle' dangerouslySetInnerHTML={{ __html: subtitle }} />}
+  const handleChange = useCallback(val => {
+    updateData(id, val);
+  }, [id, updateData]);
+
+  const fieldClasses = useMemo(() => {
+    const baseClass = ["notice", "heading", "subheading", "content", "submessage"].includes(fieldProps) ? "" : "fieldPadding";
+    return `field ${baseClass}`;
+  }, [fieldProps]);
+
+  const labelClasses = useMemo(() => {
+    const baseClass = ["notice", "heading", "subheading", "content", "submessage"].includes(fieldProps) ? "" : "pr15";
+    return `fieldLabel ${baseClass}`;
+  }, [fieldProps]);
+
+  // <label for="csb-advancedScrollbarSettings-pro-modal-toggle" class="bPl-settings-pro-open-modal-btn">Open Modal</label>
+
+  return <>
+    {(isPro && !isPremium) && <label {...((isPro && !isPremium) ? { htmlFor: "csb-advancedScrollbarSettings-pro-modal-toggle" } : {})}>
+      <div className={`${fieldClasses} ${(isPro && !isPremium) ? 'pointerEventNone bplSettingsProOpacity' : ''}`}>
+        {title && (
+          <div className={labelClasses}>
+            <label className='label'>
+              {title} {isPro && !isPremium && <span className='bPl-Settings-pro-badge'>Pro</span>}
+            </label>
+            {subtitle && <p className='subTitle' dangerouslySetInnerHTML={{ __html: subtitle }} />}
+          </div>
+        )}
+
+        <div className={`fieldComponent ${!title ? "fullWidth" : ""}`}>
+          {before && <div className="beforeAfterText" dangerouslySetInnerHTML={{ __html: before }} />}
+          <FieldSwitch
+            {...field}
+            extraFields={field}
+            value={value}
+            data={data}
+            setData={setData}
+            onChange={handleChange}
+            isLoading={isLoading}
+            refetch={refetch}
+            dbData={dbValue}
+          />
+          {desc && <div className="beforeAfterText" dangerouslySetInnerHTML={{ __html: desc }} />}
+          {after && <div className="beforeAfterText" dangerouslySetInnerHTML={{ __html: after }} />}
+        </div>
+
+        {help && (
+          <div className='bPl-field-help-main-wrapper'>
+            <span className='bPl-field-help-text'>{help}</span>
+            <AiFillQuestionCircle className="bPl-field-help-icon" />
+          </div>
+        )}
       </div>
-    }
+      {
+        hints && <p className='bPl-settings-hints' dangerouslySetInnerHTML={{ __html: hints }}></p>
+      }
+    </label>}
 
-    {
-      <div className={`fieldComponent ${!title ? "fullWidth" : ""}`} >
+    {!(isPro && !isPremium) && <div className={`${fieldClasses}`}>
+      {title && (
+        <div className={labelClasses}>
+          <label className='label'>
+            {title}
+          </label>
+          {subtitle && <p className='subTitle' dangerouslySetInnerHTML={{ __html: subtitle }} />}
+        </div>
+      )}
+
+      <div className={`fieldComponent ${!title ? "fullWidth" : ""}`}>
         {before && <div className="beforeAfterText" dangerouslySetInnerHTML={{ __html: before }} />}
-        <FieldSwitch {...field} extraFields={field} value={value} data={data} setData={setData} onChange={val => {
-          updateData(id, val)
-        }} isLoading={isLoading} refetch={refetch} dbData={dbValue} />
+        <FieldSwitch
+          {...field}
+          extraFields={field}
+          value={value}
+          data={data}
+          setData={setData}
+          onChange={handleChange}
+          isLoading={isLoading}
+          refetch={refetch}
+          dbData={dbValue}
+        />
         {desc && <div className="beforeAfterText" dangerouslySetInnerHTML={{ __html: desc }} />}
         {after && <div className="beforeAfterText" dangerouslySetInnerHTML={{ __html: after }} />}
       </div>
-    }
-    {
-      help && <div className='bPl-field-help-main-wrapper'>
-        <span className='bPl-field-help-text'>{help}</span>
-        <AiFillQuestionCircle className="bPl-field-help-icon" />
-      </div>
-    }
 
-  </div>
-}
+      {help && (
+        <div className='bPl-field-help-main-wrapper'>
+          <span className='bPl-field-help-text'>{help}</span>
+          <AiFillQuestionCircle className="bPl-field-help-icon" />
+        </div>
+      )}
+      {
+        hints && <p className='bPl-settings-hints' dangerouslySetInnerHTML={{ __html: hints }}></p>
+      }
+    </div>}
+
+
+  </>
+};
+
+export default Body;

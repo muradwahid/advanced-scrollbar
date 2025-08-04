@@ -8,7 +8,7 @@ const Spinner = ({
   unit,
   defaultValue="",
 }) => {
-  const def = value || { spinner: defaultValue };
+  const def = value || { spinner: defaultValue?.spinner };
   const roundToPrecision = (num, precision) => {
     return Number((Math.round(num * Math.pow(10, precision)) / Math.pow(10, precision)).toFixed(precision));
   };
@@ -42,7 +42,7 @@ const Spinner = ({
           </div>
           <div className="bPl-spinner-inputField-wrapper">
             <input
-              value={def?.["spinner"]}
+              value={def?.spinner}
               type="number"
               min={min}
               max={max}

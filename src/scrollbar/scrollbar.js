@@ -1,8 +1,6 @@
 import $ from 'jquery';
 import { useEffect, useRef } from 'react';
 import { createRoot } from 'react-dom/client';
-// import 'jquery.nicescroll'; 
-// import { useSmoothScroll } from '../hooks/useSmoothScroll';
 import { useMovePosition } from '../hooks/useMovePosition';
 import { generateGradient, getBorderCSS, isSet } from '../utils/function';
 import "./style.scss";
@@ -16,18 +14,17 @@ const Scrollbar = ({ scrollbarData }) => {
     const floatingRef = useRef(null);
 
 
-    // console.log(scrollbarData)
-
     const touchBehavior = asb_touchbehavior == 1 ? true : false;
-    const showScrollbar = asb_showscrollbar;
+    const showScrollbar = typeof asb_showscrollbar =="string" ? JSON.parse(asb_showscrollbar) :false;
     const autoHideMode = (asb_autohidemode === "cursor" || asb_autohidemode === "coursor") ? "cursor" : JSON.parse(asb_autohidemode);
-    // console.log(getBorderCSS(asb_border))
-    const isShowScrollBar = asb_dynamic_height_scrollbar == "off" && asb_floating_scrollbar == "off" && showScrollbar
+
+    const isShowScrollBar = asb_dynamic_height_scrollbar == "off" && asb_floating_scrollbar == "off" && showScrollbar;
 
     const { cursorPosition, scrollPercentage } = useMovePosition(asb_floating_scrollbar)
 
     useEffect(() => {
         if (isShowScrollBar) {
+
             $("html").niceScroll({
                 hwacceleration: true,
                 cursorcolor: asb_color,
@@ -51,6 +48,8 @@ const Scrollbar = ({ scrollbarData }) => {
             }
         };
     }, [
+        JSON.stringify(scrollbarData),
+        isShowScrollBar,
         showScrollbar,
         asb_dynamic_height_scrollbar,
         asb_floating_scrollbar,
@@ -67,12 +66,22 @@ const Scrollbar = ({ scrollbarData }) => {
         autoHideMode
     ]);
 
+    useEffect(() => { 
+        const html = document.documentElement;
+        if (asb_dynamic_height_scrollbar == "on" || asb_floating_scrollbar == "on") {
+            html.classList.add('csb-scrollbar-active');
+        }
+        return () => {
+            html.classList.remove('csb-scrollbar-active');
+        };
+    }, [asb_dynamic_height_scrollbar, asb_floating_scrollbar])
+
     const dynamicHeightStyle = {
-        ...(isSet(scrollPercentage) && { "--csb-scrollbar-rail-dynamic-height": scrollPercentage + "%" }),
+        ...(isSet(scrollPercentage) && { "--csb-scrollbar-rail-dynamic-height": scrollPercentage + "%" })
     }
     const floatingStyle = {
         ...(isSet(asb_floating_scrollbar_bg_color) && { "--csb-scrollbar-floating-bg-color": asb_floating_scrollbar_bg_color }),
-        ...(isSet(asb_floating_scrollbar_text_color) && { "--csb-scrollbar-floating-text-color": asb_floating_scrollbar_text_color }),
+        ...(isSet(asb_floating_scrollbar_text_color) && { "--csb-scrollbar-floating-text-color": asb_floating_scrollbar_text_color })
     }
 
     // if (isLoading ) return;
@@ -93,7 +102,9 @@ export default Scrollbar;
 
 document.addEventListener('DOMContentLoaded', () => {
     const scrollbarEl = document.getElementById("csbScrollbar");
+    if (!scrollbarEl) return;
     const scrollbarData = JSON.parse(scrollbarEl.dataset.scrollbar);
+
     const root = createRoot(scrollbarEl);
     root.render(<Scrollbar scrollbarData={scrollbarData} />);
     scrollbarEl.removeAttribute('data-scrollbar')

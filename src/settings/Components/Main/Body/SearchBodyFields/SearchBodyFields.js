@@ -1,7 +1,9 @@
-import React, { memo, useEffect, useState } from 'react';
+import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import FieldSwitch from '../FieldSwitch';
+import { AiFillQuestionCircle } from '../../../../utils/icons';
+import ProModal from '../../ProModal/ProModal';
 
-const SearchBodyFields = ({ search, options, updateData, sections, data, setData, isLoading, activeSection, activeChild }) => {
+const SearchBodyFields = ({ search, options, updateData, sections, data, setData, isLoading, activeSection, activeChild,refetch,dbData,isPremium }) => {
   const [filteredSections, setFilteredSections] = useState([]);
 
 
@@ -49,18 +51,19 @@ const SearchBodyFields = ({ search, options, updateData, sections, data, setData
 
   return (
     <div className='fields'>
+      {!isPremium && <ProModal />}
       {filteredSections.map((section) => {
         const { name, fields = [], children = [] } = section;
 
         if (fields.length > 0) {
           return fields.map((f) => {
-            return <Field parentName={name} key={f?.id} {...{ saveType: options.saveType, data, setData, activeSection, activeChild, updateData, fields, isLoading }} field={f} />;
+            return <Field parentName={name} key={f?.id} {...{ saveType: options.saveType, data, setData, activeSection, activeChild, updateData, fields, isLoading,refetch,dbData,isPremium }} field={f} />;
           });
         } else if (children.length > 0) {
           return children.map((child) => {
             const { name: childName, fields = [] } = child;
             return fields?.map((c, i) => {
-              return <Field parentName={name} childName={childName} key={c.id || i} {...{ saveType: options.saveType, data, setData, activeSection, activeChild, updateData, isLoading }} field={c} />
+              return <Field parentName={name} childName={childName} key={c.id || i} {...{ saveType: options.saveType, data, setData, activeSection, activeChild, updateData, isLoading,refetch,dbData,isPremium }} field={c} />
             });
           });
         }
@@ -73,31 +76,129 @@ const SearchBodyFields = ({ search, options, updateData, sections, data, setData
 
 export default memo(SearchBodyFields);
 
+const Field = ({ saveType = 'nested', data, setData, activeSection, activeChild, field, updateData, isLoading, refetch, dbData, isPremium }) => {
+  // eslint-disable-next-line no-unused-vars
+  const { id, title, default: defaultValue = {}, subtitle, before, after, field: fieldProps, help, desc = "", isPremium: isPro, hints = '' } = field;
 
-const Field = ({ data, setData, field, updateData, isLoading, parentName, childName }) => {
-  const { id, title, subtitle, before, after } = field;
-  let value;
-  if (childName) {
-    value = data?.[parentName]?.[childName]?.[id] || "";
-  } else {
-    value = data?.[parentName]?.[id] || "";
-  }
-
-  return <div className="field fieldPadding">
-    {
-      title && <div className={`fieldLabel`}>
-        <label className='label'>{title}</label>
-        {subtitle && <p className='subTitle' dangerouslySetInnerHTML={{ __html: subtitle }} />}
-      </div>
+  const [value, setValue] = useState();
+  const [dbValue, setDbValue] = useState();
+  useEffect(() => {
+    if (saveType === 'nested') {
+      if (activeChild) {
+        setValue(data?.[activeSection]?.[activeChild]?.[id] || "");
+      } else {
+        setValue(data?.[activeSection]?.[id] || "");
+      }
+    } else {
+      setValue(data?.[id]);
     }
-    {
-      <div className={`fieldComponent ${title ? "" : "fullWidth"}`} >
+    //dbData
+    if (saveType === 'nested') {
+      if (activeChild) {
+        setDbValue(dbData?.[activeSection]?.[activeChild]?.[id] || "");
+      } else {
+        setDbValue(dbData?.[activeSection]?.[id] || "");
+      }
+    } else {
+      setDbValue(dbData?.[id] || "");
+    }
+  }, [dbData, data, activeSection, activeChild, isLoading, value, refetch]);
+
+  const handleChange = useCallback(val => {
+    updateData(id, val);
+  }, [id, updateData]);
+
+  const fieldClasses = useMemo(() => {
+    const baseClass = ["notice", "heading", "subheading", "content", "submessage"].includes(fieldProps) ? "" : "fieldPadding";
+    return `field ${baseClass}`;
+  }, [fieldProps]);
+
+  const labelClasses = useMemo(() => {
+    const baseClass = ["notice", "heading", "subheading", "content", "submessage"].includes(fieldProps) ? "" : "pr15";
+    return `fieldLabel ${baseClass}`;
+  }, [fieldProps]);
+
+  // <label for="csb-advancedScrollbarSettings-pro-modal-toggle" class="bPl-settings-pro-open-modal-btn">Open Modal</label>
+
+  return <>
+    {(isPro && !isPremium) && <label {...((isPro && !isPremium) ? { htmlFor: "csb-advancedScrollbarSettings-pro-modal-toggle" } : {})}>
+      <div className={`${fieldClasses} ${(isPro && !isPremium) ? 'pointerEventNone' : ''}`}>
+        {title && (
+          <div className={labelClasses}>
+            <label className='label'>
+              {title} {isPro && !isPremium && <span className='bPl-Settings-pro-badge'>Pro</span>}
+            </label>
+            {subtitle && <p className='subTitle' dangerouslySetInnerHTML={{ __html: subtitle }} />}
+          </div>
+        )}
+
+        <div className={`fieldComponent ${!title ? "fullWidth" : ""}`}>
+          {before && <div className="beforeAfterText" dangerouslySetInnerHTML={{ __html: before }} />}
+          <FieldSwitch
+            {...field}
+            extraFields={field}
+            value={value}
+            data={data}
+            setData={setData}
+            onChange={handleChange}
+            isLoading={isLoading}
+            refetch={refetch}
+            dbData={dbValue}
+          />
+          {desc && <div className="beforeAfterText" dangerouslySetInnerHTML={{ __html: desc }} />}
+          {after && <div className="beforeAfterText" dangerouslySetInnerHTML={{ __html: after }} />}
+        </div>
+
+        {help && (
+          <div className='bPl-field-help-main-wrapper'>
+            <span className='bPl-field-help-text'>{help}</span>
+            <AiFillQuestionCircle className="bPl-field-help-icon" />
+          </div>
+        )}
+      </div>
+      {
+        hints && <p className='bPl-settings-hints' dangerouslySetInnerHTML={{ __html: hints }}></p>
+      }
+    </label>}
+
+    {!(isPro && !isPremium) && <div className={`${fieldClasses}`}>
+      {title && (
+        <div className={labelClasses}>
+          <label className='label'>
+            {title}
+          </label>
+          {subtitle && <p className='subTitle' dangerouslySetInnerHTML={{ __html: subtitle }} />}
+        </div>
+      )}
+
+      <div className={`fieldComponent ${!title ? "fullWidth" : ""}`}>
         {before && <div className="beforeAfterText" dangerouslySetInnerHTML={{ __html: before }} />}
-        <FieldSwitch {...field} extraFields={field} value={value} data={data} setData={setData} onChange={val => {
-          updateData(id, val, parentName, childName)
-        }} isLoading={isLoading} />
+        <FieldSwitch
+          {...field}
+          extraFields={field}
+          value={value}
+          data={data}
+          setData={setData}
+          onChange={handleChange}
+          isLoading={isLoading}
+          refetch={refetch}
+          dbData={dbValue}
+        />
+        {desc && <div className="beforeAfterText" dangerouslySetInnerHTML={{ __html: desc }} />}
         {after && <div className="beforeAfterText" dangerouslySetInnerHTML={{ __html: after }} />}
       </div>
-    }
-  </div>
-}
+
+      {help && (
+        <div className='bPl-field-help-main-wrapper'>
+          <span className='bPl-field-help-text'>{help}</span>
+          <AiFillQuestionCircle className="bPl-field-help-icon" />
+        </div>
+      )}
+      {
+        hints && <p className='bPl-settings-hints' dangerouslySetInnerHTML={{ __html: hints }}></p>
+      }
+    </div>}
+
+
+  </>
+};

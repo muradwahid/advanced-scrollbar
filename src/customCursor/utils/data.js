@@ -1,3 +1,3 @@
-export const prefix = 'bBlocks-cursor';
+export const prefix = 'advScrollbar-cursor';
 
-export const cursorClass = 'bBlocks-custom-cursor';
+export const cursorClass = 'advScrollbar-custom-cursor';

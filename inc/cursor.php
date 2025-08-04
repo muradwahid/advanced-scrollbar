@@ -56,7 +56,7 @@ if( !class_exists( 'CSBAdvScrollbarCursor' ) ){
 			if (!wp_verify_nonce(sanitize_text_field($_POST['nonce']), 'wp_rest')) {
 				wp_send_json_error('invalid request');
 			}
-			
+
 			$data = get_option('csb_adv_scrollbar_cursor_settings', []);
 			wp_send_json_success($data);
 			
@@ -74,6 +74,7 @@ if( !class_exists( 'CSBAdvScrollbarCursor' ) ){
 				'dirUrl' => CSB_DIR_URL
 			));
 		}
+		
 
 		function enqueueBlockEditorAssets(){
 			wp_enqueue_script('csb-adv-scrollbar-cursor-settings', CSB_DIR_URL . '/build/settings.js', array('wp-compose','wp-data','wp-editor','wp-plugins','wp-components','wp-i18n','react','react-dom'), CSB_VERSION, true);
@@ -93,8 +94,6 @@ if( !class_exists( 'CSBAdvScrollbarCursor' ) ){
 				'isPremium' => asbIsPremium()
 			]);
 		}
-
-
 	}
 	new CSBAdvScrollbarCursor();	
 }

@@ -1,5 +1,5 @@
 import { isSet } from "../../../../utils/common";
-//import "./style.scss";
+import "./style.scss";
 
 const SparkSimple = ({ duration, easing = 'ease-out', size=40, color ='#ff6b6b' }) => {
 
