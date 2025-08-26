@@ -5,7 +5,7 @@ export const options = {
     sections: [
         {
             "name": "basic_settings",
-            "title": "Scrollbar_basic_settings",
+            "title": "Scrollbar Basic Settings",
             fields: [
                 {
                     id: "asb_showscrollbar",

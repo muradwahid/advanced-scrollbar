@@ -1,99 +1,110 @@
-=== Advanced scrollbar - Customize the scrollbar ===
-Contributors: bplugins, abuhayat, shehabulislam , btechnologies, freemius
+=== Advanced Scrollbar – Custom Scrollbar Styling and Behavior ===
+Contributors: bplugins, abuhayat, charlescormier, muradwahid, freemius
 Donate link: https://www.buymeacoffee.com/abuhayat
-Tags: Color Scrollbar, custom scroll, nice scrollbar, scrollbar, customizer
+Tags: Color Scrollbar, custom scroll, nice scrollbar, scrollbar, cursor effect
 Requires at least: 6.5+
-Tested up to: 6.7.1
-Stable tag: 1.1.6
+Tested up to: 6.8
+Stable tag: 1.1.5
 Requires PHP: 7.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
- 
 
-Customize your scrollbar. Change color, Width, Background & Scroll Speed
+Advanced Scrollbar lets you add a scrollbar with customizable color, width, background, and speed for a sleek, branded user experience.
+
 
 == Description ==
-👉 [Plugin Demo](https://bplugins.com/products/advanced-scrollbar)
-
-Customize your scrollbar. Change color, width, Background, Scroll Speed, align the Rail of the scrollbar, and more. Design the scrollbar by following your brand identity. This plugin is lightweight and very easy to use. 
-
-Advanced Scrollbar is a lightweight and easy-to-use plugin that allows you to enhance the scrollbar on your WordPress website. With this plugin, you can customize the look and behavior of your scrollbar to better fit your site's design and improve user experience.
-
-The plugin offers a range of customizable scrollbar options, including scrollbar color, width, height, opacity, and more. You can also choose to display scrollbar buttons, set a minimum scrollbar height, and enable smooth scrolling for a more polished look and feel.
-
-Advanced Scrollbar is easy to set up and use, and requires no coding knowledge. Simply install the plugin, activate it, and use the intuitive settings panel to customize your scrollbar. The plugin is also fully compatible with all major browsers and WordPress themes.
-
-One of the key features of Advanced Scrollbar is its ability to improve user experience on your website. By customizing your scrollbar, you can make it easier for your users to navigate your site, especially if you have long pages or a lot of content. This can help improve engagement and reduce bounce rates.
-
-Overall, Advanced Scrollbar is a powerful and versatile plugin that can help you customize and enhance the scrollbar on your WordPress website. Try it out today and see how it can improve your site's design and user experience.
+[Advanced Scrollbar](https://bplugins.com/products/advanced-scrollbar/) | [Pricing](https://bplugins.com/products/advanced-scrollbar/#pricing) | [Support](https://bplugins.com/support/) | [Demo](https://scrollbar.bplugins.com/)
 
 
- 
- 
-= How to use  =
-* After installation Navigate Settings > Advanced Scrollbar Settings. 
-* Change the scrollbar appearance such as color, width, etc
-* Save changes.
-* Enjoy!
+[Advanced Scrollbar](https://bplugins.com/products/advanced-scrollbar/) is a lightweight WordPress plugin that lets you easily add and customize scrollbars to fit your site’s style. Customize scrollbar color, width, background, speed, and alignment—no coding required. Fully compatible with all major browsers and WordPress themes, it’s the fast way to give your site a polished, user-friendly scrolling experience.
 
-= Features =
-* You can change the Scrollbar color
-* You can change the Scrollbar Rail Background Color
-* You can change the Scrollbar Mouse Scroll Step
-* You can set how to hide the scrollbar works
-* You can Control Scroll Speed
-* You can Align left or right the scrollbar.
-* You can enable or disable Touch Behavior
-* You can Control the Scrollbar Width
-* You can style the scrollbar radius & border.
-* Powered by jQuery.  
-* Very lightweight. 
-* Easy-to-use user interface.
-* Compatible with all devices including Mobile phones, Tablet PCs, Desktop
+Whether you prefer subtle styling tweaks or vibrant animated effects, Advanced Scrollbar helps you enhance navigation and match your design—especially useful for content-heavy pages with long scroll areas.
 
-= Pro Features =
-* Dynamic Full Height Scrollbar
-* Gradient Color Options
-* Floating Scrollbar and Color options
-* Custom Cursor Option
-* Cursor Shape
-* Cursor Shape Styles
-* Cursor Click Effect
-* Cursor Click Effect Styles
 
+=== Key Features – Free Version ===
+- **Scrollbar Appearance**: Customize thumb color, rail background, width, border, and rounded corners.
+- **Visibility Controls**: Show or hide the scrollbar when not in use.
+- **Scroll Behavior**: Adjust scroll speed, smoothness, and mouse scroll step.
+- **Alignment Options**: Place the scrollbar on the left or right.
+- **Touch-Friendly**: Enable optimized scrolling for touch devices.
+- **Lightweight & Universal**: Ad-free, powered by jQuery, works across browsers and themes.
+
+=== Cursor & Click Effects: Free Styles ===
+- **Cursor Shapes**: Follow, Dot, Blob, Elastic.
+- **Click Effects**: Spark, Spark Simple, Starburst.
+
+
+=== Advanced Scrollbar Pro – Unlock Premium Features ===
+The [Pro version](https://bplugins.com/products/advanced-scrollbar/#pricing) adds advanced design options, premium effects, and enhanced controls to give your scrollbar a unique look and feel.
+
+== What’s New in the Pro Version? ==
+- **Dynamic Full-Height Scrollbars**: Ideal for long pages.
+- **Gradient & Floating Designs**: Apply modern gradient colors or floating scrollbars.
+- **Premium Cursor Shapes**: Glitch Matrix, Neon, Gradient, Magnetic, Ribbon, Spotlight, and more.
+- **Premium Click Effects**: Ripples, Pulses, Waves, Explosions, and other animations.
+- **Custom Floating Scrollbar Colors**: Set background and text colors for floating scrollbars.
+
+[Upgrade to Pro](https://bplugins.com/products/advanced-scrollbar/#pricing) and unlock all premium features today!
+
+
+=== Flexible Application Modes ===
+- **Global Mode**: Apply chosen styles site-wide from the plugin dashboard.
+- **Page/Post Specific Mode**: Apply unique effects directly in the WordPress editor—great for campaigns or featured content.
+
+
+=== How to Use Advanced Scrollbar – Quick Start Guide ===
+Getting started is easy!
+
+1. Install and activate the plugin.
+2. Go to **Settings → Advanced Scrollbar**.
+3. Customize scrollbar and cursor styles in the settings panel.
+4. Save changes and enjoy your new scrolling experience.
+
+
+=== Use Cases ===
+- Enhance user experience on content-heavy pages.
+- Strengthen brand consistency with customizable UI.
+- Optimize navigation flow on long-form content or sites with dynamic layout.
+
+[Live Demo](https://scrollbar.bplugins.com/) |  [Try the Pro Version](https://bplugins.com/products/advanced-scrollbar/#pricing)
 
 
 = Feedback = 
 Like that plugin? Hate it? Want a new feature?  [Send your feedback](https://bPlugins.com/support "Send feedback")  
 
 
-= ⭐ Checkout our other WordPress Plugins- = 
+### Check out our other WordPress Plugins-
 
-🔥 **[Html5 Audio Player](https://audioplayerwp.com/)** – Best audio player plugin for WordPress.
+[**Html5 Video Player**](https://bplugins.com/products/html5-video-player/) – Display videos as single and playlist in multiple skins.
 
-🔥 **[Html5 Video Player](https://wpvideoplayer.com/)** – Best video player plugin for WordPress.
+[**PDF Poster**](https://bplugins.com/products/pdf-poster/) – Display/Embed PDF files with different styles.
 
-🔥 **[PDF Poster](http://pdfposter.com/)** – A fully-featured PDF Viewer Plugin for WordPresss.
+[**Html5 Audio Player**](https://bplugins.com/products/html5-audio-player/) – Listen audios with awesome visuals.
 
-🔥 **[StreamCast](https://wordpress.org/plugins/streamcast)** – A fully-featured Radio Player Plugin for WordPresss.
+[**StreamCast**](https://bplugins.com/products/streamcast-radio-player/) – Customizable radio player with different skins.
 
-🔥 **[3D Viewer](https://3d-viewer.bplugins.com/)** – Display interactive 3D models on the webs.
+[**3D Viewer**](https://bplugins.com/products/3d-viewer/) – Embed 3D models and 3D products with interaction.
 
-🔥 **[Button Block](https://wordpress.org/plugins/button-block/)** – Get fully customizable & multi-functional buttons.
-
-🔥 **[Easy Twitter Feed](https://wordpress.org/plugins/easy-twitter-feeds)** – Twitter feeds plugin for WP
-
-🔥 **[Store Finder for WooCommerce](https://wordpress.org/plugins/store-finder/)** – Lists your store contact info professionally
+[**Advanced Post Block**](https://bplugins.com/products/advanced-post-block/) – Show posts and custom posts in different layouts.
 
 
 == Installation ==
 
-This section describes how to install the plugin and get it working.
+### Automatic installation
+1. Go to the Plugin menu and click on the **Add New** Button
+2. Search for **Advanced Scrollbar**
+3. Install and activate the Advanced Scrollbar plugin from there
 
-e.g.
+### Download & Upload:
+1. Download the **Advanced Scrollbar** plugin (*.zip file*)
+2. In your admin area, go to the Plugins menu and click on **Add New**
+3. Click on **Upload Plugin** and choose the **`advanced-scrollbar.zip`** file and click on **Install Now**
+4. Activate the plugin and Enjoy!
 
-1. Upload `plugin-directory` to the `/wp-content/plugins/` directory
-2. Activate the plugin through the 'Plugins' menu in WordPress
+### Manually:
+1. Download and upload the **Advanced Scrollbar** plugin to the **`/wp-content/plugins/`** directory
+2. Activate the plugin through the Plugins menu in WordPress
+
 
 
 == Frequently Asked Questions ==
@@ -112,10 +123,9 @@ Yes, You can do that.
 
 == Screenshots ==
 
-1. Admin menu
-2. Basic Options
-3. Advanced Options
-
+1. Scrollbar Settings
+2. Cursor and Click Effects
+3. Popular Plugins
 
 
 == Changelog ==

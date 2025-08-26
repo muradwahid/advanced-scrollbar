@@ -18,7 +18,8 @@ import CursorSpotlight from './CursorSpotlight/CursorSpotlight';
 import CursorText from './CursorText/CursorText';
 import SplashCursor from './SplashCursor/SplashCursor';
 
-const Cursor = ({ shape={}, domEl = null, eventEl = window, rect = {} }) => {
+const Cursor = ({ shape={}, domEl = null, eventEl = window, rect = {},isDashboard=false }) => {
+
   function getGlitchProps(type, shape) {
     return {
       ...glitchCursorDefaultValues[type],
@@ -31,7 +32,7 @@ const Cursor = ({ shape={}, domEl = null, eventEl = window, rect = {} }) => {
     case 'follow':
       return <CursorFollow shape={shape.type} {...shape?.follow} domEl={domEl}/>;
     case 'blob':
-      return <BlobCursor {...shape.blob} domEl={domEl} eventEl={eventEl} rect={rect} />;
+      return <BlobCursor {...shape.blob} domEl={domEl} eventEl={eventEl} rect={rect} isDashboard={isDashboard} />;
     case 'dot':
       return <CursorDot {...shape.dot} domEl={domEl} />;
     case 'elastic':

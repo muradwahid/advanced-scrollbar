@@ -72,7 +72,7 @@ const Playground = ({ dataInfo }) => {
         cursorData?.source == "shape" && <>
         {(cursorData?.shape?.type === 'ribbon' && isCursorVisible) && <CursorRibbon {...cursorData?.shape?.ribbon} domEl={dashboardRef.current} eventEl={dashboardRef.current} rect={dashboardRef.current.getBoundingClientRect()} key={cursorData?.shape?.type} />}
   
-        {(cursorData?.shape?.type && cursorData?.shape?.type !== 'ribbon' && isCursorVisible) ? <Cursor shape={cursorData?.shape} domEl={dashboardRef.current} eventEl={dashboardRef.current} rect={dashboardRef.current.getBoundingClientRect()} key={cursorData?.shape?.type} /> : null}
+        {(cursorData?.shape?.type && cursorData?.shape?.type !== 'ribbon' && isCursorVisible) ? <Cursor shape={cursorData?.shape} domEl={dashboardRef.current} eventEl={dashboardRef.current} rect={dashboardRef.current.getBoundingClientRect()} key={cursorData?.shape?.type} isDashboard={true} /> : null}
         </>
       }
 

@@ -8,7 +8,8 @@ export default function BlobCursor({
   blobType = "circle",
   fillColor = "#00f0ff",
   blobSize = 125,
-  domEl = null, eventEl = window, rect = { left: 0, top: 0 }
+  domEl = null, eventEl = window, rect = { left: 0, top: 0 },
+  isDashboard= false
 }) {
   const trailRefs = [useRef(null), useRef(null), useRef(null)];
   const pos = useRef({ x: 0, y: 0 });
@@ -99,7 +100,7 @@ export default function BlobCursor({
       <div
         className="advScrollbar-blob-cursor-main"
         style={{
-          position: "absolute",
+          position: isDashboard ? "absolute" : "fixed",
           left: 0,
           top: 0,
           width: rect?.width ? rect.width : "100%",

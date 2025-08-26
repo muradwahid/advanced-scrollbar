@@ -1,3 +1,4 @@
+import VideoPlayer from '../../components/VideoPlayer';
 import Layout from '../Layout/Layout';
 import { helpItem } from '../utils/options';
 
@@ -11,9 +12,11 @@ const Welcome = ({ version }) => {
                         <div className="advScrollbar_left">
                             <h1>Welcome to Advanced Scrollbar</h1>
                             <p>Advanced Scrollbar is a powerful and versatile plugin that can help you customize and enhance the scrollbar on your WordPress website.</p>
-                            <div className="img">
+                            {/* <div className="img">
                                 <img src="	https://ps.w.org/advanced-scrollbar/assets/banner-772x250.png?rev=3115639" alt="image" />
-                            </div>
+                            </div> */}
+                            <VideoPlayer src='https://www.youtube.com/watch?v=xuAVOi80HE8'/>
+
                             <div className="logo_title">
 
                                 <div className="logo">
@@ -29,7 +32,7 @@ const Welcome = ({ version }) => {
                             </div>
                         </div>
                         <div className="advScrollbar_left_btn">
-                            <a className='action-button' href="https://bplugins.com/products/advanced-scrollbar/#pricing">
+                            <a className='action-button' href="https://bplugins.com/products/advanced-scrollbar/#pricing"  target='_blank' rel="noopener noreferrer">
                                 Buy Now
                             </a>
                             <a className='action-button' href="https://bplugins.com" target="_blank" rel="noopener noreferrer">

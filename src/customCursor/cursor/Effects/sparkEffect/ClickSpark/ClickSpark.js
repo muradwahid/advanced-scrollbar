@@ -11,11 +11,12 @@ const ClickSpark = ({
   easing = "ease-out",
   // easing = "ease-out",
   extraScale = 1.0,
+  domEl = document
 }) => {
   const canvasRef = useRef(null);
   const sparksRef = useRef([]);
   const startTimeRef = useRef(null);
-  const clickPosition = useClickPosition();
+  const clickPosition = useClickPosition(domEl);
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;

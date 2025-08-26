@@ -4,9 +4,9 @@ import Header from '../Parts/Header';
 const Layout = ({ children, version }) => {
   const navigation = [
     { name: 'Welcome', href: '/welcome' },
-    { name: 'Our Other Popular Plugins', href: '/popularPlugin' },
     { name: 'Scrollbar Settings', href: '/settings' },
     { name: 'Custom Cursor And Click Effects', href: '/custom-cursor' },
+    { name: 'Our Other Popular Plugins', href: '/popularPlugin' },
   ]
 
   return <>

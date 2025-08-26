@@ -53,7 +53,7 @@ const CursorEffects = ({ effect,domEl=document }) => {
         {/* <RippleEffects type="circle" /> */}
       </div>}
 
-      {effect?.type === "spark" && <ClickSpark {...effect?.spark} /> }
+      {effect?.type === "spark" && <ClickSpark {...effect?.spark} domEl={domEl} /> }
     </>
   );
 };
