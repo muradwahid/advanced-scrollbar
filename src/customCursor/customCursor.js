@@ -50,7 +50,7 @@ const CustomCursor = ({ cursorInfo}) => {
         filteredData?.source == "shape" && <>
           {(filteredData?.shape?.type === 'ribbon' && isCursorVisible) && <CursorRibbon {...filteredData?.shape?.ribbon} domEl={document.body} eventEl={document.body} rect={document.body.getBoundingClientRect()} key={filteredData?.shape?.type} />}
   
-        {(filteredData?.shape?.type && filteredData?.shape?.type !== 'ribbon' && isCursorVisible) ? <Cursor shape={filteredData?.shape} domEl={window} eventEl={window} rect={{}} key={filteredData?.shape?.type} /> : null}
+        {(filteredData?.shape?.type && filteredData?.shape?.type !== 'ribbon') ? <Cursor shape={filteredData?.shape} domEl={window} eventEl={window} rect={{}} key={filteredData?.shape?.type} /> : null}
         </>
       }
       {filteredData?.effect?.type && <CursorEffects effect={filteredData?.effect} key={filteredData?.effect?.type} />}

@@ -32,7 +32,7 @@ const VideoPlayer = ({
     return `https://www.youtube.com/embed/${videoId}`;
   }
 
-  return (<devicePixelRatio
+  return <devicePixelRatio
     className="asb-video-player"
     style={{ width, height }}
   >
@@ -44,7 +44,7 @@ const VideoPlayer = ({
         title="YouTube Video" />
     </div>
   </devicePixelRatio>
-  )
+  
 }
 
 export default VideoPlayer

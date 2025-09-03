@@ -13,8 +13,13 @@ Advanced Scrollbar lets you add a scrollbar with customizable color, width, back
 
 
 == Description ==
+
+**Intuitively design scrollbar color, width, and behavior with a lightweight - No Code Required**
+
+
 [Advanced Scrollbar](https://bplugins.com/products/advanced-scrollbar/) | [Pricing](https://bplugins.com/products/advanced-scrollbar/#pricing) | [Support](https://bplugins.com/support/) | [Demo](https://scrollbar.bplugins.com/)
 
+https://www.youtube.com/watch?v=xuAVOi80HE8
 
 [Advanced Scrollbar](https://bplugins.com/products/advanced-scrollbar/) is a lightweight WordPress plugin that lets you easily add and customize scrollbars to fit your site’s style. Customize scrollbar color, width, background, speed, and alignment—no coding required. Fully compatible with all major browsers and WordPress themes, it’s the fast way to give your site a polished, user-friendly scrolling experience.
 
